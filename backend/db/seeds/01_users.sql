@@ -1,0 +1,3 @@
+INSERT INTO users (id, name, email, password, avatar, bio) VALUES (1, 'Bulat Abdullin', 'test@mail.com', 'asd', 'https://share.america.gov/wp-content/uploads/2020/02/AP_20041239336571-1068x782.jpg', 'I like comedy movies.');
+INSERT INTO users (id, name, email, password, avatar, bio) VALUES (2, 'George Burt', 'test2@mail.com', 'asd', 'https://share.america.gov/wp-content/uploads/2020/02/AP_20041239336571-1068x782.jpg', 'I like horror movies.');
+INSERT INTO users (id, name, email, password, avatar, bio) VALUES (3, 'Baila Ly', 'test3@mail.com', 'asd', 'https://share.america.gov/wp-content/uploads/2020/02/AP_20041239336571-1068x782.jpg', 'I like action movies.');
