@@ -6,6 +6,7 @@ export default function MyPagination(props) {
       <Pagination 
         count={props.numOfPages}
         onChange={(event) => props.onChange(event.target.textContent)}
+        page={Number(props.pageState)}
       />
     </div>
   );

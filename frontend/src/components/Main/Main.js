@@ -35,7 +35,7 @@ export default function Main(props) {
   }
 
   const changePage = (page) => {
-    setPage(page);
+    setPage(Number(page));
     window.scroll(0, 0);
   }
 
@@ -65,7 +65,7 @@ export default function Main(props) {
         <SortByDropdown onChange={onChangeOfDropdownSort} />
         <h2>Sorting by: {sortedBy}</h2>
         <Movies movies={state} />
-        <MyPagination numOfPages={totalPages} onChange={changePage} />
+        <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
       </div>
     </>
   );
