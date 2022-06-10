@@ -1,0 +1,21 @@
+.nav-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  color:#ffc300;
+  transition: top 0.3s;
+  position: fixed;
+  width: 100%;
+  padding-left: 1em;
+}
+.user {
+  padding-right: 2em;
+  display: flex;
+}
+a {
+  color: #ffc300;
+  font-size: larger;
+  text-decoration: none
+}
