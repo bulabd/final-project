@@ -4,8 +4,16 @@ require("dotenv").config();
 const { Client } = require('pg');
 const SCHEMA_PATH = './db/schema';
 const SEEDS_PATH = './db/seeds';
-
 const {DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT} = process.env;
+
+const client = new Client({
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  password: DB_PASSWORD,
+});
+
+
 const fs = require("fs").promises;
 
 const connObj = {
@@ -14,7 +22,7 @@ const connObj = {
 	password: DB_PASSWORD,
 	port: DB_PORT,
 	database: DB_DATABASE,
-}
+};
 
 const runMigrations = async db => {
 	const migrations = await fs.readdir(SCHEMA_PATH);
@@ -23,7 +31,7 @@ const runMigrations = async db => {
 		console.log(`\t Running ${migration}`);
 		await db.query(sql);
 	}
-}
+};
 
 const runSeeds = async db => {
 	const seeds = await fs.readdir(SEEDS_PATH);
