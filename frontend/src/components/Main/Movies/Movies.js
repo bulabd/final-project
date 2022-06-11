@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./Movies.css"
 import Movie from "./Movie/Movie";
 

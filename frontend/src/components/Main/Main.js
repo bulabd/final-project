@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from 'react';
 import "./Main.css"
 import axios from "axios";
-import { useEffect, useState } from "react";
+
 
 import Movies from "./Movies/Movies";
 
