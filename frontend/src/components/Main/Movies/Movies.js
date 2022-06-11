@@ -6,8 +6,10 @@ export default function Movies(props) {
     return (
       <Movie
         key={movie.id}
+        id = {movie.id}
         title={movie.title}
         poster={movie.poster_path}
+        overview={movie.overview}
         rating={movie.vote_average}
       />
     );

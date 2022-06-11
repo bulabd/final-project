@@ -9,7 +9,7 @@ import SortByDropdown from "./Dropdown/SortByDropdown";
 import MyPagination from "./Pagination/MyPagination";
 
 export default function Main(props) {
-  const [state, setState] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState(28);
   const [genreName, setGenreName] = useState('Action');
   const [page, setPage] = useState(1);
@@ -25,12 +25,15 @@ export default function Main(props) {
     setPage(1);
     setSearch(text);
     setGenre(28);
-    Promise.all([
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${search}&page=1&include_adult=false`)
-    ]).then((data) => {
-      let movies = data[0].data.results;
-      setSearchMovies(movies);
-    });
+    if (search.length !== 0) {
+      Promise.all([
+        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${search}&page=1&include_adult=false`)
+      ]).then((data) => {
+        let movies = data[0].data.results;
+        setSearchMovies(movies);
+      });
+      setSearchMovies([]);
+    }
   }
 
 
@@ -71,7 +74,7 @@ export default function Main(props) {
       } else {
         setTotalPages(total_pages);
       }
-      setState(movies);
+      setMovies(movies);
       setGenreName(getGenreName(gnr));
     });
   }, [genre, page, sortedBy]);
@@ -80,19 +83,19 @@ export default function Main(props) {
     <>
       <div className="movie-container">
 
-        {!search && <>
+        {search.length === 0 && <>
 
         <Dropdown onChange={onChangeOfDropdownGenre} />
         <h2>{genreName} movies:</h2>
         <SortByDropdown onChange={onChangeOfDropdownSort} />
         <h2>Sorting by: {sortedBy}</h2>
-        <Movies movies={state} />
+        <Movies movies={movies} />
         <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
 
         </>}
 
         <Search onChange={onChangeOfSearch} />
-        <Movies movies={searchMovies} />
+        {search.length !== 0 && <Movies movies={searchMovies} /> }
 
       </div>
     </>

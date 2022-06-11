@@ -1,0 +1,22 @@
+img {
+  border: 2px #ffc300 solid;
+  border-radius: 10px;
+}
+
+.movieDetails {
+  display: flex;
+}
+
+.movieTitleAndDescription {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+#transition-modal-title {
+  border-bottom: 2px #ffc300 solid;
+}
+
+#transition-modal-description {
+  text-align: justify;
+}
