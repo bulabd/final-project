@@ -60,10 +60,12 @@ export default function Main(props) {
   return(
     <>
       <div className="movie-container">
-        <Dropdown onChange={onChangeOfDropdownGenre} />
-        <h2>{genreName} movies:</h2>
-        <SortByDropdown onChange={onChangeOfDropdownSort} />
-        <h2>Sorting by: {sortedBy}</h2>
+        <div className="dropDowns">
+          <Dropdown onChange={onChangeOfDropdownGenre} />
+          <h2>Genre: {genreName}</h2>
+          <SortByDropdown onChange={onChangeOfDropdownSort} />
+          <h2>Sorting by: {sortedBy}</h2>
+        </div>
         <Movies movies={state} />
         <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
       </div>

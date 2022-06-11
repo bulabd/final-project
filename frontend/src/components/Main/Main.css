@@ -1,0 +1,13 @@
+.movie-container{
+  padding-top: 12em;
+  padding-bottom: 3em;
+}
+
+
+
+.dropDowns{
+  display: flex;
+  flex-direction: column;
+  color: #ffc300;
+  z-index: 0;
+}
