@@ -1,13 +1,14 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+require("dotenv").config();
 const PORT = 8000;
 
 const db = require('./configs/db.config');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
 
 const cors = require('cors');
 const app = express();
@@ -33,10 +34,10 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}.`);
 });
 
-console.log(process.env.DB_USER,
-	process.env.DB_HOST,
-	process.env.DB_PASSWORD,
-	process.env.DB_PORT,
-	process.env.DB_DATABASE,);
+console.log(process.env.REACT_APP_DB_USER,
+  process.env.REACT_APP_DB_HOST,
+  process.env.REACT_APP_DB_PASSWORD,
+  process.env.REACT_APP_DB_PORT,
+  process.env.REACT_APP_DB_DATABASE,);
 
 module.exports = app;
