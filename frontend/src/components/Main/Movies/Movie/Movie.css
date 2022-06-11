@@ -1,0 +1,16 @@
+img {max-width:20%;}
+
+.movieShow{
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: larger;
+  color: #ffc300;
+  width: 20%;
+}

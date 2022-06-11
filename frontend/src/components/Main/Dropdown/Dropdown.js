@@ -1,5 +1,4 @@
 import "./Dropdown.css"
-
 import DropdownGenre from "./DropdownGenre/DropdownGenre";
 
 export default function Dropdown(props) {

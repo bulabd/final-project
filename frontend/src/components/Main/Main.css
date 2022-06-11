@@ -1,13 +1,19 @@
 .movie-container{
-  padding-top: 12em;
+  padding-top: 6em;
   padding-bottom: 3em;
 }
 
 
-
 .dropDowns{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   color: #ffc300;
-  z-index: 0;
+  padding: 1.5em;
+  height: 50px;
+  width: 80%;
+}
+
+.page{
+  color: #ffc300;
+  background-color: black;
 }

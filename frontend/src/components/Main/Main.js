@@ -1,7 +1,6 @@
 import "./Main.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import Movies from "./Movies/Movies";
 import Dropdown from "./Dropdown/Dropdown";
 import SortByDropdown from "./Dropdown/SortByDropdown";
@@ -61,13 +60,11 @@ export default function Main(props) {
     <>
       <div className="movie-container">
         <div className="dropDowns">
-          <Dropdown onChange={onChangeOfDropdownGenre} />
-          <h2>Genre: {genreName}</h2>
-          <SortByDropdown onChange={onChangeOfDropdownSort} />
-          <h2>Sorting by: {sortedBy}</h2>
+           <Dropdown onChange={onChangeOfDropdownGenre}/>
+           <SortByDropdown onChange={onChangeOfDropdownSort}/>
         </div>
         <Movies movies={state} />
-        <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
+        <MyPagination className="page" numOfPages={totalPages} onChange={changePage} pageState={page} />
       </div>
     </>
   );
