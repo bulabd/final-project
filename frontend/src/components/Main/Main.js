@@ -2,6 +2,7 @@ import "./Main.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import Search from "./Search/Search";
 import Movies from "./Movies/Movies";
 import Dropdown from "./Dropdown/Dropdown";
 import SortByDropdown from "./Dropdown/SortByDropdown";
@@ -13,8 +14,26 @@ export default function Main(props) {
   const [genreName, setGenreName] = useState('Action');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
-
   const [sortedBy, setSortedBy] = useState('popularity.desc');
+
+
+
+  const [search, setSearch] = useState("");
+  const [searchMovies, setSearchMovies] = useState([]);
+
+  const onChangeOfSearch = (text) => {
+    setPage(1);
+    setSearch(text);
+    setGenre(28);
+    Promise.all([
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${search}&page=1&include_adult=false`)
+    ]).then((data) => {
+      let movies = data[0].data.results;
+      setSearchMovies(movies);
+    });
+  }
+
+
 
   const onChangeOfDropdownGenre = (genre) => {
     setPage(1);
@@ -60,12 +79,21 @@ export default function Main(props) {
   return(
     <>
       <div className="movie-container">
+
+        {!search && <>
+
         <Dropdown onChange={onChangeOfDropdownGenre} />
         <h2>{genreName} movies:</h2>
         <SortByDropdown onChange={onChangeOfDropdownSort} />
         <h2>Sorting by: {sortedBy}</h2>
         <Movies movies={state} />
         <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
+
+        </>}
+
+        <Search onChange={onChangeOfSearch} />
+        <Movies movies={searchMovies} />
+
       </div>
     </>
   );
