@@ -1,0 +1,25 @@
+.movie-container{
+  padding-top: 6em;
+  padding-bottom: 3em;
+  background-color: 	#202020;
+}
+h3 {
+  color: #ffc300;
+  border-bottom: 1px solid#ffc300;
+  padding-left: 1em;
+}
+
+.dropDowns{
+  display: flex;
+  flex-direction: row;
+  color: #ffc300;
+  padding: 1.5em;
+  padding-bottom: 0.5em;
+  height: 50px;
+  width: 80%;
+}
+
+.page{
+  color: #ffc300;
+  background-color: black;
+}

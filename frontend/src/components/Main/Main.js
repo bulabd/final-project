@@ -85,18 +85,20 @@ export default function Main(props) {
 
         {search.length === 0 && <>
 
-        <Dropdown onChange={onChangeOfDropdownGenre} />
-        <h2>{genreName} movies:</h2>
-        <SortByDropdown onChange={onChangeOfDropdownSort} />
-        <h2>Sorting by: {sortedBy}</h2>
+        <div className="dropDowns">
+           <Dropdown onChange={onChangeOfDropdownGenre}/>
+           <SortByDropdown onChange={onChangeOfDropdownSort}/>
+        </div>
+        <h3>{genreName} movies sorted by {sortedBy}</h3>
         <Movies movies={movies} />
-        <MyPagination numOfPages={totalPages} onChange={changePage} pageState={page} />
+        <MyPagination  numOfPages={totalPages} onChange={changePage} pageState={page} />
 
         </>}
 
         <Search onChange={onChangeOfSearch} />
         {search.length !== 0 && <Movies movies={searchMovies} /> }
 
+        
       </div>
     </>
   );

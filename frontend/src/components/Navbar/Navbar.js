@@ -7,8 +7,8 @@ export default function Navbar(props) {
     <div className="nav-div">
       <h1>Movies<FontAwesomeIcon icon={faFilm}/> </h1>
       <div className="user">
-        <a href="/login">Login</a>
-        <a href="/SignUp"> /Register</a>
+       <button><a href="/login">Login</a></button>
+       <button><a href="/SignUp">Register</a></button>
       </div>
     </div>
   );
