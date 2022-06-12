@@ -8,6 +8,9 @@ export default function Navbar(props) {
   const [cookies] = useCookies(['user']); 
   const isLoggedIn = cookies.userId;
 
+  console.log("cookies", cookies);
+  console.log("cookies userID", cookies.userId);
+
   return(
     <div className="nav-div">
       <h1>Movies<FontAwesomeIcon icon={faFilm}/> </h1>
@@ -15,7 +18,7 @@ export default function Navbar(props) {
         {isLoggedIn ? (
           <>
          <h1>yay user logged in</h1>
-         <a href="/logout">logout</a>
+         <button><a href="/logout">Logout</a></button>
          </>
         ):(
           <>
