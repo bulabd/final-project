@@ -1,4 +1,8 @@
-import Pagination from "@material-ui/lab/Pagination"
+import Pagination from "@material-ui/lab/Pagination";
+
+// const Pagination = () => {
+//   return <h1>Help</h1>
+// }
 
 export default function MyPagination(props) {
   return (
