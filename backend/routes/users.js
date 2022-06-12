@@ -10,13 +10,5 @@ module.exports = (db) => {
     });
   });
 
-  router.post('/createuser', (req, res) => {
-    // const command = "SELECT * FROM users";
-    // db.query(command).then(data => {
-    //   res.json(data.rows);
-    // });
-    res.send("Wooot");
-  });
-
   return router;
 };
