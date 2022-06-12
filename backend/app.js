@@ -12,6 +12,7 @@ const PORT = 8000;
 const db = require('./configs/db.config');
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+let reviewsRouter = require('./routes/reviews');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
+app.use('/reviews', reviewsRouter(db));
 
 app.post('/login', (req, res) => {
   // get req body (i.e email and password)
