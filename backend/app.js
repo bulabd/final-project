@@ -7,11 +7,11 @@ const bodyParser = require('body-parser');
 
 require("dotenv").config();
 
-const PORT = 8080;
+const PORT = 8000;
 
 const db = require('./configs/db.config');
 let indexRouter = require('./routes/index');
-// let usersRouter = require('./routes/users');
+let usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter(db));
+app.use('/users', usersRouter(db));
 
 app.post('/login', (req, res) => {
   // get req body (i.e email and password)
