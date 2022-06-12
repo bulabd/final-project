@@ -28,6 +28,6 @@ function App() {
       </CookiesProvider>
     </div>
   );
-}
+};
 
 export default App;
