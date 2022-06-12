@@ -4,19 +4,38 @@
   align-items: center;
   justify-content: space-between;
   background-color: black;
-  color:#ffc300;
   transition: top 0.3s;
   position: fixed;
   width: 100%;
   padding-left: 1em;
-  z-index: 2;
+  z-index: 3;
+}
+h1 {
+  color:#ffc300;
 }
 .user {
   padding-right: 2em;
-  display: flex;
+  display: flex;  
+  justify-content: space-between;
+  width: 10%;
+  height: 39px;
 }
+
+button {
+  background-color: #ffc300;
+  border-radius: 0.5em;
+  border-color: black;
+}
+button:hover {
+  background-color: white;
+  border-radius: 0.5em;
+  border-color: black;
+}
+  
+  
 a {
-  color: #ffc300;
+  color: black;
   font-size: larger;
   text-decoration: none
 }
+  

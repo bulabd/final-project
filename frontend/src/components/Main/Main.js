@@ -63,6 +63,7 @@ export default function Main(props) {
            <Dropdown onChange={onChangeOfDropdownGenre}/>
            <SortByDropdown onChange={onChangeOfDropdownSort}/>
         </div>
+        <h3>{genreName} movies sorted by {sortedBy}</h3>
         <Movies movies={state} />
         <MyPagination className="page" numOfPages={totalPages} onChange={changePage} pageState={page} />
       </div>

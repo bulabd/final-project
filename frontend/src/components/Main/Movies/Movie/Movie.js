@@ -14,7 +14,7 @@ export default function Movie(props) {
       </img>
       <div className="movieInfo">
         <span><b>{props.title}</b></span>
-        <span><b>Rating: {props.rating}</b></span>
+        {/* <span><b>Rating: {props.rating}</b></span> */}
         <ReactStars
           edit={false}
           cursor={true}
