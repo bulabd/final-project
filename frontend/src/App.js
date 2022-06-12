@@ -11,9 +11,11 @@ import SignUp from './pages/SignUp/SignUp';
 function App() {
   return (
     <div className="App">
-            <Navbar />
+      <Navbar />
       <BrowserRouter>
         <Routes>
+          {/* Playlist card
+          User Profile */}
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<SignUp />}/>
           <Route path="/" element={<Main />}>

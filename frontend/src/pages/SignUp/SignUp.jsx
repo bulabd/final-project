@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignUp.css';
 
+
 export default function SignUp() {
   return(
     <div className="signup-wrapper">
@@ -23,4 +24,10 @@ export default function SignUp() {
     </form>
     </div>
   )
-}
+};
+
+//State managing to store data
+//Create function (SignUp handler) to make the Axios call
+//Makes API call to backend
+//When we get token/cookie we can store
+//Redirect to protected route
