@@ -1,7 +1,39 @@
 .signup-wrapper {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: #ffc300;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 150px;
-  padding-bottom: 75px;
+  padding-top: 10em;
+  padding-bottom: 8%;
+  background-image: url(https://www.blogivy.com/wp-content/uploads/2018/12/movies.jpeg)
+}
+
+.Userbut {
+  margin-top: 2em;
+  border-radius: 0.5em;
+  width: 100%;
+  background-color: #ffc300;
+  border-color: #202020;
+}
+
+.Userbut:hover{
+  background-color: white;
+  border-radius: 0.5em;
+  border-color: black;
+}
+
+
+.forms{
+  background-color: #202020;
+  color: white;
+  border-color: #ffc300;
+  border-radius: 0.5em;
+}
+
+.boxS{
+  background-color: #202020;
+  padding: 1em 6em 2em;
+  border-radius: 0.5em;
+  border: 5px solid #ffc300;
 }

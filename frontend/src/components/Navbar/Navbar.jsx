@@ -19,8 +19,8 @@ export default function Navbar(props) {
          </>
         ):(
           <>
-          <button><a href="/login">Login</a></button>
-          <button><a href="/SignUp">Register</a></button>
+          <button className="Navbut"><a className="NavLink" href="/login">Login</a></button>
+          <button className="Navbut"><a className="NavLink" href="/SignUp">Register</a></button>
           </>
         )}
       </div>

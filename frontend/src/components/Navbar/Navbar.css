@@ -21,19 +21,19 @@ h1 {
   height: 39px;
 }
 
-button {
+.Navbut {
   background-color: #ffc300;
   border-radius: 0.5em;
   border-color: black;
 }
-button:hover {
+.Navbut:hover{
   background-color: white;
   border-radius: 0.5em;
   border-color: black;
 }
   
   
-a {
+.NavLink {
   color: black;
   font-size: larger;
   text-decoration: none
