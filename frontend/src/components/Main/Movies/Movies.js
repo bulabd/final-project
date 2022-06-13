@@ -11,12 +11,14 @@ export default function Movies(props) {
         poster={movie.poster_path}
         overview={movie.overview}
         rating={movie.vote_average}
+
+        release_date={movie.release_date}
       />
     );
   });
 
   return(
-    <section>
+    <section className="main-movies">
       {moviesArr}
     </section>
   );

@@ -4,7 +4,7 @@ import SortByOption from "./SortByOption/SortByOption";
 
 export default function SortByDropdown(props) {
   return (
-    <div className="dropdown">
+    <div className="dropdownSort">
       <button className="dropbtn">Sort By</button>
       <div className="dropdown-content">
         <SortByOption onChange={props.onChange} sorting={'popularity.desc'} >Popularity</SortByOption>

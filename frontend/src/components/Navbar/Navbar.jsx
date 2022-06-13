@@ -10,7 +10,7 @@ export default function Navbar(props) {
 
   return(
     <div className="nav-div">
-      <h1>Movies<FontAwesomeIcon icon={faFilm}/> </h1>
+      <h1><a href="/">Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></a></h1>
       <div className="user">
         {isLoggedIn ? (
           <>

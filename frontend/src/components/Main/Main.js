@@ -36,8 +36,6 @@ export default function Main(props) {
     }
   }
 
-
-
   const onChangeOfDropdownGenre = (genre) => {
     setPage(1);
     setGenre(genre);
@@ -61,6 +59,16 @@ export default function Main(props) {
     window.scroll(0, 0);
   }
 
+  const sortingName = (sorting) => {
+    if (sorting === 'popularity.desc') {
+      return 'popularity';
+    } else if (sorting === 'release_date.desc') {
+      return 'release date';
+    } else if (sorting === 'vote_average.desc') {
+      return 'rating';
+    }
+  }
+
   useEffect(() => {
     Promise.all([
       axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=${sortedBy}&include_adult=false&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`),
@@ -82,20 +90,25 @@ export default function Main(props) {
   return(
     <>
       <div className="movie-container">
+        <div className="searchBar">
+          <Search onChange={onChangeOfSearch} />
+        </div>
 
         {search.length === 0 && <>
-
-        <div className="dropDowns">
-           <Dropdown onChange={onChangeOfDropdownGenre}/>
-           <SortByDropdown onChange={onChangeOfDropdownSort}/>
-        </div>
-        <h3>{genreName} movies sorted by {sortedBy}</h3>
-        <Movies movies={movies} />
-        <MyPagination  numOfPages={totalPages} onChange={changePage} pageState={page} />
+          <div className="dropdownsWithSummary">
+            <div className="dropDowns">
+              <Dropdown onChange={onChangeOfDropdownGenre}/>
+              <SortByDropdown onChange={onChangeOfDropdownSort}/>
+            </div>
+            <h3>{genreName} movies sorted by {sortingName(sortedBy)}</h3>
+          </div>
+          <Movies movies={movies} />
+          <div className="pagination">
+            <MyPagination  numOfPages={totalPages} onChange={changePage} pageState={page} />
+          </div>
 
         </>}
 
-        <Search onChange={onChangeOfSearch} />
         {search.length !== 0 && <Movies movies={searchMovies} /> }
 
         

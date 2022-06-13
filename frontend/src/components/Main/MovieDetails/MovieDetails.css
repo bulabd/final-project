@@ -1,6 +1,7 @@
 img {
   border: 2px #ffc300 solid;
   border-radius: 10px;
+  max-height: 300px;
 }
 
 .movieDetails {

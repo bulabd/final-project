@@ -1,20 +1,22 @@
 /* Dropdown Button */
 .dropbtn {
-  background-color: black;
+  background-color: #202020;
   color:#ffc300;
   padding: 16px;
   font-size: 16px;
   border: none;
   z-index: 0;
   border-radius: 1em;
-  border-color: #ffc300;
+  border: 2px #ffc300 solid;
 }
 
 /* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 15%;
+.dropdownGenre {
+  margin-right: 10px;
+}
+
+.dropdownSort {
+  margin-left: 10px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -45,11 +47,17 @@
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdownGenre:hover .dropdown-content {display: block;}
+.dropdownSort:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
+.dropdownGenre:hover .dropbtn {
   border-radius: 1em;
   background-color: #ffc300;
-  color: white;
+  color: black;
+}
+.dropdownSort:hover .dropbtn {
+  border-radius: 1em;
+  background-color: #ffc300;
+  color: black;
 }

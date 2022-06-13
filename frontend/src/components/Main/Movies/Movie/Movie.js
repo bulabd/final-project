@@ -1,13 +1,15 @@
 import MovieDetails from "../../MovieDetails/MovieDetails";
-import "./Movie.css"
-import ReactStars from 'react-stars'
+import "./Movie.css";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
 
 export default function Movie(props) {
 
   return (
     <>
     <div className="movieShow">
-      <MovieDetails id={props.id} title={props.title} rating={props.rating} overview={props.overview} poster={props.poster} >
+      <MovieDetails id={props.id} title={props.title} rating={props.rating} overview={props.overview} poster={props.poster} release_date={props.release_date} >
         <img 
           src={`https://image.tmdb.org/t/p/w200${props.poster}`} 
           alt='Poster for the movie'
@@ -17,17 +19,11 @@ export default function Movie(props) {
           }}>
         </img>
         {props.title}
-        {props.rating}
+        <div className="rating">
+          <FontAwesomeIcon icon={faStar}/>
+          {props.rating}
+        </div>
       </MovieDetails>
-      <div className="movieInfo">
-        <ReactStars
-          edit={false}
-          cursor={true}
-          count={10}
-          value={props.rating}
-          size={24}
-          color2={'#ffc300'} />
-      </div>
     </div>
   </>
   );

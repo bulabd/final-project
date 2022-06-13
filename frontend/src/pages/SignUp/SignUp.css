@@ -6,7 +6,9 @@
   align-items: center;
   padding-top: 10em;
   padding-bottom: 8%;
-  background-image: url(https://www.blogivy.com/wp-content/uploads/2018/12/movies.jpeg)
+  background-image: url(https://www.bainbridgecurrents.com/wp-content/uploads/sites/www.bainbridgecurrents.com/images/2020/03/fandango-essential-movies.png);
+  min-height: 100vh;
+  justify-content: center;
 }
 
 .Userbut {
