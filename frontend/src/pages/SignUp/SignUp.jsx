@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './SignUp.css';
 
@@ -31,20 +32,23 @@ export default function SignUp() {
   return(
     <div className="signup-wrapper">
       {error && <h1>{error}</h1>}
-      <label>
-        <p>Name</p>
-        <input type="text" name="name" onChange={(ev) => setName(ev.target.value)}/>
-      </label>
-      <label>
-        <p>Email</p>
-        <input type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
-      </label>
-      <div>
-      <button type="submit" onClick={onSignUp}>Submit</button>
+        <div className='boxS'>
+        <h1>Register</h1>
+          <label>
+            <h4>Name</h4>
+            <input className='forms'  type="text" name="name" onChange={(ev) => setName(ev.target.value)}/>
+          </label>
+          <label>
+            <h4>Email</h4>
+            <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
+          </label>
+          <label>
+            <h4>Password</h4>
+            <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
+          </label>
+          <div>
+            <button className='Userbut' type="submit" onClick={onSignUp}>Register</button>
+          </div>
       </div>
     </div>
   );

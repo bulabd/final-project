@@ -27,16 +27,19 @@ export default function Login() {
   return(
     <div className="login-wrapper">
       {error && <h1>{error}</h1>}
+    <div className='boxL'>
+      <h1>Login</h1>
       <label>
-        <p>Email</p>
-        <input type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
+        <h4>Email</h4>
+        <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
       </label>
       <label>
-        <p>Password</p>
-        <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
+        <h4>Password</h4>
+        <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
       </label>
       <div>
-        <button type="submit" onClick={onLogin}>Submit</button>
+        <button className="Userbut" type="submit" onClick={onLogin}>Login</button>
+      </div>
       </div>
     </div>
   );

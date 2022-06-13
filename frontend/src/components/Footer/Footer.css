@@ -4,5 +4,13 @@
   align-items: center;
   background-color: black;
   color: #ffc300;
-  height: 60px;
+  position:absolute;
+  height: 12%;
+  bottom:0;
+  width: 100%;
+}
+
+a{
+  color: #ffc300;
+  text-decoration: none;
 }
