@@ -19,8 +19,7 @@ export default function SignUp() {
       const {data} = await axios.post('http://localhost:8080/sign-up', {name, email, password});
       console.log(data);
       if(data) {
-        setCookie('userId', data.id);
-        navigate("..", { replace: true });
+        navigate("/login", { replace: true });
       }
     } catch(ex) {
       setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
