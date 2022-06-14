@@ -35,6 +35,8 @@ export default function Main(props) {
       setSearchMovies([]);
     }
   }
+  
+  
 
   const onChangeOfDropdownGenre = (genre) => {
     setPage(1);

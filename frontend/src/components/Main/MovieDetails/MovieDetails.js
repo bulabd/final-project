@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Reviews from './Reviews/Reviews';
 import ReactStars from 'react-stars';
+import Ratings from './Ratings/Ratings';
 
 import "./MovieDetails.css";
 import axios from 'axios';
@@ -95,6 +96,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
               </div>
             </div>
             <Reviews movie_id={id} />
+            <Ratings movie_id={id} />
           </Box>
         </Fade>
       </Modal>

@@ -1,12 +1,14 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CookiesProvider } from "react-cookie";
-
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import jQuery from 'jquery';
+
+
 
 
 function App() {

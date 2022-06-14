@@ -9,7 +9,6 @@ export default function Reviews(props) {
 
   const getReviewsForMovie = (reviews) => {
     let filteredReviews = reviews.filter(review => review.movie_api_id === props.movie_id);
-    // console.log(filteredReviews);
     return filteredReviews;
   };
 
@@ -17,7 +16,6 @@ export default function Reviews(props) {
     Promise.all([
       axios.get(`http://localhost:8000/reviews`)
     ]).then((data) => {
-      // console.log(data[0].data);
       setReviewsForMovie(getReviewsForMovie(data[0].data));
     });
   }, [])
