@@ -35,6 +35,7 @@ export default function Login() {
         <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
       </label>
       <div>
+        <br />
         <button type="submit" onClick={onLogin}>Submit</button>
       </div>
     </div>

@@ -4,6 +4,8 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 require("dotenv").config();
 
@@ -25,7 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-  let currentuserinfo = 
 // app.use('/users', usersRouter(db));
 
 app.post('/login', (req, res) => {
@@ -59,6 +60,25 @@ app.post('/sign-up', (req, res) => {
   //UPDATE with hash & salt
   console.log({name, email, password});
   //Change query to include hashed password instead
+  // bcrypt.hash(body.password, saltRounds, (err, hash) => {
+  //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
+
+  //   db.query(command, [name, email, password]).then(data => {
+  //     // if there's a match => redirect? send user? set a cookie
+  //     res
+  //       .status(200)
+  //       .json({ message: "User registration successful" });
+  
+  //   }).catch(err => {
+  //     res
+  //       .status(500)
+  //       .json({ error: err.message });
+  //   });
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  // });
+
   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
 
   db.query(command, [name, email, password]).then(data => {

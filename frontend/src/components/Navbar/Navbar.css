@@ -13,6 +13,13 @@
 h1 {
   color:#ffc300;
 }
+h1:hover {
+  
+}
+h4 {
+  color:#ffc300;
+
+}
 .user {
   padding-right: 2em;
   display: flex;  
@@ -38,4 +45,5 @@ a {
   font-size: larger;
   text-decoration: none
 }
+
   

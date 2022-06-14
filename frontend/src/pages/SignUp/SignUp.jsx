@@ -43,6 +43,7 @@ export default function SignUp() {
         <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
       </label>
       <div>
+        <br />
       <button type="submit" onClick={onSignUp}>Submit</button>
       </div>
     </div>

@@ -13,12 +13,13 @@ export default function Navbar(props) {
 
   return(
     <div className="nav-div">
-      <h1>Movies<FontAwesomeIcon icon={faFilm}/> </h1>
+      <a href="/"><h1>Movies<FontAwesomeIcon icon={faFilm}/> </h1></a>
       <div className="user">
         {isLoggedIn ? (
           <>
-         <h1>yay user logged in</h1>
-         <button><a href="/logout">Logout</a></button>
+         <h4>yay user logged in</h4>
+         <button><a href="/user-dashboard" >Dashboard</a></button>
+         <button><a href="/logout" >Logout</a></button>
          </>
         ):(
           <>
