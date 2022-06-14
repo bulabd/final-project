@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "db:reset": "node db/scripts/resetdb.js"
   },
   "dependencies": {

@@ -13,15 +13,18 @@ import SignUp from './pages/SignUp/SignUp';
 import UserDashboard from './pages/UserDashboard/UserDashBoard';
 
 function App() {
-  const [email, setEmail] = useState(null);
+  // const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null); 
   const [error, setError] = useState(null);
-  const [cookie, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(['user']);
   // const navigate = useNavigate();
 
 
   function handleCookie(data) {
-    setCookie("userCookie", data.id, {
+    setCookie("idCookie", data.id, {
+      path: "/"
+    });
+    setCookie("emailCookie", data.email, {
       path: "/"
     });
   }
@@ -31,7 +34,7 @@ function App() {
     try {
       const {data} = await axios.post('http://localhost:8080/login', {email, password});
       console.log("I am data!----------", data);
-      setEmail(email); 
+      // setEmail(email); 
       setPassword(password); 
       console.log("Email, password", email, password);
 
@@ -41,14 +44,17 @@ function App() {
         // navigate("..", { replace: true });
       }
     } catch(ex) {
-      setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
+      console.log(ex);
+      setError(ex.response.data.error || 'Whoops! Something went wrong');
     }
   }
+
+  console.log("Cooookies-----", cookies);
 
   return (
     <div className="App">
       <CookiesProvider>
-        <Navbar />
+        <Navbar cookies={ cookies } />
         <BrowserRouter>
           <Routes>
             {/* Playlist card*/}

@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar(props) {
-  const [cookies] = useCookies(['user']);
-  const isLoggedIn = cookies.userId;
+  const cookies = props.cookies;
+  const isLoggedIn = cookies.idCookie;
 
-  console.log("cookies", cookies);
-  console.log("cookies userID", cookies.userId);
+  console.log("NAV BAR cookies", cookies);
+  // console.log("NAV BAR cookies userID", cookies.userId);
 
   return(
     <div className="nav-div">
@@ -17,7 +17,7 @@ export default function Navbar(props) {
       <div className="user">
         {isLoggedIn ? (
           <>
-         <h4>yay user logged in</h4>
+         <h4>Welcome back, {cookies.emailCookie}, logged in!</h4>
          <button><a href="/user-dashboard" >Dashboard</a></button>
          <button><a href="/logout" >Logout</a></button>
          </>

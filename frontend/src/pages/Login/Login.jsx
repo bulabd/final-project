@@ -39,7 +39,6 @@ export default function Login(props) {
   // }
 
   return(
-      <form id="loginform" onSubmit={() => props.onFormSubmit(email, password, navigate("..", { replace: true }))}>
       <div className="login-wrapper">
       {error && <h1>{error}</h1>}
       <label>
@@ -52,10 +51,9 @@ export default function Login(props) {
       </label>
       <div>
         <br />
-        <button form="loginform" type="submit">Submit</button>
+        <button form="loginform" type="submit" onClick={() => props.onFormSubmit(email, password, () => navigate("..", { replace: true }))}>Submit</button>
       </div>
     </div>
-  </form>
   );
 };
 

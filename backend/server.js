@@ -4,8 +4,8 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+// const bcrypt = require('bcrypt');
+// const saltRounds = 10;
 
 require("dotenv").config();
 
@@ -34,19 +34,21 @@ app.post('/login', (req, res) => {
   const body = req.body;
   const { email, password } = body;
 
-  console.log({email, password});
+  console.log("I am the backend data-------", {email, password});
   // check email and psw against db
   const command = `SELECT * FROM users WHERE email = $1 AND password = $2`;
   db.query(command, [email, password]).then(data => {
+    console.log("DATAAAAAAAA", data.rows[0]);
     // if there's a match => redirect? send user? set a cookie
     if (data.rows.length > 0) {
-      res.json({id: data.rows[0].id});
+      res.json({id: data.rows[0].id, email: data.rows[0].email});
     } else {
       // if not a match => send 404 error to front-end
       res.status(404).json({ error: 'Error: Wrong email/password combination' });
     }
 
   }).catch(err => {
+    console.log("CATCHING ERRRRRRR");
     res
       .status(500)
       .json({ error: err.message });
@@ -59,6 +61,7 @@ app.post('/sign-up', (req, res) => {
   const { name, email, password } = body;
   //UPDATE with hash & salt
   console.log({name, email, password});
+  
   //Change query to include hashed password instead
   // bcrypt.hash(body.password, saltRounds, (err, hash) => {
   //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
