@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Reviews from './Reviews/Reviews';
+import Ratings from './Ratings/Ratings';
 
 import "./MovieDetails.css";
 
@@ -64,6 +65,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
               </div>
             </div>
             <Reviews movie_id={id} />
+            <Ratings movie_id={id} />
           </Box>
         </Fade>
       </Modal>
