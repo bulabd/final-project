@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar(props) {
-  const [cookies] = useCookies(['user']); 
+  const [cookies] = useCookies(['user']);
   const isLoggedIn = cookies.userId;
 
   console.log("cookies", cookies);

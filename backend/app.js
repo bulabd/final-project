@@ -13,7 +13,7 @@ const PORT = 8080;
 
 const db = require('./configs/db.config');
 let indexRouter = require('./routes/index');
-// let usersRouter = require('./routes/users');
+let usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter(db));
+app.use('/users', usersRouter(db));
 
 app.post('/login', (req, res) => {
   // get req body (i.e email and password)
@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
       res.json({id: data.rows[0].id});
     } else {
       // if not a match => send 404 error to front-end
-      res.status(404).json({ error: 'Error: Wrong email/password' });
+      res.status(404).json({ error: 'Error: Wrong email/password combination' });
     }
 
   }).catch(err => {
