@@ -6,7 +6,6 @@ import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import jQuery from 'jquery';
 
 
 
