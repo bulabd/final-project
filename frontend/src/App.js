@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import UserDashboard from './pages/UserDashboard/UserDashBoard';
 
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
         <Navbar />
         <BrowserRouter>
           <Routes>
-            {/* Playlist card
-            User Profile */}
+            {/* Playlist card*/}
+            <Route path="/user-dashboard" element={<UserDashboard />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/signup" element={<SignUp />}/>
             <Route path="/" element={<Main />}>

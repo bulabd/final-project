@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+  let currentuserinfo = 
 // app.use('/users', usersRouter(db));
 
 app.post('/login', (req, res) => {
@@ -57,25 +58,14 @@ app.post('/sign-up', (req, res) => {
   const { name, email, password } = body;
   //UPDATE with hash & salt
   console.log({name, email, password});
-  // res.send("Wooot");
   //Change query to include hashed password instead
   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
-
-  // INSERT INTO users (name, email, password) VALUES ('Zoe', 'zoe@zoemail.com', 'hello');
 
   db.query(command, [name, email, password]).then(data => {
     // if there's a match => redirect? send user? set a cookie
     res
-    .status(200)
-    .json({ msg: "signed-up user" });
-    // if (data.rows.length > 0) {
-    //   res.json({id: data.rows[0].id});
-    //   //Redirect to login...
-    // } else {
-    //   // if there ISN'T a match => send 404 error to front-end
-    //   // We can be more explicit about the error message later.
-    //   res.status(404).json({ error: 'Error: invalid inputs' });
-    // }
+      .status(200)
+      .json({ message: "User registration successful" });
 
   }).catch(err => {
     res

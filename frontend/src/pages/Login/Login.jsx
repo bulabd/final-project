@@ -16,7 +16,6 @@ export default function Login() {
       const {data} = await axios.post('http://localhost:8080/login', {email, password});
       console.log(data);
       if(data) {
-        setCookie('userId', data.id);
         navigate("..", { replace: true });
       }
     } catch(ex) {
