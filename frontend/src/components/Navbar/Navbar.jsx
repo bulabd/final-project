@@ -12,7 +12,7 @@ export default function Navbar() {
   return(
     <div className="nav-div">
       <div className="logo-container">
-        <a href="/"><h1>Movies <FontAwesomeIcon icon={faFilm}/> </h1></a>
+        <a href="/" title="Phone home"><h1>Movies <FontAwesomeIcon icon={faFilm}/> </h1></a>
       </div>
       <div className="user">
         {isLoggedIn ? (

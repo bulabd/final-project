@@ -78,21 +78,6 @@ app.post('/sign-up', (req, res) => {
   // bcrypt.hash(body.password, saltRounds, (err, hash) => {
   //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
 
-  //   db.query(command, [name, email, password]).then(data => {
-  //     // if there's a match => redirect? send user? set a cookie
-  //     res
-  //       .status(200)
-  //       .json({ message: "User registration successful" });
-  
-  //   }).catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // });
 
   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
 
