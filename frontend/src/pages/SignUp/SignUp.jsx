@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import handleCookies from '../../utils/helpers';
 import './SignUp.css';
 
 
@@ -12,22 +12,31 @@ export default function SignUp() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
-  const [, setCookie] = useCookies(['user']);
+  const [, setCookie] = useCookies();
   const navigate = useNavigate();
 
   async function onSignUp() {
     try {
       const {data} = await axios.post('http://localhost:8080/sign-up', {name, email, password});
-      console.log(data);
+
       if(data) {
-        setCookie('userId', data.id);
-        navigate("..", { replace: true });
+        const cookies = [
+          {
+            name: "idCookie",
+            value: data.id,
+          },
+          {
+            name: "emailCookie",
+            value: data.email,
+          }
+        ]
+        handleCookies(cookies, setCookie);
+        navigate("/");
       }
     } catch(ex) {
       setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
     }
   }
-
 
   return(
     <div className="signup-wrapper">
@@ -49,7 +58,23 @@ export default function SignUp() {
           <div>
             <button className='Userbut' type="submit" onClick={onSignUp}>Register</button>
           </div>
-      </div>
+      {/* <label>
+        <p>Name</p>
+        <input type="text" name="name" onChange={(ev) => setName(ev.target.value)}/>
+      </label>
+      <label>
+        <p>Email</p>
+        <input type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
+      </label>
+      <label>
+        <p>Password</p>
+        <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
+      </label>
+      <div>
+        <br />
+      <button type="submit" onClick={onSignUp}>Submit</button>
+      */}
+      </div> 
     </div>
   );
 };

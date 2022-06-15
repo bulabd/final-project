@@ -1,0 +1,10 @@
+-- schema/04_create_playlists.sql
+DROP TABLE IF EXISTS playlists CASCADE;
+-- CREATE PLAYLLISTS
+CREATE TABLE playlists (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(500),
+  avatar TEXT,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
