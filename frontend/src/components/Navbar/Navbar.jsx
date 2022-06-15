@@ -19,8 +19,8 @@ export default function Navbar() {
         {isLoggedIn ? (
           <>
          <h4 className="welcome-back">Welcome back {cookies.emailCookie}!</h4>
-         <button><a href="/user-dashboard" >Dashboard</a></button>
-         <button><a href="/logout" >Logout</a></button>
+         <button className="Navbut"><a className="NavLink" href="/user-dashboard" >Dashboard</a></button>
+         <button className="Navbut"><a className="NavLink" href="/logout" >Logout</a></button>
          </>
         ):(
           <>
