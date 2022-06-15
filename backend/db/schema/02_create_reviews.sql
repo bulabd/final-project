@@ -6,5 +6,5 @@ CREATE TABLE reviews (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   movie_api_id INTEGER,
   content TEXT NOT NULL,
-  date DATE NOT NULL
+  date DATE DEFAULT NOW()
 );

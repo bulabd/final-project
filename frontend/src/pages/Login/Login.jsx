@@ -15,7 +15,7 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      const {data} = await axios.post('http://localhost:8080/login', {email, password});
+      const {data} = await axios.post('http://localhost:8000/login', {email, password});
 
       if(data) {
         const cookies = [

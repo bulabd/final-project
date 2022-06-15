@@ -10,5 +10,24 @@ module.exports = (db) => {
     });
   });
 
+  router.post('/', (req, res) => {
+    const body = req.body;
+    const { user_id, movie_api_id, content } = body;
+  
+    const command = `INSERT INTO reviews (user_id, movie_api_id, content) VALUES ($1, $2, $3) RETURNING id, user_id, movie_api_id, date`;
+    console.log("---------reviews post--------");
+    console.log(body);
+  
+    db.query(command, [user_id, movie_api_id, content]).then(data => {
+      console.log(data.rows[0]);
+      console.log('it passed');
+      res.status(200).send("OK");
+    }).catch(err => {
+      console.log('an error happend-------');
+      res
+        .json({ error: err.message });
+    });
+  })
+
   return router;
 };

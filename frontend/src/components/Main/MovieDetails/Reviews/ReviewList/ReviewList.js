@@ -11,7 +11,6 @@ export default function ReviewList(props) {
 
   return (
     <>
-      <h2>Reviews</h2>
       <span>{reviews}</span>
     </>
   );
