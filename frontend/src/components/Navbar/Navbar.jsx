@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="user">
         {isLoggedIn ? (
           <>
-         <h4>Welcome back {cookies.emailCookie}!</h4>
+         <h4 className="welcome-back">Welcome back {cookies.emailCookie}!</h4>
          <button><a href="/user-dashboard" >Dashboard</a></button>
          <button><a href="/logout" >Logout</a></button>
          </>

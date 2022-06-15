@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-
 import './UserDashboard.css';
 
 export default function UserDashboard() {
@@ -17,7 +16,7 @@ export default function UserDashboard() {
     if(!userId) {
       return;
     }
-    const {data} = await axios.get(`http://localhost:8080/user/${userId}`);
+    const {data} = await axios.get(`/user/${userId}`);
 
     setUser(data);
 

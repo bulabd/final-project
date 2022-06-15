@@ -1,7 +1,6 @@
 import "./Reviews.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import ReviewList from "./ReviewList/ReviewList";
 
 export default function Reviews(props) {
@@ -14,7 +13,7 @@ export default function Reviews(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8080/reviews`)
+      axios.get(`/reviews`)
     ]).then((data) => {
       setReviewsForMovie(getReviewsForMovie(data[0].data));
     });

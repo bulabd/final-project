@@ -1,7 +1,6 @@
 import "./Ratings.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import RatingList from "./RatingList/RatingList";
 
 export default function Ratings(props) {
@@ -15,7 +14,7 @@ export default function Ratings(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8080/ratings`)
+      axios.get(`/ratings`)
     ]).then((data) => {
       setRatings(getRatingsForMovie(data[0].data));
     });
