@@ -21,3 +21,21 @@ img {
 #transition-modal-description {
   text-align: justify;
 }
+
+.modal {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.modal::-webkit-scrollbar {
+  width: 2px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background-color: black;
+  border-radius: 50%;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #ffc300;
+}

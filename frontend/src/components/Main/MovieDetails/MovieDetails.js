@@ -15,7 +15,6 @@ import { useCookies } from 'react-cookie';
 
 import "./MovieDetails.css";
 import axios from 'axios';
-// import { makeStyles } from '@mui/styles';
 
 const style = {
   color: 'white',
@@ -68,14 +67,6 @@ const theme = createTheme({
   }
 });
 
-// const useStyles = makeStyles((theme) => ({
-//   modal: {
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center"
-//   }
-// }));
-
 export default function MovieDetails({ children, id, title, rating, overview, poster, release_date }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -85,8 +76,6 @@ export default function MovieDetails({ children, id, title, rating, overview, po
   const [content, setContent] = React.useState("");
   const [cookies] = useCookies();
   const textInput = React.useRef(null);
-  // const classes = useStyles();
-
 
   const verifyReleaseDate = (date) => {
     if (date === undefined) {
@@ -129,7 +118,6 @@ export default function MovieDetails({ children, id, title, rating, overview, po
     <div>
       <Button onClick={handleOpen} sx={style1} >{children}</Button>
       <Modal
-
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
@@ -142,6 +130,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
       >
         <Fade in={open}>
           <Box sx={style}>
+            <div className='modal'>
             <div className='movieDetails'>
               <img 
                 src={`https://image.tmdb.org/t/p/w200${poster}`} 
@@ -194,6 +183,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
             
             <Reviews reviews={reviewsForMovie} />
             <Ratings movie_id={id} />
+            </div>
           </Box>
         </Fade>
       </Modal>
