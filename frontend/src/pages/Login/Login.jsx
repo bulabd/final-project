@@ -1,42 +1,42 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-// import { useCookies } from 'react-cookie';
-// import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+
+import handleCookies from '../../utils/helpers';
 import './Login.css';
 
-export default function Login(props) {
-  // console.log("Login function's props", props);
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  // const [cookie, setCookie] = useCookies(['user']);
+  const [, setCookie] = useCookies(['emailCookie']);
   const navigate = useNavigate();
 
+  async function onLogin() {
+    try {
+      const {data} = await axios.post('http://localhost:8080/login', {email, password});
 
-  // function handleCookie(data) {
-  //   setCookie("userCookie", data.id, {
-  //     path: "/"
-  //   });
-  // }
+      if(data) {
+        const cookies = [
+          {
+            name: "idCookie",
+            value: data.id,
+          },
+          {
+            name: "emailCookie",
+            value: data.email,
+          }
+        ]
+        handleCookies(cookies, setCookie);
+        navigate('/');
+      }
 
-  // async function onLogin() {
-  //   try {
-  //     const {data} = await axios.post('http://localhost:8080/login', {email, password});
-  //     console.log("I am data!----------", data);
-  //     if(data) {
-  //       handleCookie(data);
-  //       navigate("..", { replace: true });
-  //     }
-  //   } catch(ex) {
-  //     setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
-  //   }
-  // }
-
-  // function testFunction (e) {
-  //   console.log("-------EVENT TEST FUNC------------");
-  //   console.log("------password:", password);
-  //   e.preventDefault();
-  // }
+    } catch(ex) {
+      console.log(ex);
+      setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
+    }
+  }
 
   return(
       <div className="login-wrapper">
@@ -51,10 +51,8 @@ export default function Login(props) {
       </label>
       <div>
         <br />
-        <button form="loginform" type="submit" onClick={() => props.onFormSubmit(email, password, () => navigate("..", { replace: true }))}>Submit</button>
+        <button form="loginform" type="submit" onClick={onLogin}>Submit</button>
       </div>
     </div>
   );
 };
-
-//props.onSubmit(email, password)

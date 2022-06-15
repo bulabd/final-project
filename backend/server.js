@@ -34,11 +34,9 @@ app.post('/login', (req, res) => {
   const body = req.body;
   const { email, password } = body;
 
-  console.log("I am the backend data-------", {email, password});
   // check email and psw against db
   const command = `SELECT * FROM users WHERE email = $1 AND password = $2`;
   db.query(command, [email, password]).then(data => {
-    console.log("DATAAAAAAAA", data.rows[0]);
     // if there's a match => redirect? send user? set a cookie
     if (data.rows.length > 0) {
       res.json({id: data.rows[0].id, email: data.rows[0].email});
@@ -60,7 +58,6 @@ app.post('/sign-up', (req, res) => {
   const body = req.body;
   const { name, email, password } = body;
   //UPDATE with hash & salt
-  console.log({name, email, password});
   
   //Change query to include hashed password instead
   // bcrypt.hash(body.password, saltRounds, (err, hash) => {
@@ -82,14 +79,13 @@ app.post('/sign-up', (req, res) => {
   //   }
   // });
 
-  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
+  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
 
   db.query(command, [name, email, password]).then(data => {
     // if there's a match => redirect? send user? set a cookie
-    res
-      .status(200)
-      .json({ message: "User registration successful" });
-
+    if (data.rows.length > 0) {
+      res.status(200).json({id: data.rows[0].id, email: data.rows[0].email});
+    }
   }).catch(err => {
     res
       .status(500)

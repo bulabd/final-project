@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-// import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
-
+import handleCookies from '../../utils/helpers';
 import './SignUp.css';
 
 
@@ -11,21 +11,31 @@ export default function SignUp() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
-  // const [, setCookie] = useCookies(['user']);
+  const [, setCookie] = useCookies();
   const navigate = useNavigate();
 
   async function onSignUp() {
     try {
       const {data} = await axios.post('http://localhost:8080/sign-up', {name, email, password});
-      console.log(data);
+
       if(data) {
-        navigate("/login", { replace: true });
+        const cookies = [
+          {
+            name: "idCookie",
+            value: data.id,
+          },
+          {
+            name: "emailCookie",
+            value: data.email,
+          }
+        ]
+        handleCookies(cookies, setCookie);
+        navigate("/");
       }
     } catch(ex) {
       setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
     }
   }
-
 
   return(
     <div className="signup-wrapper">
