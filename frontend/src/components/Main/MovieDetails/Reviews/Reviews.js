@@ -14,7 +14,7 @@ export default function Reviews(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8000/reviews`)
+      axios.get(`http://localhost:8080/reviews`)
     ]).then((data) => {
       setReviewsForMovie(getReviewsForMovie(data[0].data));
     });
