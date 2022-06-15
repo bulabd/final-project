@@ -4,6 +4,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const url = require('url');
 // const bcrypt = require('bcrypt');
 // const saltRounds = 10;
 
@@ -27,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter(db));
+// app.use('/users', usersRouter(db));
 
 app.post('/login', (req, res) => {
   // get req body (i.e email and password)
@@ -52,6 +53,20 @@ app.post('/login', (req, res) => {
       .json({ error: err.message });
   });
 
+});
+
+app.get('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  const command = `SELECT * FROM users WHERE id = $1`;
+  db.query(command, [userId]).then((data) => {
+    if (data.rows.length > 0) {
+      res.status(200).json(data.rows[0]);
+    }
+  }).catch((ex) => {
+    res
+      .status(500)
+      .json({ error: ex.message });
+  });
 });
 
 app.post('/sign-up', (req, res) => {

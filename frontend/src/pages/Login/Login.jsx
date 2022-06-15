@@ -51,6 +51,7 @@ export default function Login() {
       </label>
       <div>
         <br />
+        {/* NB: Add logic to make spacebar work! It doens't currently work to press submit!! */}
         <button form="loginform" type="submit" onClick={onLogin}>Submit</button>
       </div>
     </div>
