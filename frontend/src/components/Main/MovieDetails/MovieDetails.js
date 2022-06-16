@@ -12,6 +12,8 @@ import Ratings from './Ratings/Ratings';
 import TextField from "@material-ui/core/TextField";
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import { useCookies } from 'react-cookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import "./MovieDetails.css";
 import axios from 'axios';
@@ -77,6 +79,8 @@ export default function MovieDetails({ children, id, title, rating, overview, po
   const [cookies] = useCookies();
   const textInput = React.useRef(null);
 
+  const [youtubeURL, setYoutubeURL] = React.useState("");
+
   const verifyReleaseDate = (date) => {
     if (date === undefined) {
       return undefined;
@@ -107,10 +111,12 @@ export default function MovieDetails({ children, id, title, rating, overview, po
 
   React.useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8000/reviews`)
+      axios.get(`http://localhost:8000/reviews`),
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=3194cf0d8bdb506081ef7148921ccb0b&language=en-US`)
     ]).then((data) => {
-      console.log(data);
+      // console.log(data);
       setReviewsForMovie(getReviewsForMovie(data[0].data));
+      setYoutubeURL(data[1].data.results[0].key);
     });
   }, [])
 
@@ -132,14 +138,17 @@ export default function MovieDetails({ children, id, title, rating, overview, po
           <Box sx={style}>
             <div className='modal'>
             <div className='movieDetails'>
-              <img 
-                src={`https://image.tmdb.org/t/p/w200${poster}`} 
-                alt='Poster for the movie'
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null;
-                  currentTarget.src="http://www.movienewsletters.net/photos/000000H1.jpg";
-                }}>
-              </img>
+              <div className='poster-trailer'>
+                <img 
+                  src={`https://image.tmdb.org/t/p/w200${poster}`} 
+                  alt='Poster for the movie'
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src="http://www.movienewsletters.net/photos/000000H1.jpg";
+                  }}>
+                </img>
+                <a className='trailer' href={`https://www.youtube.com/watch?v=${youtubeURL}`} target="_blank"><FontAwesomeIcon icon={faPlay} /> Trailer</a>
+              </div>
               <div className='movieTitleAndDescription'>
                 <Typography id="transition-modal-title" variant="h6" component="h2">
                   {title} {verifyReleaseDate(release_date)}
