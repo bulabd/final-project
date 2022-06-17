@@ -112,7 +112,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
   React.useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8000/reviews`),
-      axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=3194cf0d8bdb506081ef7148921ccb0b&language=en-US`)
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
     ]).then((data) => {
       // console.log(data);
       setReviewsForMovie(getReviewsForMovie(data[0].data));
