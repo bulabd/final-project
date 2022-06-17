@@ -103,8 +103,7 @@ app.get('/rating/:id', (req, res) => {
   });
 });
 
-
-app.get('/playlist/:id', (req, res) => {
+app.get('/playlists/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM playlists WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
@@ -118,7 +117,7 @@ app.get('/playlist/:id', (req, res) => {
   });
 });
 
-app.get('/playlist/', (req, res) => {
+app.get('/playlists/', (req, res) => {
   const command = `SELECT * FROM playlists JOIN users ON users.id = playlists.user_id`;
   db.query(command).then((data) => {
     if (data.rows.length > 0) {

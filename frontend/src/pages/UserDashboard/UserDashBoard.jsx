@@ -66,7 +66,7 @@ export default function UserDashboard() {
     if(!userId) {
       return;
     }
-    const {data} = await axios.get(`/playlist/${userId}`);
+    const {data} = await axios.get(`/playlists/${userId}`);
 
     for(let i = 0; i < data.length; i++) {
       const playlistMovieLength = data[i].movie_api_id.length;
@@ -102,8 +102,6 @@ export default function UserDashboard() {
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
       <p className='bio'><b>User Bio:</b> <i>{user?.bio}</i></p>
-
-    {/* User Ratings  and Comments go here  */}
 
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Playlists</h5>

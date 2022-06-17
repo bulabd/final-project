@@ -21,11 +21,13 @@ export default function Navbar() {
         {isLoggedIn ? (
           <>
          <h4 className="welcome-back">Welcome back {cookies.emailCookie}!</h4>
+         <button className="Navbut"><Link className="NavLink" to="/playlists" title="Playlists">Playlists</Link></button>
          <button className="Navbut"><Link className="NavLink" to="/user-dashboard" title="Dashboard">Dashboard</Link></button>
          <button className="Navbut"><Link className="NavLink" to="/logout" title="Logout User">Logout</Link></button>
          </>
         ):(
           <>
+          <button className="Navbut"><Link className="NavLink" to="/playlists" title="Playlists">Playlists</Link></button>
           <button className="Navbut"><Link className="NavLink" to="/login" title="Login User">Login</Link></button>
           <button className="Navbut"><Link className="NavLink" to="/sign-up" title="Register for an Account">Register</Link></button>
           </>

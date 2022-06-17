@@ -7,7 +7,7 @@ import Movies from "./Movies/Movies";
 import Dropdown from "./Dropdown/Dropdown";
 import SortByDropdown from "./Dropdown/SortByDropdown";
 import MyPagination from "./Pagination/MyPagination";
-import {getMovieTitle} from "../../utils/helpers";
+// import {getMovieTitle} from "../../utils/helpers";
 
 export default function Main(props) {
   const [movies, setMovies] = useState([]);
@@ -16,7 +16,7 @@ export default function Main(props) {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   const [sortedBy, setSortedBy] = useState('popularity.desc');
-  const [playlists, setPlaylists] = useState([]);
+  // const [playlists, setPlaylists] = useState([]);
 
   const [search, setSearch] = useState("");
   const [searchMovies, setSearchMovies] = useState([]);
@@ -89,32 +89,32 @@ export default function Main(props) {
     });
   }, [genre, page, sortedBy]);
 
-  useEffect(() => {
-    getPlaylists();
-  }, []);
+  // useEffect(() => {
+  //   getPlaylists();
+  // }, []);
 
-  console.log(playlists)
+  // console.log(playlists)
 
-  async function getPlaylists() {
+  // async function getPlaylists() {
 
-    const {data} = await axios.get(`/playlist/`);
+  //   const {data} = await axios.get(`/playlist/`);
 
-    for(let i = 0; i < data.length; i++) {
-      const playlistMovieLength = data[i].movie_api_id.length;
-      const movies = [];
+  //   for(let i = 0; i < data.length; i++) {
+  //     const playlistMovieLength = data[i].movie_api_id.length;
+  //     const movies = [];
   
-      for(let movieIndex = 0; movieIndex < playlistMovieLength; movieIndex ++){
-        const movieId = data[i].movie_api_id[movieIndex];
-        const movieTitle = await getMovieTitle(movieId);
-        movies.push({movie_api_id: movieId, movie_title: movieTitle});
+  //     for(let movieIndex = 0; movieIndex < playlistMovieLength; movieIndex ++){
+  //       const movieId = data[i].movie_api_id[movieIndex];
+  //       const movieTitle = await getMovieTitle(movieId);
+  //       movies.push({movie_api_id: movieId, movie_title: movieTitle});
 
-      }
+  //     }
 
-      data[i].movies = movies;
-    }
+  //     data[i].movies = movies;
+  //   }
 
-    setPlaylists(data);
-  }
+  //   setPlaylists(data);
+  // }
 
   return(
     <>
@@ -140,12 +140,12 @@ export default function Main(props) {
 
         {search.length !== 0 && <Movies movies={searchMovies} /> }
 
-          <div className="mainPlaylists">
+          {/* <div className="mainPlaylists">
             <h3>Browse User Playlists</h3>
         <article>
         {(playlists|| []).map(playlist => (
               <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
-                {/* <p><b>playlist title: </b>{playlist.title}</p> */}
+                <p><b>playlist title: </b>{playlist.title}</p> 
                 <img src={playlist.avatar} alt="Playlist Avatar" height={250} width={250} />
                 <p><b>description: </b>{playlist.description}</p>
                 <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
@@ -153,7 +153,7 @@ export default function Main(props) {
               </div>
             ))}
           </article>
-        </div>      
+        </div>       */}
       </div>
     </>
   );
