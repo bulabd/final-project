@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-
-import handleCookies from '../../utils/helpers';
+import {handleCookies} from '../../utils/helpers';
 import './Login.css';
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      const {data} = await axios.post('http://localhost:8080/login', {email, password});
+      const {data} = await axios.post(`/login`, {email, password});
 
       if(data) {
         const cookies = [

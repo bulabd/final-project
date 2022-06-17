@@ -10,7 +10,7 @@ const url = require('url');
 
 require("dotenv").config();
 
-const PORT = 8080;
+const PORT = process.env.REACT_APP_BACKEND_PORT;
 
 const db = require('./configs/db.config');
 let indexRouter = require('./routes/index');
@@ -74,6 +74,65 @@ app.get('/user/:id', (req, res) => {
       .json({ error: ex.message });
   });
 });
+
+app.get('/review/:id', (req, res) => {
+  const userId = req.params.id;
+  const command = `SELECT * FROM reviews WHERE user_id = $1`;
+  db.query(command, [userId]).then((data) => {
+    if (data.rows.length > 0) {
+      res.status(200).json(data.rows);
+    }
+  }).catch((ex) => {
+    res
+      .status(500)
+      .json({ error: ex.message });
+  });
+});
+
+app.get('/rating/:id', (req, res) => {
+  const userId = req.params.id;
+  const command = `SELECT * FROM ratings WHERE user_id = $1`;
+  db.query(command, [userId]).then((data) => {
+    if (data.rows.length > 0) {
+      res.status(200).json(data.rows);
+    }
+  }).catch((ex) => {
+    res
+      .status(500)
+      .json({ error: ex.message });
+  });
+});
+
+
+app.get('/playlist/:id', (req, res) => {
+  const userId = req.params.id;
+  const command = `SELECT * FROM playlists WHERE user_id = $1`;
+  db.query(command, [userId]).then((data) => {
+    if (data.rows.length > 0) {
+      res.status(200).json(data.rows);
+    }
+  }).catch((ex) => {
+    res
+      .status(500)
+      .json({ error: ex.message });
+  });
+});
+
+app.get('/playlist/', (req, res) => {
+  const command = `SELECT * FROM playlists JOIN users ON users.id = playlists.user_id`;
+  db.query(command).then((data) => {
+    if (data.rows.length > 0) {
+      res.status(200).json(data.rows);
+    }
+  }).catch((ex) => {
+    console.log(ex);
+    res
+      .status(500)
+      .json({ error: ex.message });
+  });
+});
+
+
 
 app.post('/sign-up', (req, res) => {
   const body = req.body;

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import handleCookies from '../../utils/helpers';
+import {handleCookies} from '../../utils/helpers';
 import './SignUp.css';
 
 
@@ -17,7 +17,7 @@ export default function SignUp() {
 
   async function onSignUp() {
     try {
-      const {data} = await axios.post('http://localhost:8080/sign-up', {name, email, password});
+      const {data} = await axios.post('/sign-up', {name, email, password});
 
       if(data) {
         const cookies = [
