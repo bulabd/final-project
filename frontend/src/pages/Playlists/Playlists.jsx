@@ -37,19 +37,19 @@ export default function Playlists(props) {
   return (
     <>
     <main className="movie-container">
-        <div className="mainPlaylists">
-        <h3>Browse User Playlists</h3>
-    <article>
-    {(playlists|| []).map(playlist => (
-          <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
-            {/* <p><b>playlist title: </b>{playlist.title}</p> */}
-            <img src={playlist.avatar} alt="Playlist Avatar" height={250} width={250} />
-            <p><b>description: </b>{playlist.description}</p>
-            <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
-            <p><b>date: </b>{new Date(playlist.date).toLocaleString()}</p>
-          </div>
-        ))}
-      </article>
+        <h1 className="title">Browse User Playlists</h1>
+        <div>
+          <article className="mainPlaylists">
+            {(playlists|| []).map(playlist => (
+                  <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
+                    {/* <p><b>playlist title: </b>{playlist.title}</p> */}
+                    <img src={playlist.avatar} alt="Playlist Avatar" height={250} width={250} />
+                    <p className="text"><b>Description: </b>{playlist.description}</p>
+                    <p className="text"><b>Movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
+                    <p className="text"><b>Created: </b>{new Date(playlist.date).toLocaleString()}</p>
+                  </div>
+            ))}
+          </article>
     </div>
     </main> 
     </>   

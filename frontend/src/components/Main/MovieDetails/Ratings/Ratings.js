@@ -47,6 +47,14 @@ export default function Ratings(props) {
       return false
     }
 
+    const verifyIfUserPostedRating = (ratings) => {
+      let ids = ratings.map((rating) => rating.user_id.toString());
+      if (ids.includes(userID)) {
+        return true;
+      }
+      return false;
+    };
+
     const dropDown = function() {
       if (userID && !rates()) {
         axios.post(`/ratings`, {user_id: userID, movie_api_id: props.movie_id, rating: myRating})
@@ -57,6 +65,12 @@ export default function Ratings(props) {
             setRatings(getRatingsForMovie(data[0].data));
           });
         });
+      } else {
+        if (!userID) {
+          alert("You need to login first!");
+        } else if (verifyIfUserPostedRating(ratings)) {
+          alert("You already rated this movie!");
+        }
       }
     }
     
@@ -101,7 +115,7 @@ export default function Ratings(props) {
       <RatingList ratings={ratings} />
       <FormControl sx={{ minWidth: 120, border: '2px #fcc300 solid', borderRadius: '10px' }}>
         <Select
-          sx={{ backgroundColor: 'black', color: '#fcc300' }}
+          sx={{ backgroundColor: 'black', color: '#fcc300', marginTop: '5px' }}
           value={myRating}
           onChange={handleChange}
           displayEmpty
