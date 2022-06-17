@@ -1,0 +1,13 @@
+.rating{
+  background-color: black;
+  color: #ffc300;
+  border-color: #ffc300;
+  border-radius: 0.5em;
+}
+
+.spaceRating{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 8%;
+}
