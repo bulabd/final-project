@@ -14,6 +14,11 @@ img {
   flex-direction: column;
 }
 
+.ratings {
+  display: flex;
+  justify-content: space-between;
+}
+
 #transition-modal-title {
   border-bottom: 2px #ffc300 solid;
 }

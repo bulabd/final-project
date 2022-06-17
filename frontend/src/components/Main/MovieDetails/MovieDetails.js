@@ -94,11 +94,11 @@ export default function MovieDetails({ children, id, title, rating, overview, po
   };
 
   const verifyIfUserPostedReview = (filteredReviews) => {
-    let ids = filteredReviews.map((review) => {return review.user_id});
+    let ids = filteredReviews.map((review) => {return review.user_id.toString()});
     if (ids.includes(cookies.idCookie)) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
   async function handleSubmit(event) {
@@ -165,15 +165,22 @@ export default function MovieDetails({ children, id, title, rating, overview, po
                 <Typography id="transition-modal-title" variant="h6" component="h2">
                   {title} {verifyReleaseDate(release_date)}
                 </Typography>
-                <h4>Rating: {rating}</h4>
-                <ReactStars
-                  edit={false}
-                  cursor={true}
-                  count={10}
-                  value={rating}
-                  size={24}
-                  color2={'#ffc300'}
-                />
+
+                <div className='ratings'>
+                  <div className='tmdb-rating'>
+                    <h4>TMDB Rating: {rating}</h4>
+                    <ReactStars
+                      edit={false}
+                      cursor={true}
+                      count={10}
+                      value={rating}
+                      size={24}
+                      color2={'#ffc300'}
+                    />
+                  </div>
+                  <Ratings movie_id={id} />
+                </div>
+
                 <Typography id="transition-modal-description" sx={{ mt: 2 }}>
                   {overview}
                 </Typography>
@@ -203,7 +210,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
               </Button>
             
             <Reviews reviews={reviewsForMovie} />
-            <Ratings movie_id={id} />
+            {/* <Ratings movie_id={id} /> */}
             </div>
           </Box>
         </Fade>

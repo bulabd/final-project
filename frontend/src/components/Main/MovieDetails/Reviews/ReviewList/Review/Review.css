@@ -1,3 +1,8 @@
+.review {
+  border-left: 2px #fcc300 solid;
+  padding-left: 1em;
+}
+
 .reviewText {
   word-wrap: break-word;
 }

@@ -1,13 +1,43 @@
-.rating{
+.rating2{
   background-color: black;
   color: #ffc300;
-  border-color: #ffc300;
   border-radius: 0.5em;
+  border: 2px #ffc300 solid;
+  width: 10em;
+  padding: 5px;
 }
+
+.rating2:hover {
+  background-color: #ffc300;
+  color: black;
+  cursor: pointer;
+}
+
+/* .option {
+  background-color: black;
+  color: #ffc300;
+  border-radius: 10px;
+}
+
+.option:hover {
+  background-color: #ffc300;
+  color: black;
+} */
 
 .spaceRating{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 8%;
+  align-items: flex-end;
+}
+
+.test {
+  background-color: black;
+}
+
+/* div.MuiSelect-select.MuiSelect-outlined.MuiOutlined */
+
+ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list {
+  background-color: black;
+  border: 2px #ffc300 solid;
+  border-radius: 5px;
 }

@@ -18,14 +18,13 @@ export default function ReviewList(props) {
 
 }, [props.ratings])
   return ( avgRate <= 0 ? 
-    <>
-      <h2>Rating</h2>
+    <div className="projectRating">
+      <h4>Everyone's a Critic Rating:</h4>
       <span className="ratingSpan">No ratings yet</span>
-    </>
+    </div>
     :
-    <>
-      <h2>Rating</h2>
-      <span className="ratingSpan">{avgRate}</span>
-    </>
+    <div className="projectRating">
+      <h4>Everyone's a Critic Rating: {avgRate}</h4>
+    </div>
  );
 }

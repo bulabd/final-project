@@ -1,3 +1,5 @@
-.ratingSpan{
-  margin-bottom: 1em;
+.projectRating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
