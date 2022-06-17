@@ -10,7 +10,7 @@ const url = require('url');
 
 require("dotenv").config();
 
-const PORT = 8000;
+const PORT = 8080;
 
 const db = require('./configs/db.config');
 let indexRouter = require('./routes/index');

@@ -20,7 +20,7 @@ export default function Ratings(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8000/ratings`)
+      axios.get(`http://localhost:8080/ratings`)
     ]).then((data) => {
       setRatings(getRatingsForMovie(data[0].data));
     });
@@ -41,10 +41,10 @@ export default function Ratings(props) {
 
     const dropDown = function() {
       if (userID && !rates()) {
-        axios.post(`http://localhost:8000/ratings`, {user_id: userID, movie_api_id: props.movie_id, rating: myRating})
+        axios.post(`http://localhost:8080/ratings`, {user_id: userID, movie_api_id: props.movie_id, rating: myRating})
         .then((data) => {
           Promise.all([
-            axios.get(`http://localhost:8000/ratings`)
+            axios.get(`http://localhost:8080/ratings`)
              ]).then((data) => {
             setRatings(getRatingsForMovie(data[0].data));
           });

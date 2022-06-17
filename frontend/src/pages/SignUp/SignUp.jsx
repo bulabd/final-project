@@ -17,7 +17,7 @@ export default function SignUp() {
 
   async function onSignUp() {
     try {
-      const {data} = await axios.post('http://localhost:8000/sign-up', {name, email, password});
+      const {data} = await axios.post('http://localhost:8080/sign-up', {name, email, password});
 
       if(data) {
         const cookies = [

@@ -17,7 +17,7 @@ export default function UserDashboard() {
     if(!userId) {
       return;
     }
-    const {data} = await axios.get(`http://localhost:8000/user/${userId}`);
+    const {data} = await axios.get(`http://localhost:8080/user/${userId}`);
 
     setUser(data);
 

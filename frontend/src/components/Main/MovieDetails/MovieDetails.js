@@ -98,8 +98,8 @@ export default function MovieDetails({ children, id, title, rating, overview, po
     if (cookies.idCookie) {
       try {
         //returns OK
-        await axios.post('http://localhost:8000/reviews', {user_id: cookies.idCookie, movie_api_id: id, content: content})
-        const  { data } = await axios.get(`http://localhost:8000/reviews`)
+        await axios.post('http://localhost:8080/reviews', {user_id: cookies.idCookie, movie_api_id: id, content: content})
+        const  { data } = await axios.get(`http://localhost:8080/reviews`)
         setReviewsForMovie(getReviewsForMovie(data));
       } catch(ex) {
         console.log(ex);
@@ -111,7 +111,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
 
   React.useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8000/reviews`),
+      axios.get(`http://localhost:8080/reviews`),
       axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
     ]).then((data) => {
       // console.log(data);
