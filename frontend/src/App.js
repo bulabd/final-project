@@ -17,7 +17,6 @@ function App() {
     <div className="App">
       <CookiesProvider>
         <Navbar />
-        <BrowserRouter>
           <Routes>
             {/* Playlist card*/}
             <Route path="/user-dashboard" element={<UserDashboard />}/>
@@ -27,7 +26,6 @@ function App() {
             <Route path="/" element={<Main />}>
             </Route>
           </Routes>
-        </BrowserRouter>
         <Footer />
       </CookiesProvider>
     </div>

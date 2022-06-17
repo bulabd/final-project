@@ -10,7 +10,7 @@ import ReactStars from 'react-stars';
 import Ratings from './Ratings/Ratings';
 
 import "./MovieDetails.css";
-import axios from 'axios';
+// import axios from 'axios';
 
 const style = {
   color: 'white',

@@ -1,8 +1,10 @@
 import React from "react";
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
 import "./Navbar.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Navbar() {
   const [cookies] = useCookies();
@@ -10,24 +12,30 @@ export default function Navbar() {
   const isLoggedIn = cookies.idCookie;
 
   return(
+
     <div className="nav-div">
-      {/* <h1><a href="/">Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></a></h1> */}
       <div className="logo-container">
-        <a href="/" title="Phone home"><h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/> </h1></a>
+        {/* <a href="/" title="Phone home"><h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/> </h1></a> */}
+        <Link to="/" title="Phone home"><h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></h1></Link>
+        {/* <Routes>
+        <Route path="/" element={<Main />}>
+          abc
+        </Route>  
+        </Routes> */}
       </div>
       <div className="user">
         {isLoggedIn ? (
           <>
          <h4 className="welcome-back">Welcome back {cookies.emailCookie}!</h4>
-         <button className="Navbut"><a className="NavLink" href="/user-dashboard" >Dashboard</a></button>
-         <button className="Navbut"><a className="NavLink" href="/logout" >Logout</a></button>
+         <button className="Navbut"><Link className="NavLink" to="/user-dashboard" title="Dashboard">Dashboard</Link></button>
+         {/* <button className="Navbut"><a className="NavLink" href="/user-dashboard" >Dashboard</a></button> */}
+         <button className="Navbut"><Link className="NavLink" to="/logout" title="Logout User">Logout</Link></button>
+         {/* <button className="Navbut"><a className="NavLink" href="/logout" >Logout</a></button> */}
          </>
         ):(
           <>
-          <button className="Navbut"><a className="NavLink" href="/login">Login</a></button>
-          <button className="Navbut"><a className="NavLink" href="/sign-up">Register</a></button>
-          {/* <button><a href="/login">Login</a></button>
-          <button><a href="/sign-up">Register</a></button> */}
+          <button className="Navbut"><Link className="NavLink" to="/login" title="Login User">Login</Link></button>
+          <button className="Navbut"><Link className="NavLink" to="/sign-up" title="Register for an Account">Register</Link></button>
           </>
         )}
       </div>
