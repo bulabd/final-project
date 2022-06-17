@@ -1,3 +1,4 @@
+-- schema/03_create_ratings.sql
 DROP TABLE IF EXISTS ratings CASCADE;
 --  CREATE RATINGS --
 CREATE TABLE ratings (

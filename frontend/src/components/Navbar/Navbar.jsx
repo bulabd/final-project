@@ -15,22 +15,14 @@ export default function Navbar() {
 
     <div className="nav-div">
       <div className="logo-container">
-        {/* <a href="/" title="Phone home"><h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/> </h1></a> */}
         <Link to="/" title="Phone home"><h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></h1></Link>
-        {/* <Routes>
-        <Route path="/" element={<Main />}>
-          abc
-        </Route>  
-        </Routes> */}
       </div>
       <div className="user">
         {isLoggedIn ? (
           <>
          <h4 className="welcome-back">Welcome back {cookies.emailCookie}!</h4>
          <button className="Navbut"><Link className="NavLink" to="/user-dashboard" title="Dashboard">Dashboard</Link></button>
-         {/* <button className="Navbut"><a className="NavLink" href="/user-dashboard" >Dashboard</a></button> */}
          <button className="Navbut"><Link className="NavLink" to="/logout" title="Logout User">Logout</Link></button>
-         {/* <button className="Navbut"><a className="NavLink" href="/logout" >Logout</a></button> */}
          </>
         ):(
           <>
