@@ -93,16 +93,28 @@ export default function MovieDetails({ children, id, title, rating, overview, po
     return filteredReviews;
   };
 
+  const verifyIfUserPostedReview = (filteredReviews) => {
+    let ids = filteredReviews.map((review) => {return review.user_id});
+    if (ids.includes(cookies.idCookie)) {
+      return true;
+    }
+    return false;
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     if (cookies.idCookie) {
-      try {
-        //returns OK
-        await axios.post('/reviews', {user_id: cookies.idCookie, movie_api_id: id, content: content})
-        const  { data } = await axios.get(`/reviews`)
-        setReviewsForMovie(getReviewsForMovie(data));
-      } catch(ex) {
-        console.log(ex);
+      if (verifyIfUserPostedReview(reviewsForMovie)) {
+        try {
+          //returns OK
+          await axios.post('/reviews', {user_id: cookies.idCookie, movie_api_id: id, content: content})
+          const  { data } = await axios.get(`/reviews`)
+          setReviewsForMovie(getReviewsForMovie(data));
+        } catch(ex) {
+          console.log(ex);
+        }
+      } else {
+        alert("You cannot review a movie twice!");
       }
     } else {
       alert("You are not logged in!");
