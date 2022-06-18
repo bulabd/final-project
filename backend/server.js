@@ -145,6 +145,20 @@ app.post('/playlists/', (req, res) => {
   });
 });
 
+app.post('/playlists/addMovie', (req, res) => {
+  const body = req.body;
+  const { playlist_id, movie_id } = body;
+  console.log("BODY----", body);
+  const command = `UPDATE playlists SET movie_api_id = array_append(movie_api_id, $1) WHERE id = $2`;
+  db.query(command, [movie_id, playlist_id]).then((data) => {
+    console.log('movie added to playlist');
+    res.status(200).send("OK");
+  }).catch(err => {
+    console.log('an error happend-------');
+    res.json({ error: err.message });
+  });
+});
+
 
 
 app.post('/sign-up', (req, res) => {

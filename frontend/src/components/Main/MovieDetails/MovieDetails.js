@@ -17,6 +17,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import "./MovieDetails.css";
 import axios from 'axios';
+import AddToPlaylist from './AddToPlaylist/AddToPlaylist';
 
 const style = {
   color: 'white',
@@ -162,9 +163,14 @@ export default function MovieDetails({ children, id, title, rating, overview, po
                 <a className='trailer' href={`https://www.youtube.com/watch?v=${youtubeURL}`} target="_blank"><FontAwesomeIcon icon={faPlay} /> Trailer</a>
               </div>
               <div className='movieTitleAndDescription'>
+                <div className='titleWithPlaylists'>
                 <Typography id="transition-modal-title" variant="h6" component="h2">
                   {title} {verifyReleaseDate(release_date)}
                 </Typography>
+                <Typography variant="h6" component="h2">
+                  <AddToPlaylist movie_id={id} />
+                </Typography>
+                </div>
 
                 <div className='ratings'>
                   <div className='tmdb-rating'>

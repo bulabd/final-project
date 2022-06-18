@@ -1,0 +1,28 @@
+.dropdown-Content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 2;
+  border-radius: 10px;
+  border: 2px #ffc300 solid;
+}
+
+/* Links inside the dropdown */
+.dropdown-Content span {
+  color:#ffc300;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-Content span:hover {
+  background-color: #ffc300;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.span:hover .dropdown-Content {display: block;}

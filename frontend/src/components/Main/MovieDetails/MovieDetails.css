@@ -19,8 +19,10 @@ img {
   justify-content: space-between;
 }
 
-#transition-modal-title {
+.titleWithPlaylists {
   border-bottom: 2px #ffc300 solid;
+  display: flex;
+  justify-content: space-between;
 }
 
 #transition-modal-description {

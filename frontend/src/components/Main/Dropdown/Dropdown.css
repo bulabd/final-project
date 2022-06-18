@@ -41,7 +41,7 @@
 /* Change color of dropdown links on hover */
 .dropdown-content span:hover {
   background-color: #ffc300;
-  color: white;
+  color: black;
   cursor: pointer;
   border-radius: 0.5em;
 }
