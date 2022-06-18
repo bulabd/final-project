@@ -118,7 +118,7 @@ app.get('/playlists/:id', (req, res) => {
 });
 
 app.get('/playlists/', (req, res) => {
-  const command = `SELECT * FROM playlists JOIN users ON users.id = playlists.user_id`;
+  const command = `SELECT playlists.id as playlist_id, * FROM playlists JOIN users ON users.id = playlists.user_id`;
   db.query(command).then((data) => {
     if (data.rows.length > 0) {
       res.status(200).json(data.rows);
@@ -128,6 +128,20 @@ app.get('/playlists/', (req, res) => {
     res
       .status(500)
       .json({ error: ex.message });
+  });
+});
+
+app.post('/playlists/', (req, res) => {
+  const body = req.body;
+  const { user_id, title, description, avatar } = body;
+  const command = `INSERT INTO playlists (user_id, title, description, avatar) VALUES ($1, $2, $3, $4) RETURNING id, user_id, title, description, avatar`;
+  db.query(command, [user_id, title, description, avatar]).then((data) => {
+    console.log("----this is what has been entered in the form", data.rows[0]);
+    console.log('it passed');
+    res.status(200).send("OK");
+  }).catch(err => {
+    console.log('an error happend-------');
+    res.json({ error: err.message });
   });
 });
 

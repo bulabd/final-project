@@ -39,3 +39,45 @@ b {
   color: #ffc300;
 }
 
+.form {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20%;
+  padding: 0.5em;
+  border: 2px #ffc300 solid;
+  border-radius: 10px;
+  .input {
+    padding: 10px 5px;
+    background-color: #202020;
+    color: #ffc300;
+    border: 2px #ffc300 solid;
+    border-radius: 5px;
+  }
+  .submitButton {
+    margin: 0;
+    color: #ffc300;
+    background-color: #202020;
+    border: 2px #ffc300 solid;
+    &:hover {
+      cursor: pointer;
+      color: #202020;
+      background-color: #ffc300;
+    }
+  }
+}
+
+@media only screen and (max-width: 1187px) {
+  .new-playlist {
+    margin-top: 5%;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    .input {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+
