@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import './UserDashboard.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
-export default function UserDashboard() {
+export default function UserDashboard(props) {
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const [cookies] = useCookies();
+
+  
+  const userID = cookies.idCookies
 
   useEffect(() => {
     getUserData();
@@ -85,11 +90,29 @@ export default function UserDashboard() {
     setPlaylists(data);
   }
 
+    const reviewDelete = (id, e) => {
+      e.preventDefault()
+      axios.delete(`http://localhost:8008/reviews/${id}`)
+      .then(() => {
+        setReviews(reviews.filter(rev => rev.id !== id))
+      });
+    }
+    
+    const ratingDelete = (id, e) => {
+      e.preventDefault()
+      axios.delete(`http://localhost:8008/ratings/${id}`)
+      .then(() => {
+        setRatings(ratings.filter(rev => rev.id !== id))
+      });
+    }
+
+
+
   if(!ratings || !user || !reviews ) {
     <h1>loading...🤨</h1>
   }
 
-  console.log(playlists);
+  // console.log(playlists);
   return(
 
     <main>
@@ -124,6 +147,7 @@ export default function UserDashboard() {
                 <p><b>movie title: </b>{review.movie_title}</p>
                 <p><b>review: </b>{review.content}</p>
                 <p><b>date: </b>{new Date(review.date).toLocaleString()}</p>
+                <button className='deleteBut' onClick={(e) => reviewDelete(review.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
               </div>
             ))}
         </article> 
@@ -136,6 +160,7 @@ export default function UserDashboard() {
               <div className="renderObject" key={`${rating.movie_api_id}${rating.id}`}>
                 <p><b>movie title: </b>{rating.movie_title}</p>
                 <p><b>rating: </b>{rating.rating}</p>
+                <button className='deleteBut' onClick={(e) => ratingDelete(rating.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
               </div>
             )})}
         </article>

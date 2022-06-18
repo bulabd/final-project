@@ -38,6 +38,7 @@ export default function Login() {
     }
   }
 
+
   return(
       <div className="login-wrapper">
       {error && <h1>{error}</h1>}
@@ -45,11 +46,11 @@ export default function Login() {
         <h1>Login</h1>
         <label>
           <h4>Email</h4>
-          <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
+          <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)} />
         </label>
         <label>
           <h4>Password</h4>
-          <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
+          <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)} />
         </label>
         <div>
            {/* NB: Add logic to make spacebar work! It doens't currently work to press submit!! */}

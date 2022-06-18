@@ -20,5 +20,21 @@ module.exports = (db) => {
     });
   });
 
+  router.delete("/:id", (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    const sql = `DELETE FROM ratings WHERE id = ${id}`;
+  
+    db.query(sql).then(data => {
+      console.log(data);
+      console.log('it passed');
+      res.status(200).send("OK");
+    }).catch(err => {
+      console.log('an error happend-------');
+      res
+        .json({ error: err.message });
+    });
+  })
+
   return router;
 };
