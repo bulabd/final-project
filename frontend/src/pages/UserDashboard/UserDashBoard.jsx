@@ -97,6 +97,7 @@ export default function UserDashboard(props) {
         setReviews(reviews.filter(rev => rev.id !== id))
       });
     }
+    
     const ratingDelete = (id, e) => {
       e.preventDefault()
       axios.delete(`http://localhost:8008/ratings/${id}`)
