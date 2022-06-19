@@ -211,10 +211,10 @@ export default function UserDashboard() {
         </Box>
       </Modal>
     <div className="user-dashboard-wrapper">
+        <h2 className="userpagetitle">User Dashboard</h2>
       <div className="content-box">
-        <h2>User Dashboard</h2>
-        <Button onClick={handleOpen}><h4><FontAwesomeIcon icon={faPen} /></h4></Button>
         <h4>Welcome, back {user?.name}</h4>
+        <Button onClick={handleOpen}><h4><FontAwesomeIcon icon={faPen} /></h4></Button>
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
@@ -239,7 +239,7 @@ export default function UserDashboard() {
               <div className="renderObject" key={`${review.movie_api_id}${review.id}`}>
                 <p><b>movie title: </b>{review.movie_title}</p>
                 <p><b>review: </b>{review.content}</p>
-                <p><b>date: </b>{new Date(review.date).toLocaleString()}</p>
+                {/* <p><b>date: </b>{new Date(review.date).toLocaleString()}</p> */}
               </div>
             ))}
         </article> 

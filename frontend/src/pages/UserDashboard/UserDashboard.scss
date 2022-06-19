@@ -31,6 +31,15 @@
   }
 }
 
+.userpagetitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 5px double chocolate;
+  width: 50%;
+  padding: .25em;
+}
+
 .content-box {
   display: flex;
   flex-direction: column;
@@ -39,17 +48,10 @@
   padding: 2em;
   border-radius: 10px;
   background-color: 	#202020;
-  margin-top: 2.5em;
+  margin-top: 1.5em;
   border: 2px solid chocolate; 
   &:hover {
     border: 3px #4A8FE7 solid;
-  }
-  h2 {
-    display: flex;
-    flex-direction: column;
-   align-items: center;
-    border-bottom: 5px double chocolate;
-    width: 50%;
   }
 }
 

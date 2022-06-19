@@ -95,8 +95,8 @@ export default function UserDashboard() {
 
     <main>
     <div className="user-dashboard-wrapper">
+        <h2 className="userviewtitle">User Profile View</h2>
       <div className="content-box">
-        <h2>User Profile View</h2>
         <h4>{user?.name}'s Contributions</h4>
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>

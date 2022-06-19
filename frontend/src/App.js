@@ -23,7 +23,8 @@ function App() {
           <Routes>
             <Route path="/view-user/:id" element={<ViewUser />}/>
             <Route path="/playlists" element={<Playlists />}/>
-            <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Main/>} />
+            <Route exact path="/user-dashboard" element={<UserDashboard />}/>
+            {/* <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Main/>} /> */}
             <Route path="/logout" element={<Logout />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/sign-up" element={<SignUp />}/>

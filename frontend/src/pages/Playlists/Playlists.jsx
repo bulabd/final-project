@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { Typography, Modal, Box, Button } from '@mui/material';
 import { ThemeProvider, TextField } from '@material-ui/core';
 import { style, style1, style2, theme } from '../../utils/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { getMovieTitle } from "../../utils/helpers";
 
@@ -133,8 +135,8 @@ export default function Playlists() {
         </Box>
       </Modal>
         <div className="mainPlaylists">
-        <h3>Browse User Playlists</h3>
-        <Button onClick={handleOpen}><h4>Create a New Playlist</h4></Button>
+        <h2 className="playlistpagetitle">Browse All User's Playlists</h2>
+        <Button onClick={handleOpen}><h4>Create a New Playlist<FontAwesomeIcon icon={faPen} /></h4></Button>
     <article>
     {(playlists|| []).map(playlist => (
           <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
