@@ -20,7 +20,7 @@ export default function ReviewList(props) {
   return ( avgRate <= 0 ? 
     <div className="projectRating">
       <h4>Everyone's a Critic Rating:</h4>
-      <span className="ratingSpan">No ratings yet</span>
+      <span className="ratingSpan">{0}</span>
     </div>
     :
     <div className="projectRating">

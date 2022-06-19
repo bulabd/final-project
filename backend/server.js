@@ -143,12 +143,12 @@ app.post('/sign-up', (req, res) => {
   //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
 
 
-  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
+  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email, name;`;
 
   db.query(command, [name, email, password]).then(data => {
     // if there's a match => redirect? send user? set a cookie
     if (data.rows.length > 0) {
-      res.status(200).json({id: data.rows[0].id, email: data.rows[0].email});
+      res.status(200).json({id: data.rows[0].id, email: data.rows[0].email, name: data.rows[0].name});
     }
   }).catch(err => {
     res

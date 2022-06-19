@@ -130,7 +130,7 @@ export default function UserDashboard(props) {
         <h5>{user?.name}'s Movie Playlists</h5>
         <article>
         {(playlists|| []).map(playlist => (
-              <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
+              <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
                 <p><b>playlist title: </b>{playlist.title}</p>
                 <p><b>description: </b>{playlist.description}</p>
                 <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
@@ -143,28 +143,39 @@ export default function UserDashboard(props) {
         <h5>{user?.name}'s Movie Reviews</h5>
         <article>
             {(reviews|| []).map(review => (
-              <div className="renderObject" key={`${review.movie_api_id}${review.id}`}>
+              <div className="renderReviews" key={`${review.movie_api_id}${review.id}`}>
                 <p><b>movie title: </b>{review.movie_title}</p>
                 <p><b>review: </b>{review.content}</p>
                 <p><b>date: </b>{new Date(review.date).toLocaleString()}</p>
                 <button className='deleteBut' onClick={(e) => reviewDelete(review.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                {(ratings).map(rating => {       
+                  {if (rating.movie_api_id === review.movie_api_id) {
+                    return (
+                      <div key={`${rating.movie_api_id}${rating.id}`}>
+                        <p><b>Critic's rating: </b>{rating.rating}</p>
+                        <button className='deleteBut' onClick={(e) => ratingDelete(rating.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                      </div>
+                    )
+                  }}
+                })}
               </div>
             ))}
+
+          {(ratings).map(rating => (
+            (reviews).map(review => {       
+              return (  rating.movie_api_id !== review.movie_api_id ?
+                <div className="renderReviews" key={`${rating.movie_api_id}${rating.id}`}>
+                  <p><b>movie title: </b>{rating.movie_title}</p>
+                  <p><b>Critic's rating: </b>{rating.rating}</p>
+                  <button className='deleteBut' onClick={(e) => ratingDelete(rating.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                </div>   
+                :
+                null   
+              )
+            })
+         ))}
         </article> 
         </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Movie Ratings</h5>
-        <article>
-        {(ratings).map(rating => {       
-          return (
-              <div className="renderObject" key={`${rating.movie_api_id}${rating.id}`}>
-                <p><b>movie title: </b>{rating.movie_title}</p>
-                <p><b>rating: </b>{rating.rating}</p>
-                <button className='deleteBut' onClick={(e) => ratingDelete(rating.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
-              </div>
-            )})}
-        </article>
-      </div>
       <div className="user-movie-content">
         <h5>{user?.name}'s Current Favourite Movies</h5>
         <article><>...Favourites</></article> 
