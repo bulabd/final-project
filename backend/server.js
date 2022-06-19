@@ -17,6 +17,7 @@ let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let reviewsRouter = require('./routes/reviews');
 let ratingsRouter = require('./routes/ratings');
+let apiRouter = require('./routes/api')
 
 
 const app = express();
@@ -34,6 +35,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
 app.use('/reviews', reviewsRouter(db));
 app.use('/ratings', ratingsRouter(db));
+app.use('/api/movies', apiRouter(db));
+
 
 
 app.post('/login', (req, res) => {

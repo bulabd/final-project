@@ -1,5 +1,15 @@
 .projectRating {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.ratingResult1 {
+  margin-top: 21.280px;
+  margin-bottom: 0;
+}
+
+.ratingResult2 {
+  margin: 5px 0px;
 }
