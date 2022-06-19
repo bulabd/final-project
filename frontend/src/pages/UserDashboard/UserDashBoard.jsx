@@ -256,10 +256,6 @@ export default function UserDashboard() {
             )})}
         </article>
       </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Current Favourite Movies</h5>
-        <article><>...Favourites</></article> 
-      </div>
     </div>
     </div>
     </main>

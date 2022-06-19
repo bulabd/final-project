@@ -36,7 +36,7 @@ export default function UserDashboard() {
   }
 
   async function getUserReviews() {
-    const userId  = cookies.idCookie;
+    const userId  = params.id;
     if(!userId) {
       return;
     }
@@ -50,7 +50,7 @@ export default function UserDashboard() {
   }
 
   async function getUserRatings() {
-    const userId  = cookies.idCookie;
+    const userId  = params.id;
     if(!userId) {
       return;
     }
@@ -64,7 +64,7 @@ export default function UserDashboard() {
   }
 
   async function getUserPlaylists() {
-    const userId  = cookies.idCookie;
+    const userId  = params.id;
     if(!userId) {
       return;
     }
@@ -138,10 +138,6 @@ export default function UserDashboard() {
               </div>
             )})}
         </article>
-      </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Current Favourite Movies</h5>
-        <article><>...Favourites</></article> 
       </div>
     </div>
     </div>
