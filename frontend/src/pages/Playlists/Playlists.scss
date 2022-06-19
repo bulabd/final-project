@@ -17,3 +17,10 @@
     object-fit: cover;
   }
 }
+
+.titlecreatedby {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
