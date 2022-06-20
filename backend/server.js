@@ -5,8 +5,6 @@ let logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const url = require('url');
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
 
 require("dotenv").config();
 
@@ -96,9 +94,7 @@ app.get('/rating/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM ratings WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
-    if (data.rows.length > 0) {
       res.status(200).json(data.rows);
-    }
   }).catch((ex) => {
     res
       .status(500)
@@ -139,11 +135,7 @@ app.get('/playlists/', (req, res) => {
 app.post('/sign-up', (req, res) => {
   const body = req.body;
   const { name, email, password } = body;
-  //UPDATE with hash & salt
   
-  //Change query to include hashed password instead
-  // bcrypt.hash(body.password, saltRounds, (err, hash) => {
-  //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
 
 
   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email, name;`;

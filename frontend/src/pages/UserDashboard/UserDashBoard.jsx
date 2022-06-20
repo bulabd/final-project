@@ -23,13 +23,9 @@ export default function UserDashboard(props) {
       getUserReviews(),
       getUserRatings()
     ]).then(([reviews, ratings]) => {
-      getRatingsAndReviewsForMovies(reviews, ratings)
-      // .then((res) => {
-      //   setRatingWithReviewArr(res)
-      // }).then((res) => {
-      //   console.log("ratingnrev", ratingWithReviewArr)
-      // })
-
+      setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
+      setReviews(reviews)
+      setRatings(ratings)
     })
   }, []);
 
@@ -104,10 +100,9 @@ export default function UserDashboard(props) {
       e.preventDefault()
       axios.delete(`http://localhost:8008/reviews/${id}`)
       .then(() => {
-        setReviews(reviews.filter(rev => rev.id !== id))
-      })
-      .then(() => {
-        getRatingsAndReviewsForMovies(reviews, ratings)
+        const newReviews = reviews.filter(rev => rev.id !== id)
+        setReviews(newReviews)
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(newReviews, ratings))
       })
     }
     
@@ -115,16 +110,14 @@ export default function UserDashboard(props) {
       e.preventDefault()
       axios.delete(`http://localhost:8008/ratings/${id}`)
       .then(() => {
-        setRatings(ratings.filter(rev => rev.id !== id))
-      })
-      .then(() => {
-        getRatingsAndReviewsForMovies(reviews, ratings)
+        const newRatings = ratings.filter(rev => rev.id !== id)
+        setRatings(newRatings)
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, newRatings))
       })
     }
 
     function getRatingsAndReviewsForMovies(reviews, ratings) {
       let result = {};
-      console.log("R&R----", reviews, ratings)
       reviews.map( review => {
         if (!result[review.movie_api_id]) {
           result[review.movie_api_id] = {
@@ -134,8 +127,6 @@ export default function UserDashboard(props) {
         result[review.movie_api_id].review_id = review.id
         result[review.movie_api_id].review = review.content
         result[review.movie_api_id].movie_id = review.movie_api_id
-        console.log("review----", result[review.movie_api_id].review)
-        // return Promise.resolve()
       })
 
       ratings.map( rating => {
@@ -148,9 +139,6 @@ export default function UserDashboard(props) {
          result[rating.movie_api_id].rating_id = rating.id
          result[rating.movie_api_id].movie_id = rating.movie_api_id
       })
-      // await Promise.all([...reviewPromises], [...ratingPromises])
-      console.log("RESULT---", result)
-      setRatingWithReviewArr(Object.values(result))
       return Object.values(result)
     }
 
@@ -160,8 +148,8 @@ export default function UserDashboard(props) {
           <p><b>movie title: </b>{movie.movieTitle}</p>
           <p><b>review: </b>{movie.review || "No review"}</p>
           <p><b>rating: </b>{movie.rating || "No rating"}</p>
-          <button className='deleteBut' onClick={(e) => reviewDelete(movie.review_id, e)}><FontAwesomeIcon icon={faTrashCan} />Delete Review</button>
-          <button className='deleteBut' onClick={(e) => ratingDelete(movie.rating_id, e)}><FontAwesomeIcon icon={faTrashCan} />Delete Rating</button>
+          {movie.review && <button className='deleteBut' onClick={(e) => reviewDelete(movie.review_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Review</button>}
+          {movie.rating &&  <button className='deleteBut' onClick={(e) => ratingDelete(movie.rating_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Rating</button>}
         </div>
       )
     })
@@ -171,7 +159,6 @@ export default function UserDashboard(props) {
     <h1>loading...🤨</h1>
   }
 
-  // console.log(playlists);
   return(
 
     <main>
@@ -180,7 +167,6 @@ export default function UserDashboard(props) {
         <h2>User Dashboard</h2>
         <h4>Welcome, back {user?.name}</h4>
       <div>
-        {/* Image below can be made into an editable button with a hover */}
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
       <p className='bio'><b>User Bio:</b> <i>{user?.bio}</i></p>
