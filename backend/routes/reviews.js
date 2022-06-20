@@ -31,7 +31,7 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const { id } = req.params;
-    console.log(id)
+    console.log(id);
     const sql = `DELETE FROM reviews WHERE id = ${id}`;
   
     db.query(sql).then(data => {
@@ -43,7 +43,7 @@ module.exports = (db) => {
       res
         .json({ error: err.message });
     });
-  })
-
+  });
+  
   return router;
 };

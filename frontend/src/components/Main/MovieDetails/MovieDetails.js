@@ -1,74 +1,70 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import Reviews from './Reviews/Reviews';
 import ReactStars from 'react-stars';
 import Ratings from './Ratings/Ratings';
 
 import TextField from "@material-ui/core/TextField";
-import { createTheme, ThemeProvider } from '@material-ui/core';
+import { Backdrop, Box, Modal, Fade, Button, Typography } from '@mui/material/';
+import { ThemeProvider } from '@material-ui/core';
 import { useCookies } from 'react-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
-
-import "./MovieDetails.css";
-import axios from 'axios';
+import { style, style1, style2, theme } from '../../../utils/helpers.js';
 import AddToPlaylist from './AddToPlaylist/AddToPlaylist';
 
-const style = {
-  color: 'white',
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 800,
-  bgcolor: 'black',
-  border: '2px solid #ffc300',
-  borderRadius: 10,
-  boxShadow: 24,
-  p: 4
-};
+import "./MovieDetails.css";
 
-const style1 = {
-  color: 'white',
-  padding: '10px',
-  borderRadius: 2,
-  width: '220px',
-  display: 'flex',
-  flexDirection: 'column',
-  '&:hover': {
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    boxShadow: '0px 5px 5px 5px rgba(252,195,0,0.3)',
-    transform: 'scale(1.2)'
-  }
-}
+// const style = {
+//   color: 'white',
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: 800,
+//   bgcolor: 'black',
+//   border: '2px solid #ffc300',
+//   borderRadius: 10,
+//   boxShadow: 24,
+//   p: 4
+// };
 
-const style2 = {
-  color: '#ffc300',
-  border: '2px solid #ffc300',
-  marginLeft: '2em',
-  marginTop: '0.4em',
-  '&:hover': {
-    backgroundColor: '#ffc300',
-    color: 'black'
-  }
-}
+// const style1 = {
+//   color: 'white',
+//   padding: '10px',
+//   borderRadius: 2,
+//   width: '220px',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   '&:hover': {
+//     backgroundColor: 'rgba(0,0,0,0.3)',
+//     boxShadow: '0px 5px 5px 5px rgba(252,195,0,0.3)',
+//     transform: 'scale(1.2)'
+//   }
+// }
 
-const theme = createTheme({
-  palette: {
-    type: 'dark',
-    primary: {
-      main: "#ffc300"
-    },
-    secondary: {
-      main: "#ffc300"
-    }
-  }
-});
+// const style2 = {
+//   color: '#ffc300',
+//   border: '2px solid #ffc300',
+//   marginLeft: '2em',
+//   marginTop: '0.4em',
+//   '&:hover': {
+//     backgroundColor: '#ffc300',
+//     color: 'black'
+//   }
+// }
+
+// const theme = createTheme({
+//   palette: {
+//     type: 'dark',
+//     primary: {
+//       main: "#ffc300"
+//     },
+//     secondary: {
+//       main: "#ffc300"
+//     }
+//   }
+// });
 
 export default function MovieDetails({ children, id, title, rating, overview, poster, release_date }) {
   const [open, setOpen] = React.useState(false);
@@ -127,8 +123,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
       axios.get(`/reviews`),
       axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
     ]).then((data) => {
-      // console.log(data);
-      setReviewsForMovie(getReviewsForMovie(data[0].data));
+      setReviewsForMovie(getReviewsForMovie(data[0].data, id));
       setYoutubeURL(data[1].data.results[0].key);
     });
   }, [])
@@ -160,7 +155,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
                     currentTarget.src="http://www.movienewsletters.net/photos/000000H1.jpg";
                   }}>
                 </img>
-                <a className='trailer' href={`https://www.youtube.com/watch?v=${youtubeURL}`} target="_blank"><FontAwesomeIcon icon={faPlay} /> Trailer</a>
+                <a className='trailer' href={`https://www.youtube.com/watch?v=${youtubeURL}`} target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faPlay} /> Trailer</a>
               </div>
               <div className='movieTitleAndDescription'>
                 <div className='titleWithPlaylists'>
@@ -211,12 +206,12 @@ export default function MovieDetails({ children, id, title, rating, overview, po
               <Button type="submit" value="Submit" onClick={(e) => {
                 textInput.current.value = "";
                 handleSubmit(e);
-                }} 
+              }} 
                 sx={style2}>Submit
               </Button>
             
             <Reviews reviews={reviewsForMovie} />
-            {/* <Ratings movie_id={id} /> */}
+              <iframe className="iframeplayer" width="560" height="315" src={`https://www.youtube.com/embed/${youtubeURL}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </Box>
         </Fade>

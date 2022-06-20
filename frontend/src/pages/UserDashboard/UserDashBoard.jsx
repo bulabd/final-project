@@ -1,16 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import './UserDashboard.scss';
+import { useCookies } from 'react-cookie';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+
+import { Typography, Modal, Box, Button } from '@mui/material';
+import { ThemeProvider, TextField } from '@material-ui/core';
+
+import { style, style1, style2, theme } from '../../utils/helpers';
+import './UserDashboard.scss';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
+// export default function UserDashboard(props) {
 export default function UserDashboard(props) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [name, setName] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [bio, setBio] = useState(null);
+  const [error, setError] = useState(null)
+  const navigate = useNavigate();
+
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const [cookies] = useCookies();
+  const textInput = React.useRef(null);
+
+
+
+  // ---------MODAL STUFF:-------------
+
+  // const getReviewsForMovie = (reviews, id) => {
+  //   let filteredReviews = reviews.filter(review => review.movie_api_id === id);
+  //   return filteredReviews;
+  // };
+
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (cookies.idCookie) {
+      try {
+         await axios.put(`/profile/${cookies.idCookie}`, {name: name, bio, avatar});
+
+          getUserData();
+          handleClose();
+      } catch(ex) {
+        setError(ex.response.data.error || 'Whoops! Something went wrong 🤪');
+      }
+    }
+  }  
+  
+  // ----------MODAL STUFF ^^----------
 
   
   const userID = cookies.idCookies
@@ -36,6 +80,9 @@ export default function UserDashboard(props) {
     const {data} = await axios.get(`/user/${userId}`);
 
     setUser(data);
+    setName(data.name);
+    setBio(data.bio);
+    setAvatar(data.avatar);
   }
 
   async function getUserReviews() {
@@ -112,19 +159,96 @@ export default function UserDashboard(props) {
     <h1>loading...🤨</h1>
   }
 
-  // console.log(playlists);
   return(
 
     <main>
+      {/* Declare modal, pass user into modal as a prop */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            <b>Update User Profile Information:</b>
+          </Typography>
+          <br />
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Update User Name:
+          </Typography> */}
+          <ThemeProvider theme={theme}>
+                <TextField
+                  style={{ 
+                    flex: 1
+                  }}
+                  value={name}
+                  placeholder="your name here"
+                  className="searchBox"
+                  label="User Name"
+                  inputRef={textInput}
+                  variant="outlined"
+                  onChange={(ev) => setName(ev.target.value)}
+                  color="primary"
+                  focused
+                />
+              </ThemeProvider>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }} />
+          <ThemeProvider theme={theme}>
+                <TextField
+                  style={{ 
+                    flex: 1
+                  }}
+                  value={bio}
+                  className="searchBox"
+                  label="User Bio"
+                  inputRef={textInput}
+                  variant="outlined"
+                  onChange={(ev) => setBio(ev.target.value)}
+                  color="primary"
+                  focused
+                />
+              </ThemeProvider>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }} />
+          <ThemeProvider theme={theme}>
+                <TextField
+                  style={{ 
+                    flex: 1
+                  }}
+                  value={avatar}
+                  className="searchBox"
+                  label="User Avatar URL"
+                  inputRef={textInput}
+                  variant="outlined"
+                  onChange={(ev) => setAvatar(ev.target.value)}
+                  color="primary"
+                  focused
+                />
+              </ThemeProvider>    
+              <Button type="submit" value="Submit" onClick={(ev) => {
+                textInput.current.value = "";
+                handleSubmit(ev);
+              }} 
+                sx={style2}>Submit
+              </Button>
+        </Box>
+      </Modal>
     <div className="user-dashboard-wrapper">
+        <h2 className="user_page_title">Dashboard</h2>
       <div className="content-box">
-        <h2>User Dashboard</h2>
-        <h4>Welcome, back {user?.name}</h4>
+        <div className="content-top">
+        <div className="left"></div>
+        <div className="center">
+        <h4>Welcome, back {user?.name}!</h4>
+        </div>
+        <div className="right">
+        <Button onClick={handleOpen}><h4>EDIT<FontAwesomeIcon icon={faPen} /></h4></Button>
+        </div>
+        </div>
       <div>
-        {/* Image below can be made into an editable button with a hover */}
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
-      <p className='bio'><b>User Bio:</b> <i>{user?.bio}</i></p>
+      <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
 
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Playlists</h5>
@@ -134,7 +258,6 @@ export default function UserDashboard(props) {
                 <p><b>playlist title: </b>{playlist.title}</p>
                 <p><b>description: </b>{playlist.description}</p>
                 <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
-                <p><b>date: </b>{new Date(playlist.date).toLocaleString()}</p>
               </div>
           ))}
         </article>
@@ -164,10 +287,6 @@ export default function UserDashboard(props) {
               </div>
             )})}
         </article>
-      </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Current Favourite Movies</h5>
-        <article><>...Favourites</></article> 
       </div>
     </div>
     </div>

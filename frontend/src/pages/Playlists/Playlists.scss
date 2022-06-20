@@ -15,7 +15,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2em;
+  // flex-direction: column;
+  // align-items: center;
+  margin-top: 1.5em;
   color: #ffc300;
   padding-bottom: 0.5em;
   img {
@@ -26,8 +28,10 @@
 .renderObject {
   display: flex;
   flex-direction: column;
-  width: 50em;
+  width: 270px;
+  height: 600px;
   background-color: black;
+  overflow-y: scroll;
   .text {
     color: white;
     border-left: 2px #ffc300 solid;
@@ -81,3 +85,18 @@ b {
 }
 
 
+.titlecreatedby {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.playlistpagetitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 5px double chocolate;
+  width: 50%;
+  padding: .25em;
+}
