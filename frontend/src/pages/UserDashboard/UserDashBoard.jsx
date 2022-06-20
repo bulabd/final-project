@@ -211,14 +211,21 @@ export default function UserDashboard() {
         </Box>
       </Modal>
     <div className="user-dashboard-wrapper">
-        <h2 className="userpagetitle">User Dashboard</h2>
+        <h2 className="userpagetitle">Dashboard</h2>
       <div className="content-box">
-        <h4>Welcome, back {user?.name}</h4>
-        <Button onClick={handleOpen}><h4><FontAwesomeIcon icon={faPen} /></h4></Button>
+        <div className="content-top">
+        <div className="left"></div>
+        <div className="center">
+        <h4>Welcome, back {user?.name}!</h4>
+        </div>
+        <div className="right">
+        <Button onClick={handleOpen}><h4>EDIT<FontAwesomeIcon icon={faPen} /></h4></Button>
+        </div>
+        </div>
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
-      <p className='bio'><b>User Bio:</b> <i>{user?.bio}</i></p>
+      <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
 
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Playlists</h5>

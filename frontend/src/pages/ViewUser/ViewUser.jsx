@@ -95,13 +95,13 @@ export default function UserDashboard() {
 
     <main>
     <div className="user-dashboard-wrapper">
-        <h2 className="userviewtitle">User Profile View</h2>
+        <h2 className="userviewtitle">{user?.name}'s Profile</h2>
       <div className="content-box">
         <h4>{user?.name}'s Contributions</h4>
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
-      <p className='bio'><b>User Bio:</b> <i>{user?.bio}</i></p>
+      <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
 
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Playlists</h5>

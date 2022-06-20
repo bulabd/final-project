@@ -65,6 +65,7 @@ export default function Playlists() {
   return (
     <>
     <main className="movie-container">
+      {/* Form Modal below */}
     <Modal
         open={open}
         onClose={handleClose}
@@ -160,5 +161,4 @@ export default function Playlists() {
     </main> 
     </>   
   )
-
-}
+};
