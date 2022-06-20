@@ -12,10 +12,10 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     const body = req.body;
-    const {user_id, movie_api_id, rating} = body;
+    const {user_id, movie_api_id, movie_title, rating} = body;
 
-    const command2 = "INSERT INTO ratings (user_id, movie_api_id, rating) VALUES ($1, $2, $3) RETURNING * ";
-    db.query(command2, [user_id, movie_api_id, rating]).then(data => {
+    const command2 = "INSERT INTO ratings (user_id, movie_api_id, movie_title, rating) VALUES ($1, $2, $3, $4) RETURNING * ";
+    db.query(command2, [user_id, movie_api_id, movie_title, rating]).then(data => {
       res.status(201).json({user_id: data.rows[0].user_id, movie_api_id: data.rows[0].movie_api_id});
     });
   });

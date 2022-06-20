@@ -23,11 +23,12 @@ export default function UserDashboard(props) {
       getUserReviews(),
       getUserRatings()
     ]).then(([reviews, ratings]) => {
-      getRatingsAndReviewsForMovies(reviews, ratings).then((res) => {
-        setRatingWithReviewArr(res)
-      }).then((res) => {
-        console.log("ratingnrev", ratingWithReviewArr)
-      })
+      getRatingsAndReviewsForMovies(reviews, ratings)
+      // .then((res) => {
+      //   setRatingWithReviewArr(res)
+      // }).then((res) => {
+      //   console.log("ratingnrev", ratingWithReviewArr)
+      // })
 
     })
   }, []);
@@ -104,7 +105,10 @@ export default function UserDashboard(props) {
       axios.delete(`http://localhost:8008/reviews/${id}`)
       .then(() => {
         setReviews(reviews.filter(rev => rev.id !== id))
-      });
+      })
+      .then(() => {
+        getRatingsAndReviewsForMovies(reviews, ratings)
+      })
     }
     
     const ratingDelete = (id, e) => {
@@ -112,35 +116,41 @@ export default function UserDashboard(props) {
       axios.delete(`http://localhost:8008/ratings/${id}`)
       .then(() => {
         setRatings(ratings.filter(rev => rev.id !== id))
-      });
+      })
+      .then(() => {
+        getRatingsAndReviewsForMovies(reviews, ratings)
+      })
     }
 
-    async function getRatingsAndReviewsForMovies(reviews, ratings) {
+    function getRatingsAndReviewsForMovies(reviews, ratings) {
       let result = {};
-      let reviewPromises = reviews.map(async review => {
+      console.log("R&R----", reviews, ratings)
+      reviews.map( review => {
         if (!result[review.movie_api_id]) {
           result[review.movie_api_id] = {
-            movieTitle: await getMovieTitle(review.movie_api_id),
+            movieTitle: review.movie_title
           }
         }  
-        result[review.movie_api_id].rewiew_id = review.id
-        result[review.movie_api_id].rewiew = review.content
+        result[review.movie_api_id].review_id = review.id
+        result[review.movie_api_id].review = review.content
         result[review.movie_api_id].movie_id = review.movie_api_id
-        return Promise.resolve()
+        console.log("review----", result[review.movie_api_id].review)
+        // return Promise.resolve()
       })
 
-      let ratingsPromises = ratings.map(async rating => {
+      ratings.map( rating => {
         if (!result[rating.movie_api_id]) {
           result[rating.movie_api_id] = {
-            movieTitle: await getMovieTitle(rating.movie_api_id),
+            movieTitle: rating.movie_title
           }
         } 
          result[rating.movie_api_id].rating = rating.rating
          result[rating.movie_api_id].rating_id = rating.id
          result[rating.movie_api_id].movie_id = rating.movie_api_id
       })
-      await Promise.all([...reviewPromises, ...ratingsPromises])
+      // await Promise.all([...reviewPromises], [...ratingPromises])
       console.log("RESULT---", result)
+      setRatingWithReviewArr(Object.values(result))
       return Object.values(result)
     }
 

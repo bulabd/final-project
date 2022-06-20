@@ -57,7 +57,7 @@ export default function Ratings(props) {
 
     const dropDown = function() {
       if (userID && !rates()) {
-        axios.post(`/ratings`, {user_id: userID, movie_api_id: props.movie_id, rating: myRating})
+        axios.post(`/ratings`, {user_id: userID, movie_api_id: props.movie_id, movie_title: props.title, rating: myRating})
         .then((data) => {
           Promise.all([
             axios.get(`/ratings`)

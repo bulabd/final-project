@@ -107,7 +107,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
       if (verifyIfUserPostedReview(reviewsForMovie)) {
         try {
           //returns OK
-          await axios.post('/reviews', {user_id: cookies.idCookie, movie_api_id: id, content: content})
+          await axios.post('/reviews', {user_id: cookies.idCookie, movie_api_id: id, movie_title: title, content: content})
           const  { data } = await axios.get(`/reviews`)
           setReviewsForMovie(getReviewsForMovie(data));
         } catch(ex) {
@@ -178,7 +178,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
                       color2={'#ffc300'}
                     />
                   </div>
-                  <Ratings movie_id={id} />
+                  <Ratings movie_id={id} title={title} />
                 </div>
 
                 <Typography id="transition-modal-description" sx={{ mt: 2 }}>
