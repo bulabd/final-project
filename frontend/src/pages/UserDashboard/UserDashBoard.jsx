@@ -211,7 +211,7 @@ export default function UserDashboard() {
         </Box>
       </Modal>
     <div className="user-dashboard-wrapper">
-        <h2 className="userpagetitle">Dashboard</h2>
+        <h2 className="user_page_title">Dashboard</h2>
       <div className="content-box">
         <div className="content-top">
         <div className="left"></div>

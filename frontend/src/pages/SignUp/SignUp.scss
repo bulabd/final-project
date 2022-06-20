@@ -1,4 +1,4 @@
-.signup-wrapper {
+.signup_wrapper {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: #ffc300;
   display: flex;
@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.Userbut {
+.user_btn {
   margin-top: 2em;
   border-radius: 0.5em;
   width: 100%;
@@ -19,21 +19,21 @@
   border-color: #202020;
 }
 
-.Userbut:hover{
+.user_btn:hover {
   background-color: white;
   border-radius: 0.5em;
   border-color: black;
 }
 
 
-.forms{
+.forms {
   background-color: #202020;
   color: white;
   border-color: #ffc300;
   border-radius: 0.5em;
 }
 
-.boxS{
+.boxS {
   background-color: #202020;
   padding: 1em 6em 2em;
   border-radius: 0.5em;

@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {handleCookies} from '../../utils/helpers';
-import './SignUp.css';
+import './SignUp.scss';
 
 
 export default function SignUp() {
@@ -39,7 +39,7 @@ export default function SignUp() {
   }
 
   return(
-    <div className="signup-wrapper">
+    <div className="signup_wrapper">
       {error && <h1>{error}</h1>}
         <div className='boxS'>
         <h1>Register</h1>
@@ -56,7 +56,7 @@ export default function SignUp() {
             <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
           </label>
           <div>
-            <button className='Userbut' type="submit" onClick={onSignUp}>Register</button>
+            <button className='user_btn' type="submit" onClick={onSignUp}>Register</button>
           </div>
       </div> 
     </div>

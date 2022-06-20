@@ -8,6 +8,7 @@
   position: fixed;
   width: 100vw;
   z-index: 3;
+  border-bottom: 1px solid #ffc300;
 }
 
 .logo-container {
