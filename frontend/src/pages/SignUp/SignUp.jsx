@@ -28,6 +28,10 @@ export default function SignUp() {
           {
             name: "emailCookie",
             value: data.email,
+          },
+          {
+            name: "nameCookie",
+            value: data.name,
           }
         ]
         handleCookies(cookies, setCookie);

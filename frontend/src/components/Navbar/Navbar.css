@@ -27,19 +27,23 @@
 h1 {
   color:#ffc300;
   margin-right: 1em;
+  font-size: 1em;
+  margin-left: 2em;
 }
 
 .welcome-back {
   color:#ffc300;
   text-align: right;
-  margin-right:.5em;
+  margin-right:1em;
+  font-size: 1em;
 } 
 
 .Navbut {
   background-color: #ffc300;
   border-radius: 0.5em;
   border-color: black;
-  padding: 1em;
+  padding: 0.5em;
+  margin: 0.3em;
 }
 .Navbut:hover{
   background-color: white;
@@ -51,4 +55,9 @@ h1 {
   color: black;
   font-size: larger;
   text-decoration: none
+}
+.NavMage{
+  display: flex;
+  margin-top: 1em;
+  margin-left: 5em;
 }

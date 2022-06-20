@@ -56,19 +56,25 @@ export default function UserDashboard(props) {
   
   // ----------MODAL STUFF ^^----------
 
+  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
   
   const userID = cookies.idCookies
 
   useEffect(() => {
     getUserData();
-    getUserReviews();
-    getUserRatings();
     getUserPlaylists();
+    Promise.all([
+      getUserReviews(),
+      getUserRatings()
+    ]).then(([reviews, ratings]) => {
+      setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
+      setReviews(reviews)
+      setRatings(ratings)
+    })
   }, []);
 
   async function getMovieTitle(movieId) {
-    const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
-
+    const {data} = await axios.get(`/api/movies/${movieId}`);
     return data.title;
   }
 
@@ -96,7 +102,7 @@ export default function UserDashboard(props) {
       data[i].movie_title = await getMovieTitle(data[i].movie_api_id);
     }
 
-    setReviews(data);
+   return data;
   }
 
   async function getUserRatings() {
@@ -110,7 +116,7 @@ export default function UserDashboard(props) {
       data[i].movie_title = await getMovieTitle(data[i].movie_api_id);
     }
 
-    setRatings(data);
+    return data;
   }
 
   async function getUserPlaylists() {
@@ -141,18 +147,59 @@ export default function UserDashboard(props) {
       e.preventDefault()
       axios.delete(`http://localhost:8008/reviews/${id}`)
       .then(() => {
-        setReviews(reviews.filter(rev => rev.id !== id))
-      });
+        const newReviews = reviews.filter(rev => rev.id !== id)
+        setReviews(newReviews)
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(newReviews, ratings))
+      })
     }
     
     const ratingDelete = (id, e) => {
       e.preventDefault()
       axios.delete(`http://localhost:8008/ratings/${id}`)
       .then(() => {
-        setRatings(ratings.filter(rev => rev.id !== id))
-      });
+        const newRatings = ratings.filter(rev => rev.id !== id)
+        setRatings(newRatings)
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, newRatings))
+      })
     }
 
+    function getRatingsAndReviewsForMovies(reviews, ratings) {
+      let result = {};
+      reviews.map( review => {
+        if (!result[review.movie_api_id]) {
+          result[review.movie_api_id] = {
+            movieTitle: review.movie_title
+          }
+        }  
+        result[review.movie_api_id].review_id = review.id
+        result[review.movie_api_id].review = review.content
+        result[review.movie_api_id].movie_id = review.movie_api_id
+      })
+
+      ratings.map( rating => {
+        if (!result[rating.movie_api_id]) {
+          result[rating.movie_api_id] = {
+            movieTitle: rating.movie_title
+          }
+        } 
+         result[rating.movie_api_id].rating = rating.rating
+         result[rating.movie_api_id].rating_id = rating.id
+         result[rating.movie_api_id].movie_id = rating.movie_api_id
+      })
+      return Object.values(result)
+    }
+
+    const moviesArray = ratingWithReviewArr.map(movie => {
+      return(
+        <div className='renderReviews' key={movie.movie_id}>
+          <p><b>movie title: </b>{movie.movieTitle}</p>
+          <p><b>review: </b>{movie.review || "No review"}</p>
+          <p><b>rating: </b>{movie.rating || "No rating"}</p>
+          {movie.review && <button className='deleteBut' onClick={(e) => reviewDelete(movie.review_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Review</button>}
+          {movie.rating &&  <button className='deleteBut' onClick={(e) => ratingDelete(movie.rating_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Rating</button>}
+        </div>
+      )
+    })
 
 
   if(!ratings || !user || !reviews ) {
@@ -254,7 +301,7 @@ export default function UserDashboard(props) {
         <h5>{user?.name}'s Movie Playlists</h5>
         <article>
         {(playlists|| []).map(playlist => (
-              <div className="renderObject" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
+              <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
                 <p><b>playlist title: </b>{playlist.title}</p>
                 <p><b>description: </b>{playlist.description}</p>
                 <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
@@ -265,17 +312,10 @@ export default function UserDashboard(props) {
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Reviews</h5>
         <article>
-            {(reviews|| []).map(review => (
-              <div className="renderObject" key={`${review.movie_api_id}${review.id}`}>
-                <p><b>movie title: </b>{review.movie_title}</p>
-                <p><b>review: </b>{review.content}</p>
-                <p><b>date: </b>{new Date(review.date).toLocaleString()}</p>
-                <button className='deleteBut' onClick={(e) => reviewDelete(review.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
-              </div>
-            ))}
+          {moviesArray}
         </article> 
         </div>
-      <div className="user-movie-content">
+      {/* <div className="user-movie-content">
         <h5>{user?.name}'s Movie Ratings</h5>
         <article>
         {(ratings).map(rating => {       
@@ -287,7 +327,7 @@ export default function UserDashboard(props) {
               </div>
             )})}
         </article>
-      </div>
+      </div> */}
     </div>
     </div>
     </main>

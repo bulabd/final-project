@@ -17,14 +17,11 @@ export default function ReviewList(props) {
     setAvgRate(parseFloat(average / arrRate.length).toFixed(1)) 
 
 }, [props.ratings])
-  return ( avgRate <= 0 ? 
+
+  return (
     <div className="projectRating">
-      <h4>Everyone's a Critic Rating:</h4>
-      <span className="ratingSpan">No ratings yet</span>
-    </div>
-    :
-    <div className="projectRating">
-      <h4>Everyone's a Critic Rating: {avgRate}</h4>
+      <h4 className="ratingResult1">EAC Rating: </h4>
+      <h4 className="ratingResult2">{Number(avgRate) || "No Ratings yet"}</h4>
     </div>
  );
 }

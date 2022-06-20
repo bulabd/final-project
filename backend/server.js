@@ -18,6 +18,7 @@ let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let reviewsRouter = require('./routes/reviews');
 let ratingsRouter = require('./routes/ratings');
+let apiRouter = require('./routes/api')
 
 
 const app = express();
@@ -37,6 +38,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
 app.use('/reviews', reviewsRouter(db));
 app.use('/ratings', ratingsRouter(db));
+app.use('/api/movies', apiRouter(db));
+
 
 
 app.post('/login', (req, res) => {
@@ -82,9 +85,9 @@ app.get('/review/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM reviews WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
-    if (data.rows.length > 0) {
+    // if (data.rows.length > 0) {
       res.status(200).json(data.rows);
-    }
+    // }
   }).catch((ex) => {
     res
       .status(500)
@@ -96,9 +99,7 @@ app.get('/rating/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM ratings WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
-    if (data.rows.length > 0) {
       res.status(200).json(data.rows);
-    }
   }).catch((ex) => {
     res
       .status(500)
@@ -194,17 +195,19 @@ app.post('/playlists/addMovie', (req, res) => {
 app.post('/sign-up', (req, res) => {
   const body = req.body;
   const { name, email, password } = body;
-  //UPDATE with hash & salt
   
   //Change query to include hashed password instead
   // bcrypt.hash(body.password, saltRounds, (err, hash) => {
   //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
-  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
+  // const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
+
+
+  const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email, name;`;
 
   db.query(command, [name, email, password]).then(data => {
     // if there's a match => redirect? send user? set a cookie
     if (data.rows.length > 0) {
-      res.status(200).json({id: data.rows[0].id, email: data.rows[0].email});
+      res.status(200).json({id: data.rows[0].id, email: data.rows[0].email, name: data.rows[0].name});
     }
   }).catch(err => {
     res

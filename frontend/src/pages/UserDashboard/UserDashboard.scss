@@ -96,3 +96,18 @@ article {
   width: auto;
 
 }
+
+.renderReviews {
+  flex-direction: column;
+  width: 20em;
+  background-color: black;
+  padding: 2.5em;
+  border-radius: 0.5em;
+  border: solid 2px #ffc300;
+  margin-bottom: 3em;
+  .text {
+    color: white;
+    border-left: 2px #ffc300 solid;
+    padding-left: 1em;
+  }
+}
