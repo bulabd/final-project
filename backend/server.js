@@ -80,9 +80,9 @@ app.get('/review/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM reviews WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
-    if (data.rows.length > 0) {
+    // if (data.rows.length > 0) {
       res.status(200).json(data.rows);
-    }
+    // }
   }).catch((ex) => {
     res
       .status(500)
