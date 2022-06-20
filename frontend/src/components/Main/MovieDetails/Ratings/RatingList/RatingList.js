@@ -20,7 +20,7 @@ export default function ReviewList(props) {
 
   return (
     <div className="projectRating">
-      <h4 className="ratingResult1">Everyone's a Critic Rating: </h4>
+      <h4 className="ratingResult1">EAC Rating: </h4>
       <h4 className="ratingResult2">{Number(avgRate) || "No Ratings yet"}</h4>
     </div>
  );
