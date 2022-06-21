@@ -22,12 +22,12 @@
   width: 50%;
   background-color: 	#202020;
   color: bisque;
-  border: 2px solid #D66853; 
+  border: 2px solid #FFC300; 
   border-radius: 10px;
   padding: 2em;
   margin-top: 2.5em;
   &:hover {
-    border: 3px #4A8FE7 solid;
+    // border: 3px #4A8FE7 solid;
   }
 }
 
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 5px double #D66853;
+  border-bottom: 5px double #FFC300;
   width: 50%;
   padding: .25em;
 }
@@ -49,17 +49,17 @@
   border-radius: 10px;
   background-color: 	#202020;
   margin-top: 1.5em;
-  border: 2px solid #D66853; 
+  border: 2px solid #FFC300; 
   &:hover {
-    border: 3px #4A8FE7 solid;
+    // border: 3px #4A8FE7 solid;
   }
 }
 
 .bio {
+  text-align: center;
   width: 50%;      
-  background-color:chocolate;       
-  border: 2px solid black; 
-  border-radius: 10px;     
+  background-color: black;       
+  border-top: 2px solid black;    
   padding: 10px;      
   word-wrap: break-word;    
 }

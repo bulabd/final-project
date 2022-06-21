@@ -8,9 +8,11 @@
   height: 12%;
   bottom: 1;
   width: 100%;
+  border-top: thick double #ffc300;
 }
 
 a {
   color: #ffc300;
   text-decoration: none;
 }
+
