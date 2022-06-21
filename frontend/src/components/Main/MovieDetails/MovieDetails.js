@@ -134,6 +134,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
   }, [])
 
   return (
+    
     <div>
       <Button onClick={handleOpen} sx={style1} >{children}</Button>
       <Modal

@@ -19,6 +19,7 @@ export default function ReviewList(props) {
 }, [props.ratings])
 
   return (
+    
     <div className="projectRating">
       <h4 className="ratingResult1">EAC Rating: {Number(avgRate) || "No Ratings yet"}</h4>
       {/* <h4 className="ratingResult2">{Number(avgRate) || "No Ratings yet"}</h4> */}

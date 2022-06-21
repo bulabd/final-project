@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import {getMovieTitle} from "../../utils/helpers";
+import { getMovieTitle } from "../../utils/helpers";
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

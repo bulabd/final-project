@@ -1,9 +1,11 @@
+import SortByOption from "./SortByOption/SortByOption";
 import "./Dropdown.css"
 
-import SortByOption from "./SortByOption/SortByOption";
 
 export default function SortByDropdown(props) {
+
   return (
+
     <div className="dropdownSort">
       <button className="dropbtn">Sort By</button>
       <div className="dropdown-content">

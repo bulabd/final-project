@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
-import './ViewUser.scss';
 import {getRatingsAndReviewsForMovies} from '../../utils/helpers'
+import './ViewUser.scss';
 
 export default function UserDashboard() {
   const [user, setUser] = useState(null);

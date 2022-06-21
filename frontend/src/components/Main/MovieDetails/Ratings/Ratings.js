@@ -1,12 +1,12 @@
-import "./Ratings.css"
-import axios from "axios";
+import * as React from 'react';
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useCookies } from 'react-cookie';
 import RatingList from "./RatingList/RatingList";
+import "./Ratings.css"
 
 
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
+// import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
@@ -76,26 +76,6 @@ export default function Ratings(props) {
     
     const [value, setValue] = useState("Rate the movie");
 
-  // return (
-  //   <div className="spaceRating">
-  //   <RatingList ratings={ratings} />
-  //   <select className="rating2" rating="0" onChange={(e) => setMyRating(e.target.value)}>
-  //     <option className="option" value="0">0</option>
-  //     <option className="option" value="1">1</option>
-  //     <option className="option" value="2">2</option>
-  //     <option className="option" value="3">3</option>
-  //     <option className="option" value="4">4</option>
-  //     <option className="option" value="5">5</option>
-  //     <option className="option" value="6">6</option>
-  //     <option className="option" value="7">7</option>
-  //     <option className="option" value="8">8</option>
-  //     <option className="option" value="9">9</option>
-  //     <option className="option" value="10">10</option>
-  //   </select>
-  //   <button className="rating2" onClick={() => dropDown()}>SUBMIT</button>
-  //   </div>
-  // );
-
   const handleChange = (event) => {
     setMyRating(event.target.value);
   };
@@ -112,6 +92,7 @@ export default function Ratings(props) {
   };
 
   return (
+
     <div className="spaceRating">
       <RatingList ratings={ratings} />
       <div className="ratingForm">

@@ -2,7 +2,9 @@ import "./Dropdown.css"
 import DropdownGenre from "./DropdownGenre/DropdownGenre";
 
 export default function Dropdown(props) {
+  
   return (
+
     <div className="dropdownGenre">
       <button className="dropbtn">Select a genre</button>
       <div className="dropdown-content">

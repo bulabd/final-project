@@ -9,8 +9,8 @@ import { Typography, Modal, Box, Button } from '@mui/material';
 import { ThemeProvider, TextField } from '@material-ui/core';
 
 import { style, style2, theme } from '../../utils/helpers';
-import './UserDashboard.scss';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import './UserDashboard.scss';
 
 // export default function UserDashboard(props) {
 export default function UserDashboard(props) {
@@ -201,6 +201,7 @@ export default function UserDashboard(props) {
 
     const moviesArray = ratingWithReviewArr.map(movie => {
       return(
+
         <div className='renderReviews' key={movie.movie_id}>
           <p className='playlistRow'><b>Movie title: </b>{movie.movieTitle}</p>
           <p className='playlistRow'><b>Review: </b>{movie.review || "No review"}</p>

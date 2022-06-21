@@ -3,6 +3,7 @@ import Movie from "./Movie/Movie";
 
 export default function Movies(props) {
   let moviesArr = props.movies.map((movie) => {
+    
     return (
       <Movie
         key={movie.id}
@@ -18,6 +19,7 @@ export default function Movies(props) {
   });
 
   return(
+
     <section className="main-movies">
       {moviesArr}
     </section>

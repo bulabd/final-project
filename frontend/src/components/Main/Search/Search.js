@@ -1,7 +1,6 @@
-import "./Search.css";
 import TextField from "@material-ui/core/TextField";
-
 import { createTheme, ThemeProvider } from '@material-ui/core';
+import "./Search.css";
 
 export default function Search(props) {
 
@@ -18,6 +17,7 @@ export default function Search(props) {
   }); 
 
   return (
+
     <div>
       <ThemeProvider theme={theme}>
         <div className="searchBar-container">
