@@ -41,14 +41,19 @@ h1 {
 .Navbut {
   background-color: #ffc300;
   border-radius: 0.5em;
-  border-color: black;
+  border: 1px #ffc300 solid;
   padding: 0.5em;
   margin: 0.3em;
+  transition: 150ms ease-in-out;
 }
 .Navbut:hover{
-  background-color: white;
-  border-radius: 0.5em;
-  border-color: black;
+  background-color: black;
+  /* border-radius: 0.5em; */
+  /* border-color: black; */
+}
+
+.Navbut:hover .NavLink {
+  color: #ffc300;
 }
   
 .NavLink {

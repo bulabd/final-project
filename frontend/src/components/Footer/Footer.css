@@ -8,9 +8,15 @@
   height: 12%;
   bottom: 1;
   width: 100%;
+  border-top: 1px #ffc300 solid;
 }
 
-a {
+.footerLink {
   color: #ffc300;
   text-decoration: none;
+  transition: 150ms ease-in-out;
+}
+
+.footerLink:hover {
+  transform: scale(1.5);
 }
