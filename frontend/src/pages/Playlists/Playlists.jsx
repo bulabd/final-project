@@ -20,7 +20,7 @@ export default function Playlists() {
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState("");
   // const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
@@ -91,7 +91,7 @@ export default function Playlists() {
 
   return (
     <>
-    <main className="movie-container">
+    <main className="playlist-container">
       { cookies.idCookie && 
         <>
           <h2 className="title new-playlist">Create a playlist</h2>
@@ -199,15 +199,25 @@ export default function Playlists() {
               <div className="renderObject" key={`${playlist.playlist_id}`}>
                 <h4 className="text"><b>Title: </b><i>{playlist.title}</i></h4>
                 <img src={playlist.playlist_avatar} alt="Playlist Avatar" height={250} width={250} />
-                <Link to={`/view-user/${playlist.user_id}`}>
-                <p className="text" title="Visit User's Profile"><b>Created by: </b>{playlist.username} <FontAwesomeIcon icon={faLink} /></p>
+                <Link to={`/view-user/${playlist.user_id}`} style={{ textDecoration: 'none' }}>
+                  <p className="text" title="Visit User's Profile"><b>Created by: </b>{playlist.username} <FontAwesomeIcon icon={faLink} /></p>
                 </Link>
                 <p className="text"><b>Description: </b>{playlist.description}</p>
-                <p className="text"><ul>
-                <b>Movies: </b>{playlist.movies.map(movie => {
-                  return <li key={movie.movie_api_id}>{movie.movie_title}</li>
-                  }) }
-                </ul></p>
+                {/* <p className="text"> */}
+                {!playlist.movies.length && <p className='text'><b>Movies: </b> No movies Yet</p>}
+                <div className='movieList'>
+                  {playlist.movies.length !== 0 && 
+                    <>
+                      <p className='movieSubTitle'><b>Movies: </b></p>
+                      <ul>
+                        {playlist.movies.map(movie => {
+                          return <li className='movieListItem' key={movie.movie_api_id}>{movie.movie_title}</li>
+                        })}
+                      </ul>
+                    </>
+                  }
+                </div>
+                {/* </p> */}
               </div>
             ))}
           </article>

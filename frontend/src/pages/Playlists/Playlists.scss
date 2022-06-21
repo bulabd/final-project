@@ -1,4 +1,4 @@
-.movie-container{
+.playlist-container{
   padding-top: 6em;
   padding-bottom: 3em;
   background-color: 	#202020;
@@ -70,6 +70,20 @@ b {
       background-color: #ffc300;
     }
   }
+}
+
+.movieSubTitle {
+  margin: 0;
+}
+
+.movieList {
+  padding-left: 0.6em;
+  border-left: 2px #fcc300 solid;
+  margin: 16px 0;
+}
+
+.movieListItem {
+  color: white;
 }
 
 @media only screen and (max-width: 1187px) {

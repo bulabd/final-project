@@ -29,6 +29,7 @@ export default function UserDashboard(props) {
   const [playlists, setPlaylists] = useState([]);
   const [cookies] = useCookies();
   const textInput = React.useRef(null);
+  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
 
 
 
@@ -56,7 +57,6 @@ export default function UserDashboard(props) {
   
   // ----------MODAL STUFF ^^----------
 
-  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
   
   const userID = cookies.idCookies
   //^^^CHECK THIS OVER
@@ -202,11 +202,13 @@ export default function UserDashboard(props) {
     const moviesArray = ratingWithReviewArr.map(movie => {
       return(
         <div className='renderReviews' key={movie.movie_id}>
-          <p><b>movie title: </b>{movie.movieTitle}</p>
-          <p><b>review: </b>{movie.review || "No review"}</p>
-          <p><b>rating: </b>{movie.rating || "No rating"}</p>
-          {movie.review && <button className='deleteBut' onClick={(e) => reviewDelete(movie.review_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Review</button>}
-          {movie.rating &&  <button className='deleteBut' onClick={(e) => ratingDelete(movie.rating_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Rating</button>}
+          <p className='playlistRow'><b>Movie title: </b>{movie.movieTitle}</p>
+          <p className='playlistRow'><b>Review: </b>{movie.review || "No review"}</p>
+          <p className='playlistRow'><b>Rating: </b>{movie.rating || "No rating"}</p>
+          <div>
+            {movie.review && <button className='deleteBut' onClick={(e) => reviewDelete(movie.review_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Review</button>}
+            {movie.rating &&  <button className='deleteBut' onClick={(e) => ratingDelete(movie.rating_id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Rating</button>}
+          </div>
         </div>
       )
     })
@@ -226,7 +228,7 @@ export default function UserDashboard(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} >
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <b>Update User Profile Information:</b>
           </Typography>
@@ -296,36 +298,44 @@ export default function UserDashboard(props) {
         <div className="content-top">
         <div className="left"></div>
         <div className="center">
-        <h4>Welcome, back {user?.name}!</h4>
+          <h4 className='welcomeMessage'>Welcome back {user?.name}!</h4>
         </div>
         <div className="right">
-        <Button onClick={handleOpen}><h4>EDIT<FontAwesomeIcon icon={faPen} /></h4></Button>
         </div>
         </div>
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
+      <Button onClick={handleOpen} sx={{ '&:hover': { backgroundColor: '#202020' } }} ><h4 className='editButton'>EDIT<FontAwesomeIcon icon={faPen} /></h4></Button>
       <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
-
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Movie Playlists</h5>
-        <article>
-        {(playlists|| []).map(playlist => (
-              <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
-                <p><b>playlist title: </b>{playlist.title}</p>
-                <p><b>description: </b>{playlist.description}</p>
-                <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
-                <button className='deleteBut' onClick={(e) => playlistDelete(playlist.id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Playlist</button>
-              </div>
-          ))}
-        </article>
-      </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Movie Reviews</h5>
-        <article>
-          {moviesArray}
-        </article> 
+      
+      {playlists.length !== 0 && 
+        <div className="user-movie-content">
+          <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
+          <article className='playlistsContainer'>
+          {(playlists|| []).map(playlist => (
+                <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
+                  <div>
+                    <p className='playlistRow' ><b>Playlist title: </b>{playlist.title}</p>
+                    <p className='playlistRow' ><b>Description: </b>{playlist.description}</p>
+                    <p className='playlistRow' ><b>Movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
+                  </div>
+                  <div>
+                    <button className='deleteBut' onClick={(e) => playlistDelete(playlist.id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Playlist</button>
+                  </div>
+                </div>
+            ))}
+          </article>
         </div>
+      }
+      {ratingWithReviewArr.length !== 0 &&
+        <div className="user-movie-content">
+          <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
+          <article className='moviesContainer'>
+            {moviesArray}
+          </article> 
+        </div>
+      }
     </div>
     </div>
     </main>

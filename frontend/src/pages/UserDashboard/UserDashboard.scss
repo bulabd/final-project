@@ -19,24 +19,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 50%;
+  // justify-content: center;
+  // width: 50%;
   background-color: 	#202020;
   color: bisque;
   border: 2px solid #FFC300; 
   border-radius: 10px;
-  padding: 2em;
+  // padding: 2em;
   margin-top: 2.5em;
-  &:hover {
-    // border: 3px #4A8FE7 solid;
-  }
+  // &:hover {
+  //   // border: 3px #4A8FE7 solid;
+  // }
 }
 
 .user_page_title {
+  color: #ffc300;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 5px double #FFC300;
+  // border-bottom:  #FFC300 solid;
   width: 50%;
   padding: .25em;
 }
@@ -47,15 +48,15 @@
   align-items: center;
   // justify-content: center;
   // position: relative;
-  width: 50%;
+  width: 85%;
   padding: 2em;
   border-radius: 10px;
   background-color: 	#202020;
   margin-top: 1.5em;
-  border: 2px solid #BFACAA; 
-  &:hover {
-    // border: 3px #4A8FE7 solid;
-  }
+  border: 2px solid #ffc300; 
+  // &:hover {
+  //   // border: 3px #4A8FE7 solid;
+  // }
 }
 
 .content-top {
@@ -68,14 +69,13 @@
 
 .right {
   flex: 1;
-  padding-left: 1em;
   color: #ffc300;
   text-decoration: none;
-  &:hover {
-    // color:#00A0C6; 
-    // text-decoration:none; 
-    // cursor:pointer;  
-  }
+  // &:hover {
+  //   // color:#00A0C6; 
+  //   // text-decoration:none; 
+  //   // cursor:pointer;  
+  // }
 }
 
 
@@ -98,24 +98,39 @@ article {
 }
 
 .deleteBut {
-  background-color: 	#202020;
+  background-color: black;
   color: #ffc300;
-  border-color: #ffc300;
+  border: 1px #ffc300 solid;
   height: 2em;
   width: auto;
-}
-
-.renderReviews {
-  flex-direction: column;
-  width: 20em;
-  background-color: black;
-  padding: 2.5em;
-  border-radius: 0.5em;
-  border: solid 2px #ffc300;
-  margin-bottom: 3em;
-  .text {
-    color: white;
-    border-left: 2px #ffc300 solid;
-    padding-left: 1em;
+  margin: 0 0.2em;
+  transition: 150ms ease-in-out;
+  &:hover {
+    background-color: #ffc300;
+    color: black;
+    cursor: pointer;
   }
 }
+
+.editButton {
+  color: #ffc300;
+  transition: 150ms ease-in-out;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+// .renderReviews {
+//   flex-direction: column;
+//   width: 20em;
+//   background-color: black;
+//   padding: 2.5em;
+//   border-radius: 0.5em;
+//   border: solid 2px #ffc300;
+//   margin-bottom: 3em;
+//   .text {
+//     color: white;
+//     border-left: 2px #ffc300 solid;
+//     padding-left: 1em;
+//   }
+// }
