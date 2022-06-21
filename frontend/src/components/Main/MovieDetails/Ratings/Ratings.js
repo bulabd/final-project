@@ -104,6 +104,7 @@ export default function Ratings(props) {
     backgroundColor: 'black',
     color: '#fcc300',
     borderRadius: '5px',
+    transition: '150ms ease-in-out',
     '&:hover': {
       backgroundColor: '#fcc300',
       color: 'black'
@@ -113,29 +114,31 @@ export default function Ratings(props) {
   return (
     <div className="spaceRating">
       <RatingList ratings={ratings} />
-      <FormControl sx={{ minWidth: 120, border: '2px #fcc300 solid', borderRadius: '10px' }}>
-        <Select
-          sx={{ backgroundColor: 'black', color: '#fcc300', marginTop: '5px' }}
-          value={myRating}
-          onChange={handleChange}
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem sx={menuItemStyle} value={0}>0</MenuItem>
-          <MenuItem sx={menuItemStyle} value={1}>1</MenuItem>
-          <MenuItem sx={menuItemStyle} value={2}>2</MenuItem>
-          <MenuItem sx={menuItemStyle} value={3}>3</MenuItem>
-          <MenuItem sx={menuItemStyle} value={4}>4</MenuItem>
-          <MenuItem sx={menuItemStyle} value={5}>5</MenuItem>
-          <MenuItem sx={menuItemStyle} value={6}>6</MenuItem>
-          <MenuItem sx={menuItemStyle} value={7}>7</MenuItem>
-          <MenuItem sx={menuItemStyle} value={8}>8</MenuItem>
-          <MenuItem sx={menuItemStyle} value={9}>9</MenuItem>
-          <MenuItem sx={menuItemStyle} value={10}>10</MenuItem>
-        </Select>
-        <FormHelperText sx={{ color: '#fcc300', textAlign: 'center' }}>Rate the movie</FormHelperText>
-      </FormControl>
-      <button className="rating2" onClick={() => dropDown()}>SUBMIT</button>
+      <div className="ratingForm">
+        <FormControl sx={{ minWidth: 120, border: '2px #fcc300 solid', borderRadius: '10px' }}>
+          <Select
+            sx={{ backgroundColor: 'black', color: '#fcc300', marginTop: '5px' }}
+            value={myRating}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem sx={menuItemStyle} value={0}>0</MenuItem>
+            <MenuItem sx={menuItemStyle} value={1}>1</MenuItem>
+            <MenuItem sx={menuItemStyle} value={2}>2</MenuItem>
+            <MenuItem sx={menuItemStyle} value={3}>3</MenuItem>
+            <MenuItem sx={menuItemStyle} value={4}>4</MenuItem>
+            <MenuItem sx={menuItemStyle} value={5}>5</MenuItem>
+            <MenuItem sx={menuItemStyle} value={6}>6</MenuItem>
+            <MenuItem sx={menuItemStyle} value={7}>7</MenuItem>
+            <MenuItem sx={menuItemStyle} value={8}>8</MenuItem>
+            <MenuItem sx={menuItemStyle} value={9}>9</MenuItem>
+            <MenuItem sx={menuItemStyle} value={10}>10</MenuItem>
+          </Select>
+          <FormHelperText sx={{ color: '#fcc300', textAlign: 'center' }}>Rate the movie</FormHelperText>
+        </FormControl>
+        <button className="rating2" onClick={() => dropDown()}>SUBMIT</button>
+      </div>
     </div>
   );
 }

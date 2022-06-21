@@ -25,6 +25,10 @@ img {
   justify-content: space-between;
 }
 
+#transition-modal-title {
+  width: 220px;
+}
+
 #transition-modal-description {
   text-align: justify;
 }
@@ -57,6 +61,7 @@ img {
   margin-top: 10px;
   padding: 5px;
   border-radius: 2px;
+  transition: 150ms ease-in-out;
 }
 
 .trailer:hover {
@@ -64,7 +69,14 @@ img {
   background-color: #ffc300;
 }
 
-/* iframe {
-  padding-top: 2.5em;
+.iframe {
+  display: flex;
+  justify-content: center;
+}
+
+iframe {
+  margin-top: 1.5em;
   border: 2px solid #ffc300;
-}  */
+  border-radius: 10px;
+  
+} 

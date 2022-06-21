@@ -5,4 +5,9 @@
 
 .reviewText {
   word-wrap: break-word;
+  padding-right: 2em;
+}
+
+.reviewDate {
+  font-size: 13px;
 }

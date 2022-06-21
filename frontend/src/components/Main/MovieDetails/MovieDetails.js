@@ -98,6 +98,10 @@ export default function MovieDetails({ children, id, title, rating, overview, po
     return true;
   }
 
+  const filterTrailers = (movieArr) => {
+    return movieArr.filter(movie => movie.type === 'Trailer')[0].key;
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
     if (cookies.idCookie) {
@@ -124,7 +128,8 @@ export default function MovieDetails({ children, id, title, rating, overview, po
       axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
     ]).then((data) => {
       setReviewsForMovie(getReviewsForMovie(data[0].data, id));
-      setYoutubeURL(data[1].data.results[0].key);
+      // setYoutubeURL(data[1].data.results[0].key);
+      setYoutubeURL(filterTrailers(data[1].data.results));
     });
   }, [])
 
@@ -187,8 +192,12 @@ export default function MovieDetails({ children, id, title, rating, overview, po
                 </Typography>
               </div>
             </div>
-            <h2>Reviews</h2>
+
+            <div className='iframe'>
+            <iframe className="iframeplayer" width="560" height="315" src={`https://www.youtube.com/embed/${youtubeURL}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             
+            <h2>Reviews</h2>
               <ThemeProvider theme={theme}>
                 <TextField
                   style={{ 
@@ -209,9 +218,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
               }} 
                 sx={style2}>Submit
               </Button>
-            
             <Reviews reviews={reviewsForMovie} />
-              <iframe className="iframeplayer" width="560" height="315" src={`https://www.youtube.com/embed/${youtubeURL}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </Box>
         </Fade>

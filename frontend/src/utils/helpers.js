@@ -38,6 +38,7 @@ export const style1 = {
   width: '220px',
   display: 'flex',
   flexDirection: 'column',
+  transition: 'transform 150ms ease-in-out',
   '&:hover': {
     backgroundColor: 'rgba(0,0,0,0.3)',
     boxShadow: '0px 5px 5px 5px rgba(252,195,0,0.3)',

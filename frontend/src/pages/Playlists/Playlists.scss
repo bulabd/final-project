@@ -63,6 +63,7 @@ b {
     color: #ffc300;
     background-color: #202020;
     border: 2px #ffc300 solid;
+    transition: 150ms ease-in-out;
     &:hover {
       cursor: pointer;
       color: #202020;

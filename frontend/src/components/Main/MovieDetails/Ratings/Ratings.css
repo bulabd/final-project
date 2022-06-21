@@ -3,8 +3,10 @@
   color: #ffc300;
   border-radius: 0.5em;
   border: 2px #ffc300 solid;
-  width: 10em;
+  width: 5em;
   padding: 5px;
+  margin: 0 0 0 0.5em;
+  transition: 150ms ease-in-out;
 }
 
 .rating2:hover {
@@ -27,7 +29,12 @@
 .spaceRating{
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.ratingForm {
+  display: flex;
+  align-items: center;
 }
 
 .test {

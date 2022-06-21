@@ -15,6 +15,7 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  transition: 150ms ease-in-out;
 }
 
 /* Change color of dropdown links on hover */
@@ -23,6 +24,10 @@
   color: black;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.span {
+  transition: 150ms ease-in-out;
 }
 
 .span:hover .dropdown-Content {display: block;}
