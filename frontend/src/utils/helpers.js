@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { createTheme } from '@material-ui/core';
+
 /*
   handleCookies(cookies: Array<{name, value, options}>, callback: () => any)
 */
+
 export function handleCookies(cookies, callback) {
   cookies.forEach(cookie => callback(cookie.name, cookie.value, cookie.options || {
     path: "/"
@@ -75,3 +77,31 @@ export  const verifyReleaseDate = (date) => {
   }
   return `(${date.slice(0, 4)})`;
 }
+
+
+export function getRatingsAndReviewsForMovies(reviews, ratings) {
+  let result = {};
+  reviews.map( review => {
+    if (!result[review.movie_api_id]) {
+      result[review.movie_api_id] = {
+        movieTitle: review.movie_title
+      }
+    }  
+    result[review.movie_api_id].review_id = review.id
+    result[review.movie_api_id].review = review.content
+    result[review.movie_api_id].movie_id = review.movie_api_id
+  })
+
+  ratings.map( rating => {
+    if (!result[rating.movie_api_id]) {
+      result[rating.movie_api_id] = {
+        movieTitle: rating.movie_title
+      }
+    } 
+     result[rating.movie_api_id].rating = rating.rating
+     result[rating.movie_api_id].rating_id = rating.id
+     result[rating.movie_api_id].movie_id = rating.movie_api_id
+  })
+  return Object.values(result)
+}
+

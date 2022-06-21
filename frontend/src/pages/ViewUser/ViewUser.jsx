@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import './ViewUser.scss';
+import {getRatingsAndReviewsForMovies} from '../../utils/helpers'
 
 export default function UserDashboard() {
   const [user, setUser] = useState(null);
@@ -11,12 +12,21 @@ export default function UserDashboard() {
   const [playlists, setPlaylists] = useState([]);
   const params = useParams();
   const [cookies] = useCookies();
+  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
+
+
 
   useEffect(() => {
     getUserData();
-    getUserReviews();
-    getUserRatings();
     getUserPlaylists();
+    Promise.all([
+      getUserReviews(),
+      getUserRatings()
+      ]).then(([reviews, ratings]) => {
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
+        setReviews(reviews)
+        setRatings(ratings)
+      })
   }, []);
 
   async function getMovieTitle(movieId) {
@@ -46,7 +56,7 @@ export default function UserDashboard() {
       data[i].movie_title = await getMovieTitle(data[i].movie_api_id);
     }
 
-    setReviews(data);
+    return data;
   }
 
   async function getUserRatings() {
@@ -60,7 +70,7 @@ export default function UserDashboard() {
       data[i].movie_title = await getMovieTitle(data[i].movie_api_id);
     }
 
-    setRatings(data);
+    return data;
   }
 
   async function getUserPlaylists() {
@@ -69,23 +79,34 @@ export default function UserDashboard() {
       return;
     }
     const {data} = await axios.get(`/playlists/${userId}`);
-
+    
     for(let i = 0; i < data.length; i++) {
       const playlistMovieLength = data[i].movie_api_id.length;
       const movies = [];
-  
+      
       for(let movieIndex = 0; movieIndex < playlistMovieLength; movieIndex ++){
         const movieId = data[i].movie_api_id[movieIndex];
         const movieTitle = await getMovieTitle(movieId);
         movies.push({movie_api_id: movieId, movie_title: movieTitle});
-
+        
       }
-
+      
       data[i].movies = movies;
     }
-
+    
     setPlaylists(data);
   }
+
+  
+  const moviesArray = ratingWithReviewArr.map(movie => {
+    return(
+      <div className='renderReviews' key={movie.movie_id}>
+        <p><b>movie title: </b>{movie.movieTitle}</p>
+        <p><b>review: </b>{movie.review || "No review"}</p>
+        <p><b>rating: </b>{movie.rating || "No rating"}</p>
+      </div>
+    )
+  })
 
   if(!ratings || !user || !reviews ) {
     <h1>loading...🤨</h1>
@@ -118,27 +139,9 @@ export default function UserDashboard() {
       <div className="user-movie-content">
         <h5>{user?.name}'s Movie Reviews</h5>
         <article>
-            {(reviews|| []).map(review => (
-              <div className="renderObject" key={`${review.movie_api_id}${review.id}`}>
-                <p><b>movie title: </b>{review.movie_title}</p>
-                <p><b>review: </b>{review.content}</p>
-                <p><b>date: </b>{new Date(review.date).toLocaleString()}</p>
-              </div>
-            ))}
+           {moviesArray}
         </article> 
         </div>
-      <div className="user-movie-content">
-        <h5>{user?.name}'s Movie Ratings</h5>
-        <article>
-        {(ratings).map(rating => {       
-          return (
-              <div className="renderObject" key={`${rating.movie_api_id}${rating.id}`}>
-                <p><b>movie title: </b>{rating.movie_title}</p>
-                <p><b>rating: </b>{rating.rating}</p>
-              </div>
-            )})}
-        </article>
-      </div>
     </div>
     </div>
     </main>
