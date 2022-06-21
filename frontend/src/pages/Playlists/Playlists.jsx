@@ -90,7 +90,7 @@ export default function Playlists() {
   };
 
   return (
-    <>
+
     <main className="playlist-container">
       { cookies.idCookie && 
         <>
@@ -222,7 +222,6 @@ export default function Playlists() {
             ))}
           </article>
     </div>
-    </main> 
-    </>   
+  </main>   
   )
 };

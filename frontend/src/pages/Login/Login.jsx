@@ -40,34 +40,34 @@ export default function Login() {
 
 
   return(
+
       <div className="login-wrapper">
-      {error && <h1>{error}</h1>}
-      <div className='boxL'>
-        <h1>Login</h1>
-        <label>
-          <h4>Email</h4>
-          <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)} />
+        {error && <h1>{error}</h1>}
+        <div className='boxL'>
+          <h1>Login</h1>
+          <label>
+            <h4>Email:</h4>
+            <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)} />
+          </label>
+          <label>
+            <h4>Password:</h4>
+            <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)} />
+          </label>
+          <div>
+            <button className="user_btn" type="submit" onClick={onLogin}>Login</button>
+          </div>
+        {/* <label>
+          <p>Email</p>
+          <input type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
         </label>
         <label>
-          <h4>Password</h4>
-          <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)} />
+          <p>Password</p>
+          <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
         </label>
         <div>
-           {/* NB: Add logic to make spacebar work! It doens't currently work to press submit!! */}
-          <button className="user_btn" type="submit" onClick={onLogin}>Login</button>
-        </div>
-      {/* <label>
-        <p>Email</p>
-        <input type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
-      </label>
-      <div>
-        <br />
-        <button form="loginform" type="submit" onClick={onLogin}>Submit</button>  */}
-      </div>
+          <br />
+          <button form="loginform" type="submit" onClick={onLogin}>Submit</button>  */}
+     </div>
     </div>
   );
 };

@@ -48,15 +48,15 @@ export default function SignUp() {
         <div className='boxS'>
         <h1>Register</h1>
           <label>
-            <h4>Name</h4>
+            <h4>Name:</h4>
             <input className='forms'  type="text" name="name" onChange={(ev) => setName(ev.target.value)}/>
           </label>
           <label>
-            <h4>Email</h4>
+            <h4>Email:</h4>
             <input className='forms' type="text" name="email" onChange={(ev) => setEmail(ev.target.value)}/>
           </label>
           <label>
-            <h4>Password</h4>
+            <h4>Password:</h4>
             <input className='forms' type="password" name="password" onChange={(ev) => setPassword(ev.target.value)}/>
           </label>
           <div>

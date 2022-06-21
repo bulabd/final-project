@@ -115,35 +115,35 @@ export default function UserDashboard() {
   return(
 
     <main>
-    <div className="user-dashboard-wrapper">
-        <h2 className="userviewtitle">{user?.name}'s Profile</h2>
-      <div className="content-box">
-        <h4 className='welcomeMessage'>{user?.name}'s Contributions</h4>
-      <div>
-        <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
-      </div>
-      <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
-
-      <div className="user-movie-content">
-        <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
-        <article className='playlistsContainer'>
-        {(playlists|| []).map(playlist => (
-              <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
-                <p className='playlistRow' ><b>Playlist title: </b>{playlist.title}</p>
-                <p className='playlistRow' ><b>Description: </b>{playlist.description}</p>
-                <p className='playlistRow' ><b>Movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
-              </div>
-          ))}
-        </article>
-      </div>
-      <div className="user-movie-content">
-        <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
-        <article className='moviesContainer'>
-           {moviesArray}
-        </article> 
+      <div className="user-dashboard-wrapper">
+          <h2 className="userviewtitle">{user?.name}'s Profile</h2>
+        <div className="content-box">
+          <h4 className='welcomeMessage'>{user?.name}'s Contributions</h4>
+        <div>
+          <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
         </div>
-    </div>
-    </div>
+        <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
+
+        <div className="user-movie-content">
+          <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
+          <article className='playlistsContainer'>
+          {(playlists|| []).map(playlist => (
+                <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
+                  <p className='playlistRow' ><b>Playlist title: </b>{playlist.title}</p>
+                  <p className='playlistRow' ><b>Description: </b>{playlist.description}</p>
+                  <p className='playlistRow' ><b>Movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
+                </div>
+            ))}
+          </article>
+        </div>
+        <div className="user-movie-content">
+          <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
+          <article className='moviesContainer'>
+            {moviesArray}
+          </article> 
+          </div>
+      </div>
+      </div>
     </main>
   );
 };

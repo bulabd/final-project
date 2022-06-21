@@ -17,23 +17,26 @@ function App() {
   console.log("------------coookie???", cookies.idCookie);
 
   return (
-    <div className="App">
-      <CookiesProvider>
-        <Navbar />
-          <Routes>
-            <Route path="/view-user/:id" element={<ViewUser />}/>
-            <Route path="/playlists" element={<Playlists />}/>
-            <Route exact path="/user-dashboard" element={<UserDashboard />}/>
-            {/* <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Main/>} /> */}
-            <Route path="/logout" element={<Logout />}/>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/sign-up" element={<SignUp />}/>
-            <Route path="/" element={<Main />}>
-            </Route>
-          </Routes>
-        <Footer />
-      </CookiesProvider>
-    </div>
+
+    <main>
+      <div className="App">
+        <CookiesProvider>
+          <Navbar />
+            <Routes>
+              <Route path="/view-user/:id" element={<ViewUser />}/>
+              <Route path="/playlists" element={<Playlists />}/>
+              <Route exact path="/user-dashboard" element={<UserDashboard />}/>
+              {/* <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Main/>} /> */}
+              <Route path="/logout" element={<Logout />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="/sign-up" element={<SignUp />}/>
+              <Route path="/" element={<Main />}>
+              </Route>
+            </Routes>
+          <Footer />
+        </CookiesProvider>
+      </div>
+    </main>
   );
 };
 
