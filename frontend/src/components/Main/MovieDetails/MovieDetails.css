@@ -62,6 +62,8 @@ img {
   padding: 5px;
   border-radius: 2px;
   transition: 150ms ease-in-out;
+  color: #ffc300;
+  text-decoration: none;
 }
 
 .trailer:hover {
