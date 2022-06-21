@@ -8,7 +8,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Typography, Modal, Box, Button } from '@mui/material';
 import { ThemeProvider, TextField } from '@material-ui/core';
 
-import { style, style1, style2, theme } from '../../utils/helpers';
+import { style, style2, theme } from '../../utils/helpers';
 import './UserDashboard.scss';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
@@ -59,6 +59,7 @@ export default function UserDashboard(props) {
   const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
   
   const userID = cookies.idCookies
+  //^^^CHECK THIS OVER
 
   useEffect(() => {
     getUserData();

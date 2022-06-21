@@ -12,6 +12,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 // import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import "./Playlists.scss";
+  import "../../CommonStyles.scss"
 
 
 export default function Playlists() {
@@ -196,10 +197,10 @@ export default function Playlists() {
           <article className="mainPlaylists">
             {(playlists|| []).map(playlist => (
               <div className="renderObject" key={`${playlist.playlist_id}`}>
-                <h4 className="text"><b>Title: </b>{playlist.title}</h4>
+                <h4 className="text"><b>Title: </b><i>{playlist.title}</i></h4>
                 <img src={playlist.playlist_avatar} alt="Playlist Avatar" height={250} width={250} />
                 <Link to={`/view-user/${playlist.user_id}`}>
-                <p className="text"><b>Created by: </b>{playlist.username} <FontAwesomeIcon icon={faLink} /></p>
+                <p className="text" title="Visit User's Profile"><b>Created by: </b>{playlist.username} <FontAwesomeIcon icon={faLink} /></p>
                 </Link>
                 <p className="text"><b>Description: </b>{playlist.description}</p>
                 <p className="text"><ul>

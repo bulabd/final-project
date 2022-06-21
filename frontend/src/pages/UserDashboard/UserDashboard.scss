@@ -5,7 +5,7 @@
   padding-top: 150px;
   padding-bottom: 75px; 
   background-color: 	#202020;
-  color: bisque;
+  background-image: url("https://www.transparenttextures.com/patterns/graphy-dark.png");  color: bisque;
 }
 
 .renderObject {
@@ -23,12 +23,12 @@
   width: 50%;
   background-color: 	#202020;
   color: bisque;
-  border: 2px solid #BFACAA; 
+  border: 2px solid #FFC300; 
   border-radius: 10px;
   padding: 2em;
   margin-top: 2.5em;
   &:hover {
-    border: 3px #4A8FE7 solid;
+    // border: 3px #4A8FE7 solid;
   }
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 5px double #BFACAA;
+  border-bottom: 5px double #FFC300;
   width: 50%;
   padding: .25em;
 }
@@ -54,7 +54,7 @@
   margin-top: 1.5em;
   border: 2px solid #BFACAA; 
   &:hover {
-    border: 3px #4A8FE7 solid;
+    // border: 3px #4A8FE7 solid;
   }
 }
 
@@ -69,13 +69,22 @@
 .right {
   flex: 1;
   padding-left: 1em;
+  color: #ffc300;
+  text-decoration: none;
+  &:hover {
+    // color:#00A0C6; 
+    // text-decoration:none; 
+    // cursor:pointer;  
+  }
 }
 
+
 .bio {
+  text-align: center;
   width: 50%;      
-  background-color: #BFACAA;       
-  border: 2px solid black; 
-  border-radius: 10px;     
+  background-color: black;       
+  border-top: 2px solid black;  
+  border-radius: 10px;  
   padding: 10px;      
   word-wrap: break-word;    
 }
@@ -94,7 +103,6 @@ article {
   border-color: #ffc300;
   height: 2em;
   width: auto;
-
 }
 
 .renderReviews {

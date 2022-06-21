@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // -- routes/catRoutes.js
 const router = require('express').Router();
 
@@ -44,6 +45,6 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
-  
+
   return router;
 };
