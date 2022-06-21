@@ -163,6 +163,15 @@ export default function UserDashboard(props) {
       })
     }
 
+    const playlistDelete = (id, e) => {
+      e.preventDefault();
+      axios.delete(`http://localhost:8008/playlist/${id}`)
+      .then(() => {
+        const newPlaylists = playlists.filter(playlist => playlist.id !== id);
+        setPlaylists(newPlaylists);
+      })
+    }
+
     function getRatingsAndReviewsForMovies(reviews, ratings) {
       let result = {};
       reviews.map( review => {
@@ -305,6 +314,7 @@ export default function UserDashboard(props) {
                 <p><b>playlist title: </b>{playlist.title}</p>
                 <p><b>description: </b>{playlist.description}</p>
                 <p><b>movies: </b>{(playlist.movies.map(movie => movie.movie_title)|| []).join(', ')}</p>
+                <button className='deleteBut' onClick={(e) => playlistDelete(playlist.id, e)}><FontAwesomeIcon icon={faTrashCan} /> Delete Playlist</button>
               </div>
           ))}
         </article>

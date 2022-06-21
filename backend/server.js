@@ -176,6 +176,21 @@ app.post('/playlists/', (req, res) => {
   }
 });
 
+app.delete('/playlist/:id', (req, res) => {
+  const { id } = req.params;
+  console.log("playlist id ----", id);
+  const command = `DELETE FROM playlists WHERE id = ${id}`;
+  db.query(command).then(data => {
+    console.log(data);
+    console.log('it passed');
+    res.status(200).send("OK");
+  }).catch(err => {
+    console.log('an error happend-------');
+    res
+      .json({ error: err.message });
+  });
+});
+
 app.post('/playlists/addMovie', (req, res) => {
   const body = req.body;
   const { playlist_id, movie_id } = body;
