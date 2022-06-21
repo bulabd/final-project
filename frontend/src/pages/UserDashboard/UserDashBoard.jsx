@@ -66,11 +66,11 @@ export default function UserDashboard(props) {
     Promise.all([
       getUserReviews(),
       getUserRatings()
-    ]).then(([reviews, ratings]) => {
-      setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
-      setReviews(reviews)
-      setRatings(ratings)
-    })
+      ]).then(([reviews, ratings]) => {
+        setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
+        setReviews(reviews)
+        setRatings(ratings)
+      })
   }, []);
 
   async function getMovieTitle(movieId) {
@@ -157,13 +157,13 @@ export default function UserDashboard(props) {
       e.preventDefault()
       axios.delete(`http://localhost:8008/ratings/${id}`)
       .then(() => {
-        const newRatings = ratings.filter(rev => rev.id !== id)
+        const newRatings = ratings.filter(rat => rat.id !== id)
         setRatings(newRatings)
         setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, newRatings))
       })
     }
 
-    function getRatingsAndReviewsForMovies(reviews, ratings) {
+   function getRatingsAndReviewsForMovies(reviews, ratings) {
       let result = {};
       reviews.map( review => {
         if (!result[review.movie_api_id]) {
@@ -315,19 +315,6 @@ export default function UserDashboard(props) {
           {moviesArray}
         </article> 
         </div>
-      {/* <div className="user-movie-content">
-        <h5>{user?.name}'s Movie Ratings</h5>
-        <article>
-        {(ratings).map(rating => {       
-          return (
-              <div className="renderObject" key={`${rating.movie_api_id}${rating.id}`}>
-                <p><b>movie title: </b>{rating.movie_title}</p>
-                <p><b>rating: </b>{rating.rating}</p>
-                <button className='deleteBut' onClick={(e) => ratingDelete(rating.id, e)}><FontAwesomeIcon icon={faTrashCan} /></button>
-              </div>
-            )})}
-        </article>
-      </div> */}
     </div>
     </div>
     </main>

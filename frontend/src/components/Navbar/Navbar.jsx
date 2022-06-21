@@ -14,7 +14,7 @@ export default function Navbar() {
 
     <div className="nav-div">
       <div className="logo-container">
-      <Link className="NavMage" to="/" title="Phone home"><img src={require('../../docs/logo.png')} alt="" width = "50" height = "auto"/></Link>
+      <Link className="NavMage" to="/" title="Phone home"><img src={require('../../docs/logo.png')} alt="" width = "70" height = "auto"/></Link>
       <h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></h1>
       </div>
       <div className="user">
