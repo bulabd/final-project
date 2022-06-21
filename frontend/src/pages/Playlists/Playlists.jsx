@@ -12,6 +12,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 // import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import "./Playlists.scss";
+  import "../../CommonStyles.scss"
 
 
 export default function Playlists() {
