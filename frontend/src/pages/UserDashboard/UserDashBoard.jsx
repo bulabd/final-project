@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { Typography, Modal, Box, Button } from '@mui/material';
 import { ThemeProvider, TextField } from '@material-ui/core';
+import { style, style2, theme, Loading, getRatingsAndReviewsForMovies } from '../../utils/helpers';
 
-import { style, style2, theme } from '../../utils/helpers';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import './UserDashboard.scss';
 
-// export default function UserDashboard(props) {
 export default function UserDashboard(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -29,16 +29,13 @@ export default function UserDashboard(props) {
   const [playlists, setPlaylists] = useState([]);
   const [cookies] = useCookies();
   const textInput = React.useRef(null);
-  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([])
+  const [ratingWithReviewArr, setRatingWithReviewArr] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
 
 
   // ---------MODAL STUFF:-------------
-
-  // const getReviewsForMovie = (reviews, id) => {
-  //   let filteredReviews = reviews.filter(review => review.movie_api_id === id);
-  //   return filteredReviews;
-  // };
 
 
   async function handleSubmit(event) {
@@ -62,6 +59,7 @@ export default function UserDashboard(props) {
   //^^^CHECK THIS OVER
 
   useEffect(() => {
+    setLoading(true);
     getUserData();
     getUserPlaylists();
     Promise.all([
@@ -71,6 +69,7 @@ export default function UserDashboard(props) {
         setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
         setReviews(reviews)
         setRatings(ratings)
+        setTimeout( () => setLoading(false), 2000);
       })
   }, []);
 
@@ -171,32 +170,6 @@ export default function UserDashboard(props) {
         const newPlaylists = playlists.filter(playlist => playlist.id !== id);
         setPlaylists(newPlaylists);
       })
-    }
-
-   function getRatingsAndReviewsForMovies(reviews, ratings) {
-      let result = {};
-      reviews.map( review => {
-        if (!result[review.movie_api_id]) {
-          result[review.movie_api_id] = {
-            movieTitle: review.movie_title
-          }
-        }  
-        result[review.movie_api_id].review_id = review.id
-        result[review.movie_api_id].review = review.content
-        result[review.movie_api_id].movie_id = review.movie_api_id
-      })
-
-      ratings.map( rating => {
-        if (!result[rating.movie_api_id]) {
-          result[rating.movie_api_id] = {
-            movieTitle: rating.movie_title
-          }
-        } 
-         result[rating.movie_api_id].rating = rating.rating
-         result[rating.movie_api_id].rating_id = rating.id
-         result[rating.movie_api_id].movie_id = rating.movie_api_id
-      })
-      return Object.values(result)
     }
 
     const moviesArray = ratingWithReviewArr.map(movie => {
@@ -312,7 +285,7 @@ export default function UserDashboard(props) {
         <div className="user-movie-content">
           <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
           <article className='playlistsContainer'>
-          {(playlists|| []).map(playlist => (
+          {loading ? Loading :(playlists|| []).map(playlist => (
                 <div className="renderReviews" key={`${playlist.id}${playlist.movie_api_id.join('')}`}>
                   <div>
                     <p className='playlistRow' ><b>Playlist title: </b>{playlist.title}</p>

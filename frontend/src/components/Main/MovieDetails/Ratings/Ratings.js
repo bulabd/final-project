@@ -70,8 +70,6 @@ export default function Ratings(props) {
         }
       }
     }
-    
-    const [value, setValue] = useState("Rate the movie");
 
   const handleChange = (event) => {
     setMyRating(event.target.value);

@@ -1,15 +1,24 @@
 import axios from 'axios';
 import { createTheme } from '@material-ui/core';
+import Lottie from "react-lottie";
+import loader from '../assets/loader.json';
 
-/*
-  handleCookies(cookies: Array<{name, value, options}>, callback: () => any)
-*/
 
 export function handleCookies(cookies, callback) {
   cookies.forEach(cookie => callback(cookie.name, cookie.value, cookie.options || {
     path: "/"
   }));
 };
+
+export const Loading = (
+  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', paddingBottom: 60}}>
+    <Lottie
+      options={{autoplay: true, loop:  true, animationData: loader}}
+      width={300}
+      height={300}
+    />
+  </div>
+)
 
 export async function getMovieTitle(movieId) {
   const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
@@ -72,6 +81,7 @@ export const theme = createTheme({
   }
 });
 
+
 export  const verifyReleaseDate = (date) => {
   if (date === undefined) {
     return undefined;
@@ -104,5 +114,4 @@ export function getRatingsAndReviewsForMovies(reviews, ratings) {
      result[rating.movie_api_id].movie_id = rating.movie_api_id
   })
   return Object.values(result)
-}
-
+};

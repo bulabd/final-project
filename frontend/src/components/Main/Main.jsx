@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Lottie from "react-lottie";
 
 import Search from "./Search/Search";
 import Movies from "./Movies/Movies";
 import Dropdown from "./Dropdown/Dropdown";
 import SortByDropdown from "./Dropdown/SortByDropdown";
 import MyPagination from "./Pagination/MyPagination";
-import loader from '../../assets/loader.json'
+import { Loading } from '../../utils/helpers';
 
 import "./Main.scss"
 
@@ -90,16 +89,6 @@ export default function Main(props) {
  
     });
   }, [genre, page, sortedBy]);
-
-  const Loading = (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', paddingBottom: 60}}>
-      <Lottie
-        options={{autoplay: true, loop:  true, animationData: loader}}
-        width={300}
-        height={300}
-      />
-    </div>
-  )
 
   return(
 
