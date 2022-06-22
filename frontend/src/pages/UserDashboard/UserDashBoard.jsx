@@ -326,20 +326,24 @@ export default function UserDashboard(props) {
             ))}
           </article>
         </div>
-        <div className="user-dashboard-separator"/>
       
         </>
       }
       {ratingWithReviewArr.length !== 0 &&
-        <div className="user-movie-content">
-          <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
-          <article className='moviesContainer'>
-            {moviesArray}
-          </article> 
-        </div>
+
+      <>
+        <div className="user-dashboard-separator"/>
+          <div className="user-movie-content">
+            <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
+            <article className='moviesContainer'>
+              {moviesArray}
+            </article> 
+          </div>
+      </>
       }
-    </div>
-    </div>
+
+      </div>
+      </div>
     </main>
   );
 };

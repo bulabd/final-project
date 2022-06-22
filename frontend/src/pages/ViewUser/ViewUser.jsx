@@ -125,7 +125,9 @@ export default function UserDashboard() {
         </div>
         <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
 
-        <div className="user-movie-content">
+        {playlists.length !== 0 && 
+
+            <div className="user-movie-content">
           <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
           <article className='playlistsContainer'>
           {(playlists|| []).map(playlist => (
@@ -137,16 +139,23 @@ export default function UserDashboard() {
             ))}
           </article>
         </div>
-        <div className="user-dashboard-separator"/>
+      }
 
-        <div className="user-movie-content">
-          <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
+      {ratingWithReviewArr.length !== 0 &&
+        
+        <>
+          <div className="user-dashboard-separator"/>
+          <div className="user-movie-content">
+            <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
             <article className='moviesContainer'>
               {moviesArray}
             </article> 
           </div>
+        </>
+      }
+
       </div>
-      </div>
-    </main>
+    </div>
+  </main>
   );
 };

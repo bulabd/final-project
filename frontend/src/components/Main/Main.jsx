@@ -107,14 +107,14 @@ export default function Main(props) {
       <div className="movie-container">
         <div className="searchBar">
           <Search onChange={onChangeOfSearch} />
-          <div className="dropDowns">
-              <Dropdown onChange={onChangeOfDropdownGenre}/>
-              <SortByDropdown onChange={onChangeOfDropdownSort}/>
-            </div>
         </div>
 
         {search.length === 0 && <>
           <div className="dropdownsWithSummary">
+            <div className="dropDowns">
+                <Dropdown onChange={onChangeOfDropdownGenre}/>
+                <SortByDropdown onChange={onChangeOfDropdownSort}/>
+            </div>
             <h3>{genreName} movies sorted by {sortingName(sortedBy)}</h3>
           </div>
           {loading ? Loading : <Movies movies={movies} />}
