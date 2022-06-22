@@ -1,7 +1,7 @@
-import './App.css';
 import React from 'react';
 import { Route, Navigate, Routes } from 'react-router-dom';
 import { CookiesProvider, useCookies } from "react-cookie";
+
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
@@ -11,6 +11,8 @@ import UserDashboard from './pages/UserDashboard/UserDashBoard';
 import Logout from './pages/Logout/Logout';
 import Playlists from './pages/Playlists/Playlists';
 import ViewUser from './pages/ViewUser/ViewUser';
+
+import './App.css';
 
 function App() {
   const [cookies] = useCookies();

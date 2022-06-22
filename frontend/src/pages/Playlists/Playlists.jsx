@@ -100,7 +100,6 @@ export default function Playlists() {
             <input className="input" type="text" name="description" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></input>
             <input className="input" type="text" name="avatar" placeholder="Avatar URL (Optional)" value={avatar} onChange={(e) => setAvatar(e.target.value)}></input>
             <button className="submitButton" type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
-      {/* Form Modal below */}
     {/* <Modal
         open={open}
         onClose={handleClose}
@@ -203,7 +202,6 @@ export default function Playlists() {
                   <p className="text" title="Visit User's Profile"><b>Created by: </b>{playlist.username} <FontAwesomeIcon icon={faLink} /></p>
                 </Link>
                 <p className="text"><b>Description: </b>{playlist.description}</p>
-                {/* <p className="text"> */}
                 {!playlist.movies.length && <p className='text'><b>Movies: </b> No movies Yet</p>}
                 <div className='movieList'>
                   {playlist.movies.length !== 0 && 
@@ -217,7 +215,6 @@ export default function Playlists() {
                     </>
                   }
                 </div>
-                {/* </p> */}
               </div>
             ))}
           </article>

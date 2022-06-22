@@ -1,7 +1,7 @@
-import "./Reviews.css"
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import ReviewList from "./ReviewList/ReviewList";
+import "./Reviews.css"
 
 export default function Reviews(props) {
   // const [reviewsForMovie, setReviewsForMovie] = useState([]);

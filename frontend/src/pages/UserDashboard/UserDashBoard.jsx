@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
@@ -234,9 +234,6 @@ export default function UserDashboard(props) {
             <b>Update User Profile Information:</b>
           </Typography>
           <br />
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Update User Name:
-          </Typography> */}
           <ThemeProvider theme={theme}>
                 <TextField
                   style={{ 

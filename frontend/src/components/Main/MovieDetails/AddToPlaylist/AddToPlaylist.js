@@ -5,7 +5,6 @@ import PlaylistDropdown from "./PlaylistDropdown/PlaylistDropdown";
 
 export default function AddToPlaylist(props) {
   const [cookies] = useCookies();
-
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {

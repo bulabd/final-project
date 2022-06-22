@@ -1,5 +1,4 @@
 import Pagination from "@material-ui/lab/Pagination";
-
 import { createTheme, ThemeProvider } from '@material-ui/core';
 
 export default function MyPagination(props) {

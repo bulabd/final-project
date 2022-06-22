@@ -1,5 +1,5 @@
-import "./RatingList.css";
 import { useEffect, useState } from "react";
+import "./RatingList.css";
 
 
 export default function ReviewList(props) {

@@ -1,7 +1,7 @@
-import "./Dropdown.css"
 import DropdownGenre from "./DropdownGenre/DropdownGenre";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSortDesc} from '@fortawesome/free-solid-svg-icons';
+import { faSortDesc } from '@fortawesome/free-solid-svg-icons';
+import "./Dropdown.css"
 
 export default function Dropdown(props) {
 

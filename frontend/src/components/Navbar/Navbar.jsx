@@ -1,8 +1,8 @@
 import React from "react";
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFilm} from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {faFilm} from '@fortawesome/free-solid-svg-icons';
 import "./Navbar.css";
 import "../../CommonStyles.scss";
 

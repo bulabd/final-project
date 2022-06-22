@@ -3,14 +3,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from 'react-cookie';
 import RatingList from "./RatingList/RatingList";
-import "./Ratings.css"
-
-
-// import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import "./Ratings.css"
 
 export default function Ratings(props) {
   const [ratings, setRatings] = useState([]);

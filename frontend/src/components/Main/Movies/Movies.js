@@ -1,10 +1,11 @@
-import "./Movies.css"
 import Movie from "./Movie/Movie";
+import "./Movies.css"
 
 export default function Movies(props) {
   let moviesArr = props.movies.map((movie) => {
     
     return (
+
       <Movie
         key={movie.id}
         id = {movie.id}
