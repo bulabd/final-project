@@ -69,7 +69,7 @@ export default function UserDashboard(props) {
         setRatingWithReviewArr(getRatingsAndReviewsForMovies(reviews, ratings))
         setReviews(reviews)
         setRatings(ratings)
-        setTimeout( () => setLoading(false), 2000);
+        setTimeout( () => setLoading(false), 3000);
       })
   }, []);
 
@@ -309,7 +309,7 @@ export default function UserDashboard(props) {
           <div className="user-movie-content">
             <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
             <article className='moviesContainer'>
-              {moviesArray}
+              {loading ? Loading : moviesArray}
             </article> 
           </div>
       </>
