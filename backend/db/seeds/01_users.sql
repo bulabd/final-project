@@ -2,3 +2,4 @@ INSERT INTO users (name, email, password, avatar, bio) VALUES ('Bulat Abdullin',
 INSERT INTO users (name, email, password, avatar, bio) VALUES ('George Burt', 'test2@mail.com', 'asd', 'https://share.america.gov/wp-content/uploads/2020/02/AP_20041239336571-1068x782.jpg', 'I like horror movies.');
 INSERT INTO users (name, email, password, avatar, bio) VALUES ('Baila Ly', 'test3@mail.com', 'asd', 'https://share.america.gov/wp-content/uploads/2020/02/AP_20041239336571-1068x782.jpg', 'I like action movies.');
 INSERT INTO users (name, email, password, avatar, bio) VALUES ('Zoe the Dogue', 'zoe@dogue.com', 'bones', 'https://i.ibb.co/y5jPBTy/IMG-6826-HEIC.jpg', 'Give me treats.');
+INSERT INTO users (name, email, password, avatar, bio) VALUES ('Roger Ebert', 'roger@mail.com', 'ebert', 'https://variety.com/wp-content/uploads/2013/04/roger_ebert.jpg', 'I''m told we movie critics praise movies that are long and boring.');
