@@ -12,13 +12,15 @@ export default function Navbar() {
 
   const isLoggedIn = cookies.idCookie;
 
+  console.log(cookies.emailCookie);
+
   return(
   
     <main>
       <div className="nav-div">
         <div className="logo-container">
         <Link className="NavMage" to="/" title="Phone home"><img src={require('../../docs/logo.png')} alt="" width = "50" height = "auto"/></Link>
-        <h1>Everyone's a Critic </h1>
+        <h1>Everyone's a Critic</h1>
         </div>
         <div className="user">
           {isLoggedIn ? (
