@@ -5,8 +5,9 @@
   border: 2px #ffc300 solid;
   width: 5em;
   padding: 5px;
-  margin: 0 0 0 0.5em;
+  margin: 1em 0 0 0.5em;
   transition: 150ms ease-in-out;
+
 }
 
 .rating2:hover {
@@ -35,6 +36,7 @@
 .ratingForm {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .test {
