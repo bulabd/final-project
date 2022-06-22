@@ -137,6 +137,8 @@ export default function UserDashboard() {
             ))}
           </article>
         </div>
+        <div className="user-dashboard-separator"/>
+
         <div className="user-movie-content">
           <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
             <article className='moviesContainer'>
