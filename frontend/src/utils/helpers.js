@@ -42,9 +42,10 @@ export const style1 = {
   flexDirection: 'column',
   transition: 'transform 150ms ease-in-out',
   '&:hover': {
+    border: '1px solid #ffc300',
     backgroundColor: 'rgba(0,0,0,0.3)',
-    boxShadow: '0px 5px 5px 5px rgba(252,195,0,0.3)',
-    transform: 'scale(1.2)'
+    boxShadow: '0px 2px 2px 2px rgba(252,195,0,0.3)',
+    transform: 'scale(1.1)'
   }
 }
 

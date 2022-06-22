@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
-import {getRatingsAndReviewsForMovies} from '../../utils/helpers'
+import { getRatingsAndReviewsForMovies } from '../../utils/helpers'
 import './ViewUser.scss';
 
 export default function UserDashboard() {
@@ -99,6 +99,7 @@ export default function UserDashboard() {
 
   
   const moviesArray = ratingWithReviewArr.map(movie => {
+    
     return(
       <div className='renderReviews' key={movie.movie_id}>
         <p className='playlistRow'><b>Movie title: </b>{movie.movieTitle}</p>
@@ -138,9 +139,9 @@ export default function UserDashboard() {
         </div>
         <div className="user-movie-content">
           <h5 className='subTitle'>{user?.name}'s Movie Reviews</h5>
-          <article className='moviesContainer'>
-            {moviesArray}
-          </article> 
+            <article className='moviesContainer'>
+              {moviesArray}
+            </article> 
           </div>
       </div>
       </div>

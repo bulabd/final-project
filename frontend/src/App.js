@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Navigate, Routes } from 'react-router-dom';
 import { CookiesProvider, useCookies } from "react-cookie";
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
@@ -14,7 +14,6 @@ import ViewUser from './pages/ViewUser/ViewUser';
 
 function App() {
   const [cookies] = useCookies();
-  console.log("------------coookie???", cookies.idCookie);
 
   return (
 
@@ -24,14 +23,13 @@ function App() {
           <Navbar />
             <Routes>
               <Route path="/view-user/:id" element={<ViewUser />}/>
-              <Route path="/playlists" element={<Playlists />}/>
-              <Route exact path="/user-dashboard" element={<UserDashboard />}/>
-              {/* <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Main/>} /> */}
+              <Route path="/playlists" element={<Playlists />}/> 
+              <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Navigate to="/login" replace />
+              }/>
               <Route path="/logout" element={<Logout />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/sign-up" element={<SignUp />}/>
-              <Route path="/" element={<Main />}>
-              </Route>
+              <Route path="/" element={<Main />} />
             </Routes>
           <Footer />
         </CookiesProvider>

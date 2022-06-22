@@ -6,6 +6,7 @@ import {faFilm} from '@fortawesome/free-solid-svg-icons';
 import "./Navbar.css";
 import "../../CommonStyles.scss";
 
+// <FontAwesomeIcon icon={faFilm}/>
 export default function Navbar() {
   const [cookies] = useCookies();
 
@@ -17,7 +18,7 @@ export default function Navbar() {
       <div className="nav-div">
         <div className="logo-container">
         <Link className="NavMage" to="/" title="Phone home"><img src={require('../../docs/logo.png')} alt="" width = "50" height = "auto"/></Link>
-        <h1>Everyone's a Critic <FontAwesomeIcon icon={faFilm}/></h1>
+        <h1>Everyone's a Critic </h1>
         </div>
         <div className="user">
           {isLoggedIn ? (

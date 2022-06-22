@@ -7,7 +7,6 @@ import {faStar} from '@fortawesome/free-solid-svg-icons';
 export default function Movie(props) {
 
   return (
-    
     <>
     <div className="movieShow">
       <MovieDetails id={props.id} title={props.title} rating={props.rating} overview={props.overview} poster={props.poster} release_date={props.release_date} >

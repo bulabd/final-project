@@ -1,12 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import "./Main.scss"
+import axios from "axios";
+import Lottie from "react-lottie";
 
 import Search from "./Search/Search";
 import Movies from "./Movies/Movies";
 import Dropdown from "./Dropdown/Dropdown";
 import SortByDropdown from "./Dropdown/SortByDropdown";
 import MyPagination from "./Pagination/MyPagination";
+import loader from '../../assets/loader.json'
+
+import "./Main.scss"
 
 export default function Main(props) {
   const [movies, setMovies] = useState([]);
@@ -17,6 +20,7 @@ export default function Main(props) {
   const [sortedBy, setSortedBy] = useState('popularity.desc');
   const [search, setSearch] = useState("");
   const [searchMovies, setSearchMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const onChangeOfSearch = (text) => {
     setPage(1);
@@ -32,8 +36,6 @@ export default function Main(props) {
       setSearchMovies([]);
     }
   }
-  
-  
 
   const onChangeOfDropdownGenre = (genre) => {
     setPage(1);
@@ -69,6 +71,7 @@ export default function Main(props) {
   }
 
   useEffect(() => {
+    setLoading(true);
     Promise.all([
       axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=${sortedBy}&include_adult=false&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`),
       axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
@@ -83,8 +86,20 @@ export default function Main(props) {
       }
       setMovies(movies);
       setGenreName(getGenreName(gnr));
+      setTimeout( () => setLoading(false), 2000);
+ 
     });
   }, [genre, page, sortedBy]);
+
+  const Loading = (
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', paddingBottom: 60}}>
+      <Lottie
+        options={{autoplay: true, loop:  true, animationData: loader}}
+        width={300}
+        height={300}
+      />
+    </div>
+  )
 
   return(
 
@@ -92,24 +107,24 @@ export default function Main(props) {
       <div className="movie-container">
         <div className="searchBar">
           <Search onChange={onChangeOfSearch} />
+          <div className="dropDowns">
+              <Dropdown onChange={onChangeOfDropdownGenre}/>
+              <SortByDropdown onChange={onChangeOfDropdownSort}/>
+            </div>
         </div>
 
         {search.length === 0 && <>
           <div className="dropdownsWithSummary">
-            <div className="dropDowns">
-              <Dropdown onChange={onChangeOfDropdownGenre}/>
-              <SortByDropdown onChange={onChangeOfDropdownSort}/>
-            </div>
             <h3>{genreName} movies sorted by {sortingName(sortedBy)}</h3>
           </div>
-          <Movies movies={movies} />
+          {loading ? Loading : <Movies movies={movies} />}
           <div className="pagination">
             <MyPagination  numOfPages={totalPages} onChange={changePage} pageState={page} />
           </div>
 
         </>}
 
-        {search.length !== 0 && <Movies movies={searchMovies} /> }
+        {search.length !== 0 && (loading ? <h1>loading</h1> :<Movies movies={searchMovies} />) }
 
       </div>
     </>

@@ -31,3 +31,6 @@ button {
   border: 5px solid #ffc300;
 }
 
+.login-error {
+  color: red;
+}

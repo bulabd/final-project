@@ -1,12 +1,14 @@
 import "./Dropdown.css"
 import DropdownGenre from "./DropdownGenre/DropdownGenre";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSortDesc} from '@fortawesome/free-solid-svg-icons';
 
 export default function Dropdown(props) {
-  
+
   return (
 
     <div className="dropdownGenre">
-      <button className="dropbtn">Select a genre</button>
+      <button className="dropbtn">Select a genre <FontAwesomeIcon className="buttonIcon" icon={faSortDesc}/></button>
       <div className="dropdown-content">
         <DropdownGenre onChange={props.onChange} genreID={28} >Action</DropdownGenre>
         <DropdownGenre onChange={props.onChange} genreID={12} >Adventure</DropdownGenre>

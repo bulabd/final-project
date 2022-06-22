@@ -307,10 +307,11 @@ export default function UserDashboard(props) {
       <div>
         <img src={user?.avatar} alt="User Avatar" height={250} width={250} className="user-avatar"/>
       </div>
-      <Button onClick={handleOpen} sx={{ '&:hover': { backgroundColor: '#202020' } }} ><h4 className='editButton'>EDIT<FontAwesomeIcon icon={faPen} /></h4></Button>
+      <Button onClick={handleOpen} sx={{ '&:hover': { backgroundColor: '#202020' } }} ><h4 className='editButton'>EDIT<FontAwesomeIcon className="buttonIcon" icon={faPen} /></h4></Button>
       <p className='bio'><b>Bio:</b> <i>{user?.bio}</i></p>
       
       {playlists.length !== 0 && 
+      <>
         <div className="user-movie-content">
           <h5 className='subTitle'>{user?.name}'s Movie Playlists</h5>
           <article className='playlistsContainer'>
@@ -328,6 +329,9 @@ export default function UserDashboard(props) {
             ))}
           </article>
         </div>
+        <div className="user-dashboard-separator"/>
+      
+        </>
       }
       {ratingWithReviewArr.length !== 0 &&
         <div className="user-movie-content">
