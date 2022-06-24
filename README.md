@@ -4,11 +4,11 @@ Everyone's a Critic (EAC) is a movie library where users can discover, rate, rev
 
 ### Screenshots
 
-!["Screenshot of the main page"]();
-!["Screenshot of the movie details"]();
-!["Screenshot of the playlists"]();
-!["Screenshot of the user dashboard"]();
-!["Screenshot of the register page"]();
+!["Screenshot of the main page"](https://github.com/bulabd/final-project/blob/master/docs/main-page.png?raw=true);
+!["Screenshot of the movie details"](https://github.com/bulabd/final-project/blob/master/docs/movie-details.png?raw=true);
+!["Screenshot of the playlists"](https://github.com/bulabd/final-project/blob/master/docs/playlists.png?raw=true);
+!["Screenshot of the user dashboard"](https://github.com/bulabd/final-project/blob/master/docs/user-dashboard.png?raw=true);
+!["Screenshot of the register page"](https://github.com/bulabd/final-project/blob/master/docs/register-page.png?raw=true);
 
 ## Tech Stack
 
