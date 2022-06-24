@@ -1,12 +1,9 @@
 import React from "react";
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {faFilm} from '@fortawesome/free-solid-svg-icons';
-import "./Navbar.css";
+import "./Navbar.scss";
 import "../../CommonStyles.scss";
 
-// <FontAwesomeIcon icon={faFilm}/>
 export default function Navbar() {
   const [cookies] = useCookies();
 

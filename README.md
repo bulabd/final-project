@@ -1,6 +1,8 @@
+Welcome to Everyone's a Critic!
+
 ## About
 
-Everyone's a Critic (EAC) is a movie library where users can discover, rate, review and add to playlists with different movies.
+Everyone's a Critic (EAC) is a movie library that enables users to discover, rate, review and add to movies to personalized movie playlists. 
 
 ### Screenshots
 

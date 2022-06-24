@@ -26,9 +26,9 @@ function App() {
             <Routes>
               <Route path="/view-user/:id" element={<ViewUser />}/>
               <Route path="/playlists" element={<Playlists />}/> 
-              <Route path="/user-dashboard" element={<UserDashboard />}/> 
-              {/* <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Navigate to="/login" replace />
-              }/> */}
+              {/* <Route path="/user-dashboard" element={<UserDashboard />}/>  */}
+              <Route exact path="/user-dashboard" element={cookies.idCookie ? <UserDashboard /> : <Navigate to="/login" replace />
+              }/>
               <Route path="/logout" element={<Logout />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/sign-up" element={<SignUp />}/>
