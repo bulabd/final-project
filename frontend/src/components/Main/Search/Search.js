@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import { createTheme, ThemeProvider } from '@material-ui/core';
-import "./Search.css";
+import "./Search.scss";
 
 export default function Search(props) {
 

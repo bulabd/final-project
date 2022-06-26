@@ -12,7 +12,7 @@ import Logout from './pages/Logout/Logout';
 import Playlists from './pages/Playlists/Playlists';
 import ViewUser from './pages/ViewUser/ViewUser';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   const [cookies] = useCookies();

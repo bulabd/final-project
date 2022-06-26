@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import "./Ratings.css"
+import "./Ratings.scss"
 
 export default function Ratings(props) {
   const [ratings, setRatings] = useState([]);

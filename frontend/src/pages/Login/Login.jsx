@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { handleCookies } from '../../utils/helpers';
-import './Login.css';
+import './Login.scss';
 
 
 export default function Login() {

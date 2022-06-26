@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./PlaylistDropdown.css";
+import "./PlaylistDropdown.scss";
 
 export default function PlaylistDropdown(props) {
 

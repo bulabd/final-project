@@ -1,5 +1,5 @@
 import Movie from "./Movie/Movie";
-import "./Movies.css"
+import "./Movies.scss"
 
 export default function Movies(props) {
   let moviesArr = props.movies.map((movie) => {
