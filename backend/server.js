@@ -1,15 +1,11 @@
 /* eslint-disable camelcase */
 let express = require('express');
 let path = require('path');
+require("dotenv").config();
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const url = require('url');
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
-
-require("dotenv").config();
 
 const PORT = process.env.REACT_APP_BACKEND_PORT;
 
@@ -18,7 +14,7 @@ let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let reviewsRouter = require('./routes/reviews');
 let ratingsRouter = require('./routes/ratings');
-let apiRouter = require('./routes/api')
+let apiRouter = require('./routes/api');
 
 
 const app = express();
@@ -40,8 +36,7 @@ app.use('/reviews', reviewsRouter(db));
 app.use('/ratings', ratingsRouter(db));
 app.use('/api/movies', apiRouter(db));
 
-
-
+  
 app.post('/login', (req, res) => {
   // get req body (i.e email and password)
   const body = req.body;
@@ -86,7 +81,7 @@ app.get('/review/:id', (req, res) => {
   const command = `SELECT * FROM reviews WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
     // if (data.rows.length > 0) {
-      res.status(200).json(data.rows);
+    res.status(200).json(data.rows);
     // }
   }).catch((ex) => {
     res
@@ -99,7 +94,7 @@ app.get('/rating/:id', (req, res) => {
   const userId = req.params.id;
   const command = `SELECT * FROM ratings WHERE user_id = $1`;
   db.query(command, [userId]).then((data) => {
-      res.status(200).json(data.rows);
+    res.status(200).json(data.rows);
   }).catch((ex) => {
     res
       .status(500)
@@ -120,20 +115,6 @@ app.get('/playlists/:id', (req, res) => {
       .json({ error: ex.message });
   });
 });
-
-// app.post('/playlist/', (req, res) => {
-//   const {userId, title, description, avatar} = req.body;
-//   const command = `INSERT INTO playlists (user_id, title, description, playlist_avatar) VALUES ($1, $2, $3, $4) RETURNING user_id, title, description, playlist_avatar;`;
-//   db.query(command, [userId, title, description, avatar]).then((data) => {
-//     if (data.rows.length > 0) {
-//       res.status(200).json(data.rows);
-//     }
-//   }).catch((ex) => {
-//     res
-//       .status(500)
-//       .json({ error: ex.message });
-//   });
-// });
 
 app.get('/playlists/', (req, res) => {
   const command = `SELECT playlists.id as playlist_id, *, "users".name as userName FROM playlists JOIN users ON users.id = playlists.user_id`;
@@ -210,12 +191,6 @@ app.post('/playlists/addMovie', (req, res) => {
 app.post('/sign-up', (req, res) => {
   const body = req.body;
   const { name, email, password } = body;
-  
-  //Change query to include hashed password instead
-  // bcrypt.hash(body.password, saltRounds, (err, hash) => {
-  //   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
-  // const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email;`;
-
 
   const command = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, email, name;`;
 

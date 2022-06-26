@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./RatingList.css";
+import "./RatingList.scss";
 
 
 export default function ReviewList(props) {
@@ -24,4 +24,4 @@ export default function ReviewList(props) {
       <h4 className="ratingResult1">EAC Rating: {Number(avgRate) || "No Ratings yet"}</h4>
     </div>
  );
-}
+};

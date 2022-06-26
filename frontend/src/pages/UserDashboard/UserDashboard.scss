@@ -19,13 +19,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
-  // width: 50%;
   background-color: 	#202020;
-  color: bisque;
-  //border: 2px solid #FFC300; 
+  color: bisque; 
   border-radius: 10px;
-  // padding: 2em;
   margin-top: 2.5em;
 }
 
@@ -34,7 +30,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // border-bottom:  #FFC300 solid;
   width: 50%;
   padding: .25em;
 }
@@ -43,8 +38,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
-  // position: relative;
   width: 85%;
   padding: 2em;
   border-radius: 10px;
@@ -115,18 +108,3 @@ article {
     transform: scale(1.5);
   }
 }
-
-// .renderReviews {
-//   flex-direction: column;
-//   width: 20em;
-//   background-color: black;
-//   padding: 2.5em;
-//   border-radius: 0.5em;
-//   border: solid 2px #ffc300;
-//   margin-bottom: 3em;
-//   .text {
-//     color: white;
-//     border-left: 2px #ffc300 solid;
-//     padding-left: 1em;
-//   }
-// }

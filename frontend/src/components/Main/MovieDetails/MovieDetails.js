@@ -13,58 +13,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { style, style1, style2, theme } from '../../../utils/helpers.js';
 import AddToPlaylist from './AddToPlaylist/AddToPlaylist';
 
-import "./MovieDetails.css";
-
-// const style = {
-//   color: 'white',
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 800,
-//   bgcolor: 'black',
-//   border: '2px solid #ffc300',
-//   borderRadius: 10,
-//   boxShadow: 24,
-//   p: 4
-// };
-
-// const style1 = {
-//   color: 'white',
-//   padding: '10px',
-//   borderRadius: 2,
-//   width: '220px',
-//   display: 'flex',
-//   flexDirection: 'column',
-//   '&:hover': {
-//     backgroundColor: 'rgba(0,0,0,0.3)',
-//     boxShadow: '0px 5px 5px 5px rgba(252,195,0,0.3)',
-//     transform: 'scale(1.2)'
-//   }
-// }
-
-// const style2 = {
-//   color: '#ffc300',
-//   border: '2px solid #ffc300',
-//   marginLeft: '2em',
-//   marginTop: '0.4em',
-//   '&:hover': {
-//     backgroundColor: '#ffc300',
-//     color: 'black'
-//   }
-// }
-
-// const theme = createTheme({
-//   palette: {
-//     type: 'dark',
-//     primary: {
-//       main: "#ffc300"
-//     },
-//     secondary: {
-//       main: "#ffc300"
-//     }
-//   }
-// });
+import "./MovieDetails.scss";
 
 export default function MovieDetails({ children, id, title, rating, overview, poster, release_date }) {
   const [open, setOpen] = React.useState(false);
@@ -107,7 +56,7 @@ export default function MovieDetails({ children, id, title, rating, overview, po
     if (cookies.idCookie) {
       if (verifyIfUserPostedReview(reviewsForMovie)) {
         try {
-          //returns OK
+          // returns OK
           await axios.post('/reviews', {user_id: cookies.idCookie, movie_api_id: id, movie_title: title, content: content})
           const  { data } = await axios.get(`/reviews`)
           setReviewsForMovie(getReviewsForMovie(data));
@@ -226,4 +175,4 @@ export default function MovieDetails({ children, id, title, rating, overview, po
       </Modal>
     </div>
   );
-}
+};

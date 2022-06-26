@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import "./Footer.css"
+import "./Footer.scss"
 
 export default function Footer(props) {
   return(
@@ -11,4 +11,4 @@ export default function Footer(props) {
       <a className="footerLink" href="https://github.com/Baila3" target="_blank"><FontAwesomeIcon icon={faGithub} /> Baila Ly</a>
     </div>
   );
-}
+};

@@ -1,7 +1,6 @@
+let axios = require('axios');
 let express = require('express');
 let router = express.Router();
-let axios = require('axios');
-
 
 async function getMovieDetails(movieId) {
   return axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`);

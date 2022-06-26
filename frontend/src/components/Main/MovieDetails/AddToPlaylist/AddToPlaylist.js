@@ -20,4 +20,4 @@ export default function AddToPlaylist(props) {
     
     <span><PlaylistDropdown movie_id={props.movie_id} playlists={playlists} /></span>
   );
-}
+};

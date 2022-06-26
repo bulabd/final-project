@@ -16,17 +16,6 @@
   cursor: pointer;
 }
 
-/* .option {
-  background-color: black;
-  color: #ffc300;
-  border-radius: 10px;
-}
-
-.option:hover {
-  background-color: #ffc300;
-  color: black;
-} */
-
 .spaceRating{
   display: flex;
   flex-direction: column;
@@ -36,7 +25,6 @@
 .ratingForm {
   display: flex;
   align-items: center;
-  /* flex-direction: column; */
 }
 
 .test {

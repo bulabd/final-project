@@ -1,5 +1,5 @@
 import Review from "./Review/Review";
-import "./ReviewList.css";
+import "./ReviewList.scss";
 
 export default function ReviewList(props) {
   const reviews = props.reviews.map((review) => {
@@ -16,4 +16,4 @@ export default function ReviewList(props) {
       <span>{reviews}</span>
     </>
   );
-}
+};

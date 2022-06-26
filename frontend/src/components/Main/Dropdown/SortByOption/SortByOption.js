@@ -4,4 +4,4 @@ export default function SortByOption(props) {
     
     <span onClick={() => props.onChange(props.sorting)} >{props.children}</span>
   );
-}
+};

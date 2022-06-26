@@ -1,6 +1,6 @@
 // Database connections
-const { Pool } = require('pg');
 require("dotenv").config();
+const { Pool } = require('pg');
 
 const {REACT_APP_DB_HOST, REACT_APP_DB_USER, REACT_APP_DB_PASSWORD, REACT_APP_DB_DATABASE, REACT_APP_DB_PORT} = process.env;
 

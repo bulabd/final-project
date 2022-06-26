@@ -1,7 +1,7 @@
 import SortByOption from "./SortByOption/SortByOption";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDesc  } from '@fortawesome/free-solid-svg-icons';
-import "./Dropdown.css"
+import "./Dropdown.scss"
 
 
 export default function SortByDropdown(props) {
